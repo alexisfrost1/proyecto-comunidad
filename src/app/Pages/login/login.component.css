@@ -4,6 +4,27 @@
     width: 100%;
   }
   
-  .example-full-width {
+.example-full-width {
     width: 100%;
   }
+
+.login {
+    padding-top: 10%;
+    padding-bottom: 10%;
+    padding-left: 30%;
+    max-width: 25%;
+    align-self: center;
+}
+
+.submit {
+    text-align:end;
+    margin-right: 10%;
+}
+
+.form-title {
+    text-align:center;
+}
+
+.form-input {
+    padding: 5%;
+}

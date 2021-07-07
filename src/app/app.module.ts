@@ -42,7 +42,7 @@ import { MatTableModule } from '@angular/material/table';
     InicioComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
