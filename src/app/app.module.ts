@@ -27,7 +27,8 @@ import { GastosComunesComponent } from './Pages/gastos-comunes/gastos-comunes.co
 import { MantencionesComponent } from './Pages/mantenciones/mantenciones.component';
 import { InicioComponent } from './Pages/inicio/inicio.component';
 import { MatTableModule } from '@angular/material/table';
-
+import { AngularMaterialModule } from './angular-material.module';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,12 +43,13 @@ import { MatTableModule } from '@angular/material/table';
     InicioComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
     RouterModule,
     FormsModule,
+    AngularMaterialModule,
     MatSidenavModule,
     MatTabsModule,
     MatSliderModule,
@@ -63,6 +65,7 @@ import { MatTableModule } from '@angular/material/table';
     
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

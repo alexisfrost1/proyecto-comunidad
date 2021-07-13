@@ -7,27 +7,27 @@
     <mat-nav-list class="side-list">
         <mat-toolbar>Menu</mat-toolbar>
         <hr color="gray">
-      <a mat-list-item routerLink='/home/inicio'>
+      <a mat-list-item routerLink='/home/inicio' class="text">
         <mat-icon aria-hidden="false">home</mat-icon>
           Home</a>
           <hr color="gray">
-          <a mat-list-item routerLink='/home/visitas'>
+          <a mat-list-item routerLink='/home/visitas' class="text">
             <mat-icon aria-hidden="false">hail</mat-icon>
           Visitas</a>
           <hr color="gray">
-      <a mat-list-item routerLink='/home/encomiendas'>
+      <a mat-list-item routerLink='/home/encomiendas' class="text">
         <mat-icon aria-hidden="false">shopping_bag</mat-icon>
           Encomiendas</a>
           <hr color="gray">
-      <a mat-list-item routerLink='/home/reservas'>
+      <a mat-list-item routerLink='/home/reservas' class="text">
         <mat-icon aria-hidden="false">event</mat-icon>
           Reservas Área Común</a>
           <hr color="gray">
-      <a mat-list-item routerLink='/home/gastos-comunes'>
+      <a mat-list-item routerLink='/home/gastos-comunes' class="text">
         <mat-icon aria-hidden="false">paid</mat-icon>
           Gastos Comunes</a>
           <hr color="gray">
-      <a mat-list-item routerLink='/home/mantenciones'>
+      <a mat-list-item routerLink='/home/mantenciones' class="text">
         <mat-icon aria-hidden="false">build</mat-icon>
           Mantenciones</a>
           <hr color="gray">
@@ -44,6 +44,11 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>proyecto-comunidad</span>
+      <div class="right">
+        <button mat-fab color="warn" routerLink='/login' aria-label="Example icon button with a home icon">
+          <mat-icon >logout</mat-icon>
+        </button>
+      </div>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
