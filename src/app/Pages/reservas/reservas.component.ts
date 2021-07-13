@@ -13,8 +13,10 @@ export class ReservasComponent implements OnInit {
     constructor() {
         const currentDate = new Date();
         this.minDate = new Date();
-        this.maxDate = new Date(currentDate.setDate(currentDate.getDate() + 30));
+        this.maxDate = new Date(currentDate.setDate(currentDate.getDate() + 90));
     }
+
+    
 
   ngOnInit(): void {
   }

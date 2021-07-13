@@ -11,4 +11,7 @@ table {
     width: 30%;
 }
 
-
+.mat-calendar {
+    width: 50%;
+    height: 50%;
+}
