@@ -27,6 +27,10 @@ import { GastosComunesComponent } from './Pages/gastos-comunes/gastos-comunes.co
 import { MantencionesComponent } from './Pages/mantenciones/mantenciones.component';
 import { InicioComponent } from './Pages/inicio/inicio.component';
 import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MAT_DATE_LOCALE } from '@angular/material/core'
 
 @NgModule({
   declarations: [
@@ -59,10 +63,13 @@ import { MatTableModule } from '@angular/material/table';
     MatButtonModule,
     MatIconModule,
     MatListModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     HttpClientModule,
     
   ],
-  providers: [],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
