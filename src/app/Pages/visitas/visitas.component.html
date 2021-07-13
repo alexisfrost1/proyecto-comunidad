@@ -36,6 +36,18 @@
               <mat-hint>Numero de la unidad donde llegarán las visitas</mat-hint>
             </mat-form-field>
           </p>
+          <p> 
+            <mat-form-field appearance="outline"> 
+                <mat-label>
+                  <mat-icon matSuffix>event</mat-icon>
+                  Fecha de visita (Mes/Dia/Año)
+                </mat-label> 
+                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="fechaReserva" enable> 
+                <mat-datepicker-toggle matSuffix [for]="fechaReserva"></mat-datepicker-toggle> 
+                <mat-datepicker #fechaReserva disabled="false"></mat-datepicker> 
+                <mat-hint>Fecha de llegada de visitas (Mes/Dia/Año)</mat-hint>
+            </mat-form-field> 
+        </p> 
           <p>
             <mat-form-field appearance="outline">
               <mat-label>

@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReservasComponent implements OnInit {
 
-  constructor() { }
+  minDate: Date; 
+  maxDate: Date; 
 
-  ngOnInit(): void {
-  }
+  constructor() { 
+      const currentDate = new Date(); 
+      this.minDate = new Date(); 
+      this.maxDate = new Date(currentDate.setDate(currentDate.getDate() + 30)); 
+  } 
 
-}
+ngOnInit(): void { 
+} 
+
+} 
+

@@ -1,1 +1,58 @@
-<p>reservas works!</p>
+<mat-tab-group> 
+ 
+    <!-- Reserva de are� com�n--> 
+    <mat-tab label = "Registrar Reserva"> 
+ 
+        <form> 
+            <p> 
+                <mat-form-field appearance="outline"> 
+                    <mat-label> 
+                        <mat-icon matSuffix>person_outline</mat-icon> 
+                        Nombre de propietario/copropietario 
+                    </mat-label> 
+                    <input type="text" matInput placeholder="Su Nombre"> 
+                    <mat-hint>Ingrese su nombre</mat-hint> 
+                </mat-form-field> 
+            </p> 
+            <p> 
+                <mat-form-field appearance="outline"> 
+                    <mat-label> 
+                        <mat-icon matSuffix>tag</mat-icon> 
+                        Ingrese su Rut 
+                    </mat-label> 
+                    <input type="text" matInput placeholder="Rut"> 
+                    <mat-hint>Rut</mat-hint> 
+                </mat-form-field> 
+            </p> 
+            <p> 
+                <mat-form-field appearance="outline"> 
+                    <mat-label> 
+                        <mat-icon matSuffix>villa</mat-icon> 
+                        Área Común 
+                    </mat-label> 
+                    <mat-select> 
+                        <mat-option value="0">Piscina Block N°3</mat-option> 
+                        <mat-option value="1">Multicancha PLaza Central</mat-option> 
+                        <mat-option value="2">Quincho Terraza Block N°2</mat-option> 
+                    </mat-select> 
+                    <mat-hint>Lugar recreativo</mat-hint> 
+                </mat-form-field> 
+            </p> 
+            <p> 
+                <mat-form-field appearance="outline"> 
+                    <mat-label>Fecha a reservar</mat-label> 
+                    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="fechaReserva" disabled> 
+                    <mat-datepicker-toggle matSuffix [for]="fechaReserva"></mat-datepicker-toggle> 
+                    <mat-datepicker #fechaReserva disabled="false"></mat-datepicker> 
+                </mat-form-field> 
+            </p> 
+        </form> 
+    </mat-tab> 
+ 
+    <!-- Display de reservas--> 
+    <mat-tab label = "Reservas realizadas"> 
+ 
+ 
+    </mat-tab> 
+ 
+</mat-tab-group> 
