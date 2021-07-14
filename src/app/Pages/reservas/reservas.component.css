@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 table {
     width: 100%;
 }
@@ -12,6 +13,11 @@ table {
 }
 
 .mat-calendar {
-    width: 50%;
-    height: 50%;
+    width: 100%;
+    height: 100%;
 }
+=======
+.color{
+    background-color: rgb(240, 171, 69);
+  }
+>>>>>>> parent of 2201d47 (Add files via upload)

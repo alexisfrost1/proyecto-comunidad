@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <mat-tab-group>
 
     <!-- Reserva de areá común-->
@@ -10,7 +11,7 @@
                         <mat-icon matSuffix>person_outline</mat-icon>
                         Nombre de propietario/copropietario
                     </mat-label>
-                    <input type="text" matInput placeholder="Su Nombre">
+                    <input type="text" matInput placeholder="Su Nombre" required>
                     <mat-hint>Ingrese su nombre</mat-hint>
                 </mat-form-field>
             </p>
@@ -20,7 +21,7 @@
                         <mat-icon matSuffix>tag</mat-icon>
                         Ingrese su Rut
                     </mat-label>
-                    <input type="text" matInput placeholder="Rut">
+                    <input type="text" matInput placeholder="Rut" required>
                     <mat-hint>Rut</mat-hint>
                 </mat-form-field>
             </p>
@@ -30,20 +31,20 @@
                         <mat-icon matSuffix>villa</mat-icon>
                         Areá Común
                     </mat-label>
-                    <mat-select>
-                        <mat-option value="0">Piscina Block N°3</mat-option>
-                        <mat-option value="1">Multicancha PLaza Central</mat-option>
-                        <mat-option value="2">Quincho Terraza Block N°2</mat-option>
+                    <mat-select [(value)]="areaReserva">
+                        <mat-option *ngFor="let area of areaComun" [value]="area.value">{{area.viewvalue}}</mat-option>
                     </mat-select>
-                    <mat-hint>Lugar recreativo</mat-hint>
+                    <mat-hint>Lugar de reserva</mat-hint>
                 </mat-form-field>
             </p>
-            <p>
+            <p *ngIf="!(areaReserva=='')">
                 <mat-form-field appearance="outline">
                     <mat-label>Fecha a reservar</mat-label>
-                    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="fechaReserva" disabled>
-                    <mat-datepicker-toggle matSuffix [for]="fechaReserva"></mat-datepicker-toggle>
-                    <mat-datepicker #fechaReserva disabled="false"></mat-datepicker>                           
+                    <input matInput [matDatepicker]="displayFecha" disabled required>
+                    <mat-datepicker-toggle matSuffix [for]="displayFecha"></mat-datepicker-toggle>
+                    <mat-datepicker #displayFecha></mat-datepicker>
+                    <mat-calendar [minDate]="minDate" [maxDate]="maxDate" [(selected)]="fechaReserva"></mat-calendar>
+                    <mat-hint>Fechas disponibles</mat-hint>
                 </mat-form-field>
                 
             </p>
@@ -57,3 +58,6 @@
     </mat-tab>
 
 </mat-tab-group>
+=======
+<p>reservas works!</p>
+>>>>>>> parent of 2201d47 (Add files via upload)
