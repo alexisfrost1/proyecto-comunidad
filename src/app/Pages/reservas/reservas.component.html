@@ -36,10 +36,10 @@
                     <mat-hint>Lugar de reserva</mat-hint>
                 </mat-form-field>
             </p>
-            <p *ngIf="!(areaReserva=='')">
+            <p *ngIf="!(areaReserva == '')">
                 <mat-form-field appearance="outline">
                     <mat-label>Fecha a reservar</mat-label>
-                    <input matInput [matDatepicker]="displayFecha" disabled required>
+                    <input matInput [matDatepicker]="displayFecha" name="displayFecha" [(ngModel)]="fechaReserva" disabled>
                     <mat-datepicker-toggle matSuffix [for]="displayFecha"></mat-datepicker-toggle>
                     <mat-datepicker #displayFecha></mat-datepicker>
                     <mat-calendar [minDate]="minDate" [maxDate]="maxDate" [(selected)]="fechaReserva"></mat-calendar>

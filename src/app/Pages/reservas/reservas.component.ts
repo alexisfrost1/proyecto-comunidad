@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-
 interface area {
     value: number;
     viewvalue: string;
