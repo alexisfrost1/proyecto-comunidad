@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
 
 
@@ -50,4 +49,3 @@ export class ReservasComponent implements OnInit {
   }
 
 }
->>>>>>> parent of 2201d47 (Add files via upload)
