@@ -9,6 +9,9 @@ import { MantencionesComponent } from './Pages/mantenciones/mantenciones.compone
 import { ReservasComponent } from './Pages/reservas/reservas.component';
 import { VisitasComponent } from './Pages/visitas/visitas.component';
 import { InicioComponent } from './Pages/inicio/inicio.component';
+import { HomeConserjeComponent } from './conserje/home-conserje/home-conserje.component';
+import { VisitasConserjeComponent } from './conserje/visitas-conserje/visitas-conserje.component';
+
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent, children:[
@@ -20,6 +23,11 @@ const routes: Routes = [
     {path:'inicio', component:InicioComponent},
     {path: 'gastos-comunes', component: GastosComunesComponent},
   ]},
+  {path: 'home2', component: HomeConserjeComponent, children:[
+   
+    {path: 'visitas2', component: VisitasConserjeComponent}
+  ]},
+  
   {path: 'login', component: LoginComponent},
   {path: '' , component:LoginComponent}
 ];

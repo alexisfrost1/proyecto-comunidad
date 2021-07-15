@@ -29,6 +29,10 @@ import { InicioComponent } from './Pages/inicio/inicio.component';
 import { MatTableModule } from '@angular/material/table';
 import { AngularMaterialModule } from './angular-material.module';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { VisitasConserjeComponent } from './conserje/visitas-conserje/visitas-conserje.component';
+import { HomeConserjeComponent } from './conserje/home-conserje/home-conserje.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +44,9 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     ReservasComponent,
     GastosComunesComponent,
     MantencionesComponent,
-    InicioComponent
+    InicioComponent,
+    VisitasConserjeComponent,
+    HomeConserjeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
