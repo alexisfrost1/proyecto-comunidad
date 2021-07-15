@@ -17,6 +17,7 @@ table {
     height: 100%;
 }
 
-.mat-calendar-period-button {
-    display: none;
+.fecha-reservada {
+    background-color: red;
+    border-radius: 100%;  
 }

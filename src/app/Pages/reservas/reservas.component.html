@@ -30,13 +30,13 @@
                         <mat-icon matSuffix>villa</mat-icon>
                         Areá Común
                     </mat-label>
-                    <mat-select [(value)]="areaReserva">
-                        <mat-option *ngFor="let area of areaComun" [value]="area.value">{{area.viewvalue}}</mat-option>
+                    <mat-select [(value)]="nReserva">
+                        <mat-option *ngFor="let area of areaComun" [value]="area.n_area">{{area.nombre_area}}</mat-option>
                     </mat-select>
-                    <mat-hint>Lugar de reserva</mat-hint>
+                    <mat-hint>Lugar a reservar</mat-hint>
                 </mat-form-field>
             </p>
-            <p *ngIf="!(areaReserva == '')">
+            <p *ngIf="!(nReserva == 0)">
                 <mat-form-field appearance="outline">
                     <mat-label>Fecha a reservar</mat-label>
                     <input matInput [matDatepicker]="displayFecha" name="displayFecha" [(ngModel)]="fechaReserva" disabled>
