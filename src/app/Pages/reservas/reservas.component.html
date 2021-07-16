@@ -30,10 +30,10 @@
                         <mat-icon matSuffix>villa</mat-icon>
                         Areá Común
                     </mat-label>
-                    <mat-select [(value)]="nReserva">
+                    <mat-select [(value)]="nReserva" (selectionChange)="fechasReserva()">
                         <mat-option *ngFor="let area of areaComun" [value]="area.n_area">{{area.nombre_area}}</mat-option>
                     </mat-select>
-                    <mat-hint>Lugar a reservar</mat-hint>
+                    <mat-hint>{{fechas_nodisponibles}}</mat-hint>
                 </mat-form-field>
             </p>
             <p *ngIf="!(nReserva == 0)">
@@ -42,8 +42,8 @@
                     <input matInput [matDatepicker]="displayFecha" name="displayFecha" [(ngModel)]="fechaReserva" disabled>
                     <mat-datepicker-toggle matSuffix [for]="displayFecha"></mat-datepicker-toggle>
                     <mat-datepicker #displayFecha></mat-datepicker>
-                    <mat-calendar [minDate]="minDate" [maxDate]="maxDate" [(selected)]="fechaReserva"></mat-calendar>
-                    <mat-hint>Fechas disponibles</mat-hint>
+                    <mat-calendar #calendar [minDate]="minDate" [maxDate]="maxDate" [(selected)]="fechaReserva"></mat-calendar>
+                    <mat-hint>{{fechaReserva}}</mat-hint>
                 </mat-form-field>
                 
             </p>
@@ -51,8 +51,33 @@
     </mat-tab>
 
     <!-- Display de reservas-->
-    <mat-tab label = "Reservas realizadas">
+    <mat-tab label="Reservas realizadas">
 
+        <table mat-table [dataSource]="reservasUnidad" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="fecha">
+                <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="n_area">
+                <th mat-header-cell *matHeaderCellDef> # </th>
+                <td mat-cell *matCellDef="let element"> {{element.n_area}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="nombre_area">
+                <th mat-header-cell *matHeaderCellDef> Lugar reservado </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombre_area}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
 
     </mat-tab>
 

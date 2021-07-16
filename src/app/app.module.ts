@@ -30,7 +30,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -69,7 +68,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     HttpClientModule,
     
   ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
