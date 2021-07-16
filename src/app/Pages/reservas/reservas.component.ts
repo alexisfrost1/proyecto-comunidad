@@ -28,8 +28,8 @@ export class ReservasComponent implements OnInit {
 
     minDate: Date;
     maxDate: Date;
-    fechaReserva: any;
-    currentDate = new Date();
+    fechaReserva: Date | any;
+    currentDate: Date = new Date();
 
     areaComun: area[] = [{ n_area: 1, nombre_area: 'Piscina Block n°3' },
                          { n_area: 2, nombre_area: 'Quincho Terraza Block n°2' },
