@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { MatCalendar, MatCalendarCellCssClasses } from '@angular/material/datepicker';
 
 interface area {
@@ -30,6 +30,9 @@ export class ReservasComponent implements OnInit {
     maxDate: Date;
     fechaReserva: Date | any;
     currentDate: Date = new Date();
+
+    @ViewChild(MatCalendar)
+    calendar!: MatCalendar<Date>;
 
     areaComun: area[] = [{ n_area: 1, nombre_area: 'Piscina Block n°3' },
                          { n_area: 2, nombre_area: 'Quincho Terraza Block n°2' },
@@ -69,7 +72,7 @@ export class ReservasComponent implements OnInit {
                 }
 
             }
-
+        this.calendar.updateTodaysDate();
     }
 
     //* Marca las fechas reservadas anteriormente en el calendario*//
