@@ -78,7 +78,7 @@ export class ReservasComponent implements OnInit {
             if (this.fechas_nodisponibles) {
                 return (date: Date): MatCalendarCellCssClasses => {
                     const highlightDate = this.fechas_nodisponibles
-                        .map((strDate: Date) => new Date(strDate))
+                        .map((strDate) => new Date(strDate))
                         .some(
                             (d: Date) =>
                                 d.getDate() === date.getDate() &&
