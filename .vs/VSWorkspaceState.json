@@ -7,6 +7,6 @@
     "\\src\\app\\Pages\\reservas",
     "\\src\\app\\Pages\\visitas"
   ],
-  "SelectedNode": "\\src\\app\\app.module.ts",
+  "SelectedNode": "\\src\\app\\Pages\\reservas\\reservas.component.ts",
   "PreviewInSolutionExplorer": false
 }

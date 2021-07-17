@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { MatCalendar, MatCalendarCellCssClasses } from '@angular/material/datepicker';
 
 interface area {
@@ -34,12 +34,12 @@ export class ReservasComponent implements OnInit {
     areaComun: area[] = [{ n_area: 1, nombre_area: 'Piscina Block n°3' },
                          { n_area: 2, nombre_area: 'Quincho Terraza Block n°2' },
                          { n_area: 3, nombre_area: 'Cancha de futbol Plaza n°2' }];
-    nReserva: number = 0; 
+    nReserva: number | undefined; 
 
     reservasUnidad: reserva[] =
         [{ nombre: 'Alexis Canessa', fecha: (this.currentDate).toLocaleDateString(), n_area: 1, nombre_area: 'Piscina Block n°3' },
          { nombre: 'Alexis Canessa', fecha: (new Date(this.currentDate.setDate(this.currentDate.getDate() + 2))).toLocaleDateString(), n_area: 3, nombre_area: 'Cancha de futbol Plaza n°2' },
-         { nombre: 'Fabian Contreras', fecha: (new Date(this.currentDate.setDate(this.currentDate.getDate() + 20))).toLocaleDateString(), n_area: 2, nombre_area: 'Quincho Terraza Block n°2' },];
+         { nombre: 'Fabian Contreras', fecha: (new Date(this.currentDate.setDate(this.currentDate.getDate() + 20))).toLocaleDateString(), n_area: 2, nombre_area: 'Quincho Terraza Block n°2' }];
     displayedColumns: string[] = ['nombre', 'fecha', 'n_area', 'nombre_area'];
 
     reservasComunidad: reserva_comunidad[] =
@@ -56,27 +56,24 @@ export class ReservasComponent implements OnInit {
          { n_area: 3, fecha: new Date(this.currentDate.setDate(this.currentDate.getDate() + 10)) },
          { n_area: 3, fecha: new Date(this.currentDate.setDate(this.currentDate.getDate() + 17)) }];
 
-    fechas_nodisponibles: Array<Date> = [];
-
-    @ViewChild('calendar')
-    calendar!: MatCalendar<Date>;
+    fechas_nodisponibles: Date[] = [];
 
     fechasReserva() {
 
-        this.fechas_nodisponibles = new Array<Date>();
-        for ( var i = 0; i <= this.reservasComunidad.length; i++) {
+        this.fechas_nodisponibles = [];
 
-            if ( this.nReserva == this.reservasComunidad[i].n_area ) {
-                this.fechas_nodisponibles.push(new Date(this.reservasComunidad[i].fecha));
+            for (var i = 0; i < this.reservasComunidad.length; i++) {
+
+                if ( this.nReserva == this.reservasComunidad[i].n_area ) {
+                    this.fechas_nodisponibles.push(new Date(this.reservasComunidad[i].fecha));
+                }
+
             }
 
-        }
-        this.calendar.updateTodaysDate();
     }
 
+    //* Marca las fechas reservadas anteriormente en el calendario*//
     dateClass() {
-
-        if ( this.fechas_nodisponibles.length != 0) {
 
             if (this.fechas_nodisponibles) {
                 return (date: Date): MatCalendarCellCssClasses => {
@@ -92,7 +89,6 @@ export class ReservasComponent implements OnInit {
                 };
             }
 
-        }
         return '';
     }
 
