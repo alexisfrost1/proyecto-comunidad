@@ -46,18 +46,18 @@ export class ReservasComponent implements OnInit {
     displayedColumns: string[] = ['nombre', 'fecha', 'n_area', 'nombre_area'];
 
     reservasComunidad: reserva_comunidad[] =
-        [{ n_area: 1, fecha: new Date(this.currentDate) },
-         { n_area: 1, fecha: new Date(this.currentDate.setDate(this.currentDate.getDate() + 5)) },
-         { n_area: 1, fecha: new Date(this.currentDate.setDate(this.currentDate.getDate() + 7)) },
-         { n_area: 1, fecha: new Date(this.currentDate.setDate(this.currentDate.getDate() + 14)) },
-         { n_area: 2, fecha: new Date(this.currentDate) },                          
-         { n_area: 2, fecha: new Date(this.currentDate.setDate(this.currentDate.getDate() + 6)) },
-         { n_area: 2, fecha: new Date(this.currentDate.setDate(this.currentDate.getDate() + 9)) },
-         { n_area: 2, fecha: new Date(this.currentDate.setDate(this.currentDate.getDate() + 20)) },
-         { n_area: 3, fecha: new Date(this.currentDate.setDate(this.currentDate.getDate() + 2)) },
-         { n_area: 3, fecha: new Date(this.currentDate.setDate(this.currentDate.getDate() + 4)) },
-         { n_area: 3, fecha: new Date(this.currentDate.setDate(this.currentDate.getDate() + 10)) },
-         { n_area: 3, fecha: new Date(this.currentDate.setDate(this.currentDate.getDate() + 17)) }];
+        [{ n_area: 1, fecha: new Date() },
+         { n_area: 1, fecha: new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()+2) },
+         { n_area: 1, fecha: new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()+5)  },
+         { n_area: 1, fecha: new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()+7) },
+         { n_area: 2, fecha: new Date() },                                           
+         { n_area: 2, fecha: new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()+4) },
+         { n_area: 2, fecha: new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()+6) },
+         { n_area: 2, fecha: new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()+10) },
+         { n_area: 3, fecha: new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()+6) },
+         { n_area: 3, fecha: new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()+8) },
+         { n_area: 3, fecha: new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()+12) },
+         { n_area: 3, fecha: new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()+17) }];
 
     fechas_nodisponibles: Date[] = [];
 
@@ -96,6 +96,8 @@ export class ReservasComponent implements OnInit {
     }
 
     constructor() {
+
+        this.nReserva = 0;
 
         //* Rango de fechas en las que es posible reservar*//
 

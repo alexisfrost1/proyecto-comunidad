@@ -33,7 +33,7 @@
                     <mat-select [(value)]="nReserva" (selectionChange)="fechasReserva()">
                         <mat-option *ngFor="let area of areaComun" [value]="area.n_area">{{area.nombre_area}}</mat-option>
                     </mat-select>
-                    <mat-hint>Area a reservar</mat-hint>
+                    <mat-hint>{{nReserva}}</mat-hint>
                 </mat-form-field>
             </p>
             <p *ngIf="!(nReserva == 0)">
