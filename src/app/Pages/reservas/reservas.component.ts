@@ -73,6 +73,7 @@ export class ReservasComponent implements OnInit {
             }
 
         }
+        this.fechaReserva = undefined;
         this.calendar.updateTodaysDate();
     }
 
@@ -87,7 +88,7 @@ export class ReservasComponent implements OnInit {
                     d.getDate() === cellDate.getDate() &&
                     d.getMonth() === cellDate.getMonth() &&
                     d.getFullYear() === cellDate.getFullYear()
-            ) ? 'fecha-reservada disabled' : '';
+            ) ? 'fecha-reservada' : '';
         }
 
         return '';

@@ -29,7 +29,7 @@ import { InicioComponent } from './Pages/inicio/inicio.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -68,7 +68,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     HttpClientModule,
     
   ],
-  providers: [],
+    providers: [
+        { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

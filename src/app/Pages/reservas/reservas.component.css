@@ -20,5 +20,5 @@ table {
 .fecha-reservada {
     background-color: red;
     border-radius: 100%;  
-
+    pointer-events:none;
 }
