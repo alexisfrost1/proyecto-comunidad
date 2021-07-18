@@ -43,7 +43,7 @@
                     <mat-datepicker-toggle matSuffix [for]="displayFecha"></mat-datepicker-toggle>
                     <mat-datepicker #displayFecha></mat-datepicker>
                     <!--[dateClass]="dateClass()"-->
-                    <mat-calendar #calendar [minDate]="minDate" [maxDate]="maxDate" [(selected)]="fechaReserva"></mat-calendar>
+                    <mat-calendar #calendar [dateClass]="dateClass" [minDate]="minDate" [maxDate]="maxDate" [(selected)]="fechaReserva"></mat-calendar>
                     <mat-hint>{{fechas_nodisponibles}}</mat-hint>
                 </mat-form-field>
                 

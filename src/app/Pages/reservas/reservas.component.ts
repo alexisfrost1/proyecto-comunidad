@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
-import { MatCalendar, MatCalendarCellCssClasses } from '@angular/material/datepicker';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { MatCalendar, MatCalendarCellClassFunction, MatCalendarCellCssClasses } from '@angular/material/datepicker';
 
 interface area {
     n_area: number;
@@ -21,7 +21,8 @@ interface reserva_comunidad {
 @Component({
     selector: 'app-reservas',
     templateUrl: './reservas.component.html',
-    styleUrls: ['./reservas.component.css']
+    styleUrls: ['./reservas.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 
 export class ReservasComponent implements OnInit {
@@ -35,29 +36,29 @@ export class ReservasComponent implements OnInit {
     calendar!: MatCalendar<Date>;
 
     areaComun: area[] = [{ n_area: 1, nombre_area: 'Piscina Block n°3' },
-                         { n_area: 2, nombre_area: 'Quincho Terraza Block n°2' },
-                         { n_area: 3, nombre_area: 'Cancha de futbol Plaza n°2' }];
-    nReserva: number | undefined; 
+    { n_area: 2, nombre_area: 'Quincho Terraza Block n°2' },
+    { n_area: 3, nombre_area: 'Cancha de futbol Plaza n°2' }];
+    nReserva: number | undefined;
 
     reservasUnidad: reserva[] =
         [{ nombre: 'Alexis Canessa', fecha: (this.currentDate).toLocaleDateString(), n_area: 1, nombre_area: 'Piscina Block n°3' },
-         { nombre: 'Alexis Canessa', fecha: (new Date(this.currentDate.setDate(this.currentDate.getDate() + 2))).toLocaleDateString(), n_area: 3, nombre_area: 'Cancha de futbol Plaza n°2' },
-         { nombre: 'Fabian Contreras', fecha: (new Date(this.currentDate.setDate(this.currentDate.getDate() + 20))).toLocaleDateString(), n_area: 2, nombre_area: 'Quincho Terraza Block n°2' }];
+        { nombre: 'Alexis Canessa', fecha: (new Date(this.currentDate.setDate(this.currentDate.getDate() + 2))).toLocaleDateString(), n_area: 3, nombre_area: 'Cancha de futbol Plaza n°2' },
+        { nombre: 'Fabian Contreras', fecha: (new Date(this.currentDate.setDate(this.currentDate.getDate() + 20))).toLocaleDateString(), n_area: 2, nombre_area: 'Quincho Terraza Block n°2' }];
     displayedColumns: string[] = ['nombre', 'fecha', 'n_area', 'nombre_area'];
 
     reservasComunidad: reserva_comunidad[] =
         [{ n_area: 1, fecha: new Date() },
-         { n_area: 1, fecha: new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()+2) },
-         { n_area: 1, fecha: new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()+5)  },
-         { n_area: 1, fecha: new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()+7) },
-         { n_area: 2, fecha: new Date() },                                           
-         { n_area: 2, fecha: new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()+4) },
-         { n_area: 2, fecha: new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()+6) },
-         { n_area: 2, fecha: new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()+10) },
-         { n_area: 3, fecha: new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()+6) },
-         { n_area: 3, fecha: new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()+8) },
-         { n_area: 3, fecha: new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()+12) },
-         { n_area: 3, fecha: new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()+17) }];
+        { n_area: 1, fecha: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 2) },
+        { n_area: 1, fecha: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 5) },
+        { n_area: 1, fecha: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 7) },
+        { n_area: 2, fecha: new Date() },
+        { n_area: 2, fecha: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 4) },
+        { n_area: 2, fecha: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 6) },
+        { n_area: 2, fecha: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 10) },
+        { n_area: 3, fecha: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 6) },
+        { n_area: 3, fecha: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 8) },
+        { n_area: 3, fecha: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 12) },
+        { n_area: 3, fecha: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 17) }];
 
     fechas_nodisponibles: Date[] = [];
 
@@ -65,32 +66,29 @@ export class ReservasComponent implements OnInit {
 
         this.fechas_nodisponibles = [];
 
-            for (var i = 0; i < this.reservasComunidad.length; i++) {
+        for (var i = 0; i < this.reservasComunidad.length; i++) {
 
-                if ( this.nReserva == this.reservasComunidad[i].n_area ) {
-                    this.fechas_nodisponibles.push(new Date(this.reservasComunidad[i].fecha));
-                }
-
+            if (this.nReserva == this.reservasComunidad[i].n_area) {
+                this.fechas_nodisponibles.push(new Date(this.reservasComunidad[i].fecha));
             }
+
+        }
         this.calendar.updateTodaysDate();
     }
 
     //* Marca las fechas reservadas anteriormente en el calendario*//
-    dateClass() {
-
-            if (this.fechas_nodisponibles) {
-                return (date: Date): MatCalendarCellCssClasses => {
-                    const highlightDate = this.fechas_nodisponibles
-                        .map((strDate) => new Date(strDate))
-                        .some(
-                            (d: Date) =>
-                                d.getDate() === date.getDate() &&
-                                d.getMonth() === date.getMonth() &&
-                                d.getFullYear() === date.getFullYear()
-                        );
-                    return highlightDate ? 'fecha-reservada' : '';
-                };
-            }
+    dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
+        // Only highligh dates inside the month view.
+        if (view === 'month') {
+            /* const date = cellDate.getDate();*/
+            // Highlight the 1st and 20th day of each month.
+            return this.fechas_nodisponibles.some(
+                (d: Date) =>
+                    d.getDate() === cellDate.getDate() &&
+                    d.getMonth() === cellDate.getMonth() &&
+                    d.getFullYear() === cellDate.getFullYear()
+            ) ? 'fecha-reservada disabled' : '';
+        }
 
         return '';
     }
@@ -104,10 +102,9 @@ export class ReservasComponent implements OnInit {
         this.minDate = new Date();
         this.maxDate = new Date(this.currentDate.setDate(this.currentDate.getDate() + 90));
 
+    }
 
-    } 
-
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
 }
