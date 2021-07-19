@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators,FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 //import { AuthService } from 'src/app/services/auth.service';
 
@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 //  loginForm: FormGroup | undefined;
  // variableRut= "18.643.523-0";
- 
+ fontStyleControl = new FormControl();
+ fontStyle?: string;
   //loginForm: FormGroup;
  // variableRut;
  emailFormControl = new FormControl('', [
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit {
     })
   }*/
 
+  
  /* login(){
    let rut = this.loginForm.value.rut;
     let password = this.loginForm.value.password;

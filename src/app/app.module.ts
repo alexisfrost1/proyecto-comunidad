@@ -27,6 +27,16 @@ import { GastosComunesComponent } from './Pages/gastos-comunes/gastos-comunes.co
 import { MantencionesComponent } from './Pages/mantenciones/mantenciones.component';
 import { InicioComponent } from './Pages/inicio/inicio.component';
 import { MatTableModule } from '@angular/material/table';
+import { AngularMaterialModule } from './angular-material.module';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { VisitasConserjeComponent } from './conserje/visitas-conserje/visitas-conserje.component';
+import { HomeConserjeComponent } from './conserje/home-conserje/home-conserje.component';
+import { MainNavConserjeComponent } from './conserje/main-nav-conserje/main-nav-conserje.component';
+import { InicioConserjeComponent } from './conserje/inicio-conserje/inicio-conserje.component';
+import { ReservasConserjeComponent } from './conserje/reservas-conserje/reservas-conserje.component';
+import { MantencionesConserjeComponent } from './conserje/mantenciones-conserje/mantenciones-conserje.component';
+import { EncomiendasConserjeComponent } from './conserje/encomiendas-conserje/encomiendas-conserje.component';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core'; 
 
 @NgModule({
   declarations: [
@@ -39,15 +49,24 @@ import { MatTableModule } from '@angular/material/table';
     ReservasComponent,
     GastosComunesComponent,
     MantencionesComponent,
-    InicioComponent
+    InicioComponent,
+    VisitasConserjeComponent,
+    HomeConserjeComponent,
+    MainNavConserjeComponent,
+    InicioConserjeComponent,
+    ReservasConserjeComponent,
+    MantencionesConserjeComponent,
+    EncomiendasConserjeComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
     RouterModule,
     FormsModule,
+    MatNativeDateModule,
+    AngularMaterialModule,
     MatSidenavModule,
     MatTabsModule,
     MatSliderModule,
@@ -62,7 +81,8 @@ import { MatTableModule } from '@angular/material/table';
     HttpClientModule,
     
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' },],
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

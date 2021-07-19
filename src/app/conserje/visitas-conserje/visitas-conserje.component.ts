@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -16,13 +15,12 @@ const ELEMENT_DATA: PeriodicElement[] = [
   
 ];
 @Component({
-  selector: 'app-visitas',
-  templateUrl: './visitas.component.html',
-  styleUrls: ['./visitas.component.css']
+  selector: 'app-visitas-conserje',
+  templateUrl: './visitas-conserje.component.html',
+  styleUrls: ['./visitas-conserje.component.css']
 })
-
-export class VisitasComponent implements OnInit {
-  unidad: number;
+export class VisitasConserjeComponent implements OnInit {
+  
   minDate: Date; 
   maxDate: Date; 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
@@ -32,10 +30,10 @@ export class VisitasComponent implements OnInit {
       this.minDate = new Date(); 
       this.maxDate = new Date(currentDate.setDate(currentDate.getDate() + 30)); 
 
-      this.unidad = 101;
+      
    }
-
+   
   ngOnInit(): void {
-    
   }
+
 }
