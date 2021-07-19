@@ -36,7 +36,7 @@ import { InicioConserjeComponent } from './conserje/inicio-conserje/inicio-conse
 import { ReservasConserjeComponent } from './conserje/reservas-conserje/reservas-conserje.component';
 import { MantencionesConserjeComponent } from './conserje/mantenciones-conserje/mantenciones-conserje.component';
 import { EncomiendasConserjeComponent } from './conserje/encomiendas-conserje/encomiendas-conserje.component';
-
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core'; 
 
 @NgModule({
   declarations: [
@@ -65,6 +65,7 @@ import { EncomiendasConserjeComponent } from './conserje/encomiendas-conserje/en
     ReactiveFormsModule,
     RouterModule,
     FormsModule,
+    MatNativeDateModule,
     AngularMaterialModule,
     MatSidenavModule,
     MatTabsModule,
@@ -80,7 +81,7 @@ import { EncomiendasConserjeComponent } from './conserje/encomiendas-conserje/en
     HttpClientModule,
     
   ],
-  providers: [],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' },],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

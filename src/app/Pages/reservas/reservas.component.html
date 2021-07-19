@@ -1,58 +1,90 @@
-<mat-tab-group> 
- 
-    <!-- Reserva de are� com�n--> 
-    <mat-tab label = "Registrar Reserva"> 
- 
-        <form> 
-            <p> 
-                <mat-form-field appearance="outline"> 
-                    <mat-label> 
-                        <mat-icon matSuffix>person_outline</mat-icon> 
-                        Nombre de propietario/copropietario 
-                    </mat-label> 
-                    <input type="text" matInput placeholder="Su Nombre"> 
-                    <mat-hint>Ingrese su nombre</mat-hint> 
-                </mat-form-field> 
-            </p> 
-            <p> 
-                <mat-form-field appearance="outline"> 
-                    <mat-label> 
-                        <mat-icon matSuffix>tag</mat-icon> 
-                        Ingrese su Rut 
-                    </mat-label> 
-                    <input type="text" matInput placeholder="Rut"> 
-                    <mat-hint>Rut</mat-hint> 
-                </mat-form-field> 
-            </p> 
-            <p> 
-                <mat-form-field appearance="outline"> 
-                    <mat-label> 
-                        <mat-icon matSuffix>villa</mat-icon> 
-                        Área Común 
-                    </mat-label> 
-                    <mat-select> 
-                        <mat-option value="0">Piscina Block N°3</mat-option> 
-                        <mat-option value="1">Multicancha PLaza Central</mat-option> 
-                        <mat-option value="2">Quincho Terraza Block N°2</mat-option> 
-                    </mat-select> 
-                    <mat-hint>Lugar recreativo</mat-hint> 
-                </mat-form-field> 
-            </p> 
-            <p> 
-                <mat-form-field appearance="outline"> 
-                    <mat-label>Fecha a reservar</mat-label> 
-                    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="fechaReserva" disabled> 
-                    <mat-datepicker-toggle matSuffix [for]="fechaReserva"></mat-datepicker-toggle> 
-                    <mat-datepicker #fechaReserva disabled="false"></mat-datepicker> 
-                </mat-form-field> 
-            </p> 
-        </form> 
-    </mat-tab> 
- 
-    <!-- Display de reservas--> 
-    <mat-tab label = "Reservas realizadas"> 
- 
- 
-    </mat-tab> 
- 
-</mat-tab-group> 
+  
+<mat-tab-group>
+
+    <!-- Reserva de areá común-->
+    <mat-tab label = "Registrar Reserva">
+        <mat-card>
+            <form>
+                <mat-card-content>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>
+                                <mat-icon matSuffix>person_outline</mat-icon>
+                                Nombre de propietario/copropietario
+                            </mat-label>
+                            <input type="text" matInput placeholder="Su Nombre" required>
+                            <mat-hint>Ingrese su nombre</mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>
+                                <mat-icon matSuffix>tag</mat-icon>
+                                Ingrese su Rut
+                            </mat-label>
+                            <input type="text" matInput placeholder="Rut" required>
+                            <mat-hint>Rut</mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>
+                                <mat-icon matSuffix>villa</mat-icon>
+                                Area Común
+                            </mat-label>
+                            <mat-select [(value)]="nReserva" (selectionChange)="fechasReserva()">
+                                <mat-option *ngFor="let area of areaComun" [value]="area.n_area">{{area.nombre_area}}</mat-option>
+                            </mat-select>
+                            <mat-hint>{{nReserva}}</mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <p *ngIf="!(nReserva == 0)">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Fecha a reservar</mat-label>
+                            <input matInput [matDatepicker]="displayFecha" name="displayFecha" [(ngModel)]="fechaReserva" disabled>
+                            <mat-datepicker-toggle matSuffix [for]="displayFecha"></mat-datepicker-toggle>
+                            <mat-datepicker #displayFecha></mat-datepicker>
+                            <!--[dateClass]="dateClass()"-->
+                            <mat-calendar #calendar [dateClass]="dateClass" [minDate]="minDate" [maxDate]="maxDate" [(selected)]="fechaReserva"></mat-calendar>
+                            <mat-hint>{{fechas_nodisponibles}}</mat-hint>
+                        </mat-form-field>
+                        
+                    </p>
+                    <button class="margen" mat-raised-button color="primary">Guardar</button>
+                </mat-card-content>
+            </form>
+        </mat-card>
+    </mat-tab>
+
+    <!-- Display de reservas-->
+    <mat-tab label="Reservas realizadas">
+
+        <table mat-table [dataSource]="reservasUnidad" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="fecha">
+                <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="n_area">
+                <th mat-header-cell *matHeaderCellDef> # </th>
+                <td mat-cell *matCellDef="let element"> {{element.n_area}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="nombre_area">
+                <th mat-header-cell *matHeaderCellDef> Lugar reservado </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombre_area}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+    </mat-tab>
+
+</mat-tab-group>
