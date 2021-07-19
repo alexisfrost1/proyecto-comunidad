@@ -35,7 +35,7 @@
                             <mat-select [(value)]="nReserva" (selectionChange)="fechasReserva()">
                                 <mat-option *ngFor="let area of areaComun" [value]="area.n_area">{{area.nombre_area}}</mat-option>
                             </mat-select>
-                            <mat-hint>{{nReserva}}</mat-hint>
+                            <mat-hint>Lugar a reservar</mat-hint>
                         </mat-form-field>
                     </p>
                     <p *ngIf="!(nReserva == 0)">
@@ -44,13 +44,12 @@
                             <input matInput [matDatepicker]="displayFecha" name="displayFecha" [(ngModel)]="fechaReserva" disabled>
                             <mat-datepicker-toggle matSuffix [for]="displayFecha"></mat-datepicker-toggle>
                             <mat-datepicker #displayFecha></mat-datepicker>
-                            <!--[dateClass]="dateClass()"-->
                             <mat-calendar #calendar [dateClass]="dateClass" [minDate]="minDate" [maxDate]="maxDate" [(selected)]="fechaReserva"></mat-calendar>
-                            <mat-hint>{{fechas_nodisponibles}}</mat-hint>
+                            <mat-hint>Fechas disponibles</mat-hint>
                         </mat-form-field>
                         
                     </p>
-                    <button class="margen" mat-raised-button color="primary">Guardar</button>
+                    <button *ngIf="!(fechaReserva == undefined)" class="margen" mat-raised-button color="primary">Guardar</button>
                 </mat-card-content>
             </form>
         </mat-card>
