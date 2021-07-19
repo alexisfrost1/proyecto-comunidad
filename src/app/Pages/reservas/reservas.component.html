@@ -1,54 +1,59 @@
+  
 <mat-tab-group>
 
-    <!-- Reserva de areá común-->
+    <!-- Reserva de areÃ¡ comÃºn-->
     <mat-tab label = "Registrar Reserva">
-
-        <form>
-            <p>
-                <mat-form-field appearance="outline">
-                    <mat-label>
-                        <mat-icon matSuffix>person_outline</mat-icon>
-                        Nombre de propietario/copropietario
-                    </mat-label>
-                    <input type="text" matInput placeholder="Su Nombre" required>
-                    <mat-hint>Ingrese su nombre</mat-hint>
-                </mat-form-field>
-            </p>
-            <p>
-                <mat-form-field appearance="outline">
-                    <mat-label>
-                        <mat-icon matSuffix>tag</mat-icon>
-                        Ingrese su Rut
-                    </mat-label>
-                    <input type="text" matInput placeholder="Rut" required>
-                    <mat-hint>Rut</mat-hint>
-                </mat-form-field>
-            </p>
-            <p>
-                <mat-form-field appearance="outline">
-                    <mat-label>
-                        <mat-icon matSuffix>villa</mat-icon>
-                        Area Común
-                    </mat-label>
-                    <mat-select [(value)]="nReserva" (selectionChange)="fechasReserva()">
-                        <mat-option *ngFor="let area of areaComun" [value]="area.n_area">{{area.nombre_area}}</mat-option>
-                    </mat-select>
-                    <mat-hint>{{nReserva}}</mat-hint>
-                </mat-form-field>
-            </p>
-            <p *ngIf="!(nReserva == 0)">
-                <mat-form-field appearance="outline">
-                    <mat-label>Fecha a reservar</mat-label>
-                    <input matInput [matDatepicker]="displayFecha" name="displayFecha" [(ngModel)]="fechaReserva" disabled>
-                    <mat-datepicker-toggle matSuffix [for]="displayFecha"></mat-datepicker-toggle>
-                    <mat-datepicker #displayFecha></mat-datepicker>
-                    <!--[dateClass]="dateClass()"-->
-                    <mat-calendar #calendar [dateClass]="dateClass" [minDate]="minDate" [maxDate]="maxDate" [(selected)]="fechaReserva"></mat-calendar>
-                    <mat-hint>{{fechas_nodisponibles}}</mat-hint>
-                </mat-form-field>
-                
-            </p>
-        </form>
+        <mat-card>
+            <form>
+                <mat-card-content>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>
+                                <mat-icon matSuffix>person_outline</mat-icon>
+                                Nombre de propietario/copropietario
+                            </mat-label>
+                            <input type="text" matInput placeholder="Su Nombre" required>
+                            <mat-hint>Ingrese su nombre</mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>
+                                <mat-icon matSuffix>tag</mat-icon>
+                                Ingrese su Rut
+                            </mat-label>
+                            <input type="text" matInput placeholder="Rut" required>
+                            <mat-hint>Rut</mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>
+                                <mat-icon matSuffix>villa</mat-icon>
+                                Area ComÃºn
+                            </mat-label>
+                            <mat-select [(value)]="nReserva" (selectionChange)="fechasReserva()">
+                                <mat-option *ngFor="let area of areaComun" [value]="area.n_area">{{area.nombre_area}}</mat-option>
+                            </mat-select>
+                            <mat-hint>{{nReserva}}</mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <p *ngIf="!(nReserva == 0)">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Fecha a reservar</mat-label>
+                            <input matInput [matDatepicker]="displayFecha" name="displayFecha" [(ngModel)]="fechaReserva" disabled>
+                            <mat-datepicker-toggle matSuffix [for]="displayFecha"></mat-datepicker-toggle>
+                            <mat-datepicker #displayFecha></mat-datepicker>
+                            <!--[dateClass]="dateClass()"-->
+                            <mat-calendar #calendar [dateClass]="dateClass" [minDate]="minDate" [maxDate]="maxDate" [(selected)]="fechaReserva"></mat-calendar>
+                            <mat-hint>{{fechas_nodisponibles}}</mat-hint>
+                        </mat-form-field>
+                        
+                    </p>
+                    <button class="margen" mat-raised-button color="primary">Guardar</button>
+                </mat-card-content>
+            </form>
+        </mat-card>
     </mat-tab>
 
     <!-- Display de reservas-->
@@ -83,4 +88,3 @@
     </mat-tab>
 
 </mat-tab-group>
-

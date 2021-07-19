@@ -16,10 +16,25 @@
   z-index: 1;
 }
 .side-list{
-  background-color: rgb(240, 171, 69);
-  height: 95%;
+  background-color: rgb(252, 116, 32);
+  height: 98.8%;
   width: 100%;
 }
 .toolbar{
   height: 80px;
+}
+.right {
+  position: absolute;
+  right: 0px;
+  width: 10%;
+}
+
+.otrocolor{
+  background-color: rgb(240, 171, 69);
+  background-color: rgb(255,99,0);
+}
+
+.text{
+  
+  color: black;
 }

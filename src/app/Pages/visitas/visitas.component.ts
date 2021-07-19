@@ -22,10 +22,18 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 
 export class VisitasComponent implements OnInit {
-  
+  unidad: number;
+  minDate: Date; 
+  maxDate: Date; 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
-  constructor() { }
+  constructor() {
+    const currentDate = new Date(); 
+      this.minDate = new Date(); 
+      this.maxDate = new Date(currentDate.setDate(currentDate.getDate() + 30)); 
+
+      this.unidad = 101;
+   }
 
   ngOnInit(): void {
     

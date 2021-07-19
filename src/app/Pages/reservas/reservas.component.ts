@@ -35,15 +35,15 @@ export class ReservasComponent implements OnInit {
     @ViewChild(MatCalendar)
     calendar!: MatCalendar<Date>;
 
-    areaComun: area[] = [{ n_area: 1, nombre_area: 'Piscina Block n°3' },
-    { n_area: 2, nombre_area: 'Quincho Terraza Block n°2' },
-    { n_area: 3, nombre_area: 'Cancha de futbol Plaza n°2' }];
+    areaComun: area[] = [{ n_area: 1, nombre_area: 'Piscina Block nÂ°3' },
+    { n_area: 2, nombre_area: 'Quincho Terraza Block nÂ°2' },
+    { n_area: 3, nombre_area: 'Cancha de futbol Plaza nÂ°2' }];
     nReserva: number | undefined;
 
     reservasUnidad: reserva[] =
-        [{ nombre: 'Alexis Canessa', fecha: (this.currentDate).toLocaleDateString(), n_area: 1, nombre_area: 'Piscina Block n°3' },
-        { nombre: 'Alexis Canessa', fecha: (new Date(this.currentDate.setDate(this.currentDate.getDate() + 2))).toLocaleDateString(), n_area: 3, nombre_area: 'Cancha de futbol Plaza n°2' },
-        { nombre: 'Fabian Contreras', fecha: (new Date(this.currentDate.setDate(this.currentDate.getDate() + 20))).toLocaleDateString(), n_area: 2, nombre_area: 'Quincho Terraza Block n°2' }];
+        [{ nombre: 'Alexis Canessa', fecha: (this.currentDate).toLocaleDateString(), n_area: 1, nombre_area: 'Piscina Block nÂ°3' },
+        { nombre: 'Alexis Canessa', fecha: (new Date(this.currentDate.setDate(this.currentDate.getDate() + 2))).toLocaleDateString(), n_area: 3, nombre_area: 'Cancha de futbol Plaza nÂ°2' },
+        { nombre: 'Fabian Contreras', fecha: (new Date(this.currentDate.setDate(this.currentDate.getDate() + 20))).toLocaleDateString(), n_area: 2, nombre_area: 'Quincho Terraza Block nÂ°2' }];
     displayedColumns: string[] = ['nombre', 'fecha', 'n_area', 'nombre_area'];
 
     reservasComunidad: reserva_comunidad[] =
