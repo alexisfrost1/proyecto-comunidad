@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatCalendar, MatCalendarCellClassFunction, MatCalendarCellCssClasses } from '@angular/material/datepicker';
+import { MatTabGroup } from '@angular/material/tabs';
 
 interface area {
     n_area: number;
@@ -30,10 +31,11 @@ export class ReservasComponent implements OnInit {
     minDate: Date;
     maxDate: Date;
     fechaReserva: Date | any;
-    currentDate: Date = new Date();
+    nombre: string | any;
+    rut: string | any;
 
-    @ViewChild(MatCalendar)
-    calendar!: MatCalendar<Date>;
+    @ViewChild(MatCalendar) calendar!: MatCalendar<Date>;
+    @ViewChild("reservas", { static: false }) reservas!: MatTabGroup;
 
     areaComun: area[] = [{ n_area: 1, nombre_area: 'Piscina Block n°3' },
     { n_area: 2, nombre_area: 'Quincho Terraza Block n°2' },
@@ -41,9 +43,9 @@ export class ReservasComponent implements OnInit {
     nReserva: number | undefined;
 
     reservasUnidad: reserva[] =
-        [{ nombre: 'Alexis Canessa', fecha: (this.currentDate).toLocaleDateString(), n_area: 1, nombre_area: 'Piscina Block n°3' },
-        { nombre: 'Alexis Canessa', fecha: (new Date(this.currentDate.setDate(this.currentDate.getDate() + 2))).toLocaleDateString(), n_area: 3, nombre_area: 'Cancha de futbol Plaza n°2' },
-        { nombre: 'Fabian Contreras', fecha: (new Date(this.currentDate.setDate(this.currentDate.getDate() + 20))).toLocaleDateString(), n_area: 2, nombre_area: 'Quincho Terraza Block n°2' }];
+        [{ nombre: 'Alexis Canessa', fecha: ((new Date())).toLocaleDateString(), n_area: 1, nombre_area: 'Piscina Block n°3' },
+            { nombre: 'Alexis Canessa', fecha: (new Date((new Date()).setDate((new Date()).getDate() + 2))).toLocaleDateString(), n_area: 3, nombre_area: 'Cancha de futbol Plaza n°2' },
+            { nombre: 'Fabian Contreras', fecha: (new Date((new Date()).setDate((new Date()).getDate() + 20))).toLocaleDateString(), n_area: 2, nombre_area: 'Quincho Terraza Block n°2' }];
     displayedColumns: string[] = ['nombre', 'fecha', 'n_area', 'nombre_area'];
 
     reservasComunidad: reserva_comunidad[] =
@@ -101,11 +103,18 @@ export class ReservasComponent implements OnInit {
         //* Rango de fechas en las que es posible reservar*//
 
         this.minDate = new Date();
-        this.maxDate = new Date(this.currentDate.setDate(this.currentDate.getDate() + 90));
+        this.maxDate = new Date((new Date()).setDate((new Date()).getDate() + 90));
 
     }
 
     ngOnInit(): void {
     }
 
+    Submit() {
+
+        this.nReserva = 0;
+        this.fechaReserva = undefined;
+        this.reservas.selectedIndex = 2;
+
+    }
 }

@@ -1,10 +1,10 @@
   
-<mat-tab-group>
+<mat-tab-group #reservas>
 
     <!-- Reserva de areá común-->
     <mat-tab label = "Registrar Reserva">
         <mat-card>
-            <form>
+            <form (ngSubmit)="Submit()">
                 <mat-card-content>
                     <p>
                         <mat-form-field appearance="outline">
@@ -12,7 +12,7 @@
                                 <mat-icon matSuffix>person_outline</mat-icon>
                                 Nombre de propietario/copropietario
                             </mat-label>
-                            <input type="text" matInput placeholder="Su Nombre" required>
+                            <input type="text" matInput placeholder="Su Nombre" name="nombre" [(ngModel)]="nombre">
                             <mat-hint>Ingrese su nombre</mat-hint>
                         </mat-form-field>
                     </p>
@@ -22,7 +22,7 @@
                                 <mat-icon matSuffix>tag</mat-icon>
                                 Ingrese su Rut
                             </mat-label>
-                            <input type="text" matInput placeholder="Rut" required>
+                            <input type="text" matInput placeholder="Rut" name="rut" [(ngModel)]="rut">
                             <mat-hint>Rut</mat-hint>
                         </mat-form-field>
                     </p>
@@ -49,7 +49,7 @@
                         </mat-form-field>
                         
                     </p>
-                    <button *ngIf="!(fechaReserva == undefined)" class="margen" mat-raised-button color="primary">Guardar</button>
+                    <button *ngIf="fechaReserva != undefined && nombre != undefined && this.rut != undefined && nombre != '' && rut!=''" class="margen" mat-raised-button type="submit" color="primary">Guardar</button>
                 </mat-card-content>
             </form>
         </mat-card>
