@@ -114,6 +114,8 @@ export class ReservasComponent implements OnInit {
 
         this.nReserva = 0;
         this.fechaReserva = undefined;
+        this.nombre = '';
+        this.rut = '';
         this.reservas.selectedIndex = 2;
 
     }
