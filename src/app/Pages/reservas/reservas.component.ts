@@ -101,7 +101,6 @@ export class ReservasComponent implements OnInit {
         this.nReserva = 0;
 
         //* Rango de fechas en las que es posible reservar*//
-
         this.minDate = new Date();
         this.maxDate = new Date((new Date()).setDate((new Date()).getDate() + 90));
 

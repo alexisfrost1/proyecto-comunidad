@@ -38,6 +38,7 @@ import { ReservasConserjeComponent } from './conserje/reservas-conserje/reservas
 import { MantencionesConserjeComponent } from './conserje/mantenciones-conserje/mantenciones-conserje.component';
 import { EncomiendasConserjeComponent } from './conserje/encomiendas-conserje/encomiendas-conserje.component';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core'; 
+import { MatTimepickerModule } from 'mat-timepicker';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,7 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
     MatIconModule,
     MatListModule,
     HttpClientModule,
-    
+    MatTimepickerModule
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' },],
   bootstrap: [AppComponent],
