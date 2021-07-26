@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-
+interface Visitas {
+  n_unidad: number;
+  Nombre: string;
+  fecha: string;
+  cantidad: number;
+}
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -8,13 +13,6 @@ export interface PeriodicElement {
   symbol: number;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 101, name: 'Alexis Canessa, Fabian Contreras', weight: '02/07/2021', symbol: 2},
-  {position: 101, name: 'Alexis Canessa', weight: '02/07/2021', symbol: 1},
-  {position: 101, name: 'Alexis Canessa', weight: '02/07/2021', symbol: 1},
-  {position: 101, name: 'Alexis Canessa, Fabian Contreras, Francisco', weight: '02/07/2021', symbol: 3},
-  
-];
 @Component({
   selector: 'app-visitas',
   templateUrl: './visitas.component.html',
@@ -25,8 +23,6 @@ export class VisitasComponent implements OnInit {
   unidad: number;
   minDate: Date; 
   maxDate: Date; 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
   constructor() {
     const currentDate = new Date(); 
       this.minDate = new Date(); 
@@ -34,7 +30,13 @@ export class VisitasComponent implements OnInit {
 
       this.unidad = 101;
    }
-
+   Visitas: Visitas[] =
+   [{n_unidad: 101, Nombre: 'Alexis Canessa, Fabian Contreras', fecha: '02/07/2021', cantidad: 2},
+   {n_unidad: 101, Nombre: 'Alexis Canessa', fecha: '02/07/2021', cantidad: 1},
+   {n_unidad: 101, Nombre: 'Alexis Canessa', fecha: '02/07/2021', cantidad: 1},
+   {n_unidad: 101, Nombre: 'Alexis Canessa, Fabian Contreras, Francisco', fecha: '02/07/2021', cantidad: 3},
+   ];
+displayedColumns: string[] = ['n_unidad', 'Nombre', 'fecha', 'cantidad'];
   ngOnInit(): void {
     
   }
