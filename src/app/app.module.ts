@@ -37,7 +37,8 @@ import { InicioConserjeComponent } from './conserje/inicio-conserje/inicio-conse
 import { ReservasConserjeComponent } from './conserje/reservas-conserje/reservas-conserje.component';
 import { MantencionesConserjeComponent } from './conserje/mantenciones-conserje/mantenciones-conserje.component';
 import { EncomiendasConserjeComponent } from './conserje/encomiendas-conserje/encomiendas-conserje.component';
-import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core'; 
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { BitacoraComponent } from './conserje/bitacora/bitacora.component'; 
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
     InicioConserjeComponent,
     ReservasConserjeComponent,
     MantencionesConserjeComponent,
-    EncomiendasConserjeComponent
+    EncomiendasConserjeComponent,
+    BitacoraComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

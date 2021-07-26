@@ -16,6 +16,7 @@ import { InicioConserjeComponent } from './conserje/inicio-conserje/inicio-conse
 import { EncomiendasConserjeComponent } from './conserje/encomiendas-conserje/encomiendas-conserje.component';
 import { MantencionesConserjeComponent } from './conserje/mantenciones-conserje/mantenciones-conserje.component';
 import { ReservasConserjeComponent } from './conserje/reservas-conserje/reservas-conserje.component';
+import { BitacoraComponent } from './conserje/bitacora/bitacora.component';
 
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
     {path:'reservas2', component: ReservasConserjeComponent},
     {path: 'visitas2', component: VisitasConserjeComponent},
     {path:'inicio2', component: InicioConserjeComponent},
+    {path: 'bitacora', component: BitacoraComponent}
   ]},
   
   {path: 'login', component: LoginComponent},
