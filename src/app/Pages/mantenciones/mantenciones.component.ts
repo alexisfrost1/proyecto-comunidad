@@ -38,6 +38,9 @@ export class MantencionesComponent implements OnInit {
 	n_unidad: number | any;
 	elemento: string | any;
 
+	mantenciones: mantencion[] = [];
+	displayedColumns: string[] = ['nombre', 'rut', 'cargo', 'motivo', 'fecha', 'hora', 'estacionamiento', 'unidad', 'n_unidad', 'elemento'];
+
 	timeChangeHandler(data: Date) {
 
 		this.hora = new Date(data);

@@ -13,7 +13,7 @@
                                 Nombre de técnico
                             </mat-label>
                             <input type="text" matInput placeholder="Nombre" name="nombre" [(ngModel)]="nombre">
-                            <mat-hint>Ingrese su nombre</mat-hint>
+                            <mat-hint>Nombre del encargado de la mantención</mat-hint>
                         </mat-form-field>
                     </p>
                     <p>
@@ -23,7 +23,7 @@
                                 Rut técnico
                             </mat-label>
                             <input type="text" matInput placeholder="Rut" name="rut" [(ngModel)]="rut">
-                            <mat-hint>Rut</mat-hint>
+                            <mat-hint>Rut técnico</mat-hint>
                         </mat-form-field>
                     </p>
                     <p>
@@ -33,7 +33,7 @@
                                 Cargo del técnico
                             </mat-label>
                             <input type="text" matInput placeholder="Cargo" name="cargo" [(ngModel)]="cargo">
-                            <mat-hint>Ingrese su nombre</mat-hint>
+                            <mat-hint>Cargo del técnico</mat-hint>
                         </mat-form-field>
                     </p>
                     <p>
@@ -43,7 +43,7 @@
                                 Motivo del mantenimiento
                             </mat-label>
                             <input type="text" matInput placeholder="Motivo" name="motivo" [(ngModel)]="motivo">
-                            <mat-hint>Ingrese su nombre</mat-hint>
+                            <mat-hint>Descripción del procedimiento</mat-hint>
                         </mat-form-field>
                     </p>
                     <p>
@@ -53,7 +53,7 @@
                                 Estacionamiento asignado
                             </mat-label>
                             <input type="text" matInput placeholder="N° estacionamiento" name="estacionamiento" [(ngModel)]="estacionamiento">
-                            <mat-hint>Ingrese su nombre</mat-hint>
+                            <mat-hint>N° estacionamiento</mat-hint>
                         </mat-form-field>
                     </p>
                     <p>
@@ -62,8 +62,8 @@
                                 <mat-icon matSuffix>person_outline</mat-icon>
                                 Lugar a visitar
                             </mat-label>
-                            <input type="text" matInput placeholder="Unidad de referencia o área común" name="unidad" [(ngModel)]="unidad">
-                            <mat-hint>Ingrese su nombre</mat-hint>
+                            <input type="text" matInput placeholder="Unidad / área común" name="unidad" [(ngModel)]="unidad">
+                            <mat-hint>Nombre de referencia ej; departamento, casa, block, etc</mat-hint>
                         </mat-form-field>
                     </p>
                     <p>
@@ -73,7 +73,7 @@
                                 N° dirección del lugar
                             </mat-label>
                             <input type="text" matInput placeholder="N° de unidad referencial" name="n_unidad" [(ngModel)]="n_unidad">
-                            <mat-hint>Ingrese su nombre</mat-hint>
+                            <mat-hint>N° dirección</mat-hint>
                         </mat-form-field>
                     </p>
                     <p>
@@ -82,8 +82,8 @@
                                 <mat-icon matSuffix></mat-icon>
                                 Elemento
                             </mat-label>
-                            <input type="text" matInput placeholder="Objeto al cuál se realizara la mantención" name="elemento" [(ngModel)]="elemento">
-                            <mat-hint>Ingrese su nombre</mat-hint>
+                            <input type="text" matInput placeholder="Objeto de la mantención" name="elemento" [(ngModel)]="elemento">
+                            <mat-hint>Objetivo al cuál realizar la mantención</mat-hint>
                         </mat-form-field>
                     </p>
                     <p>
@@ -113,8 +113,8 @@
         </mat-card>
     </mat-tab>
 
-    <!-- Display de reservas-->
-    <mat-tab label="Reservas realizadas">
+    <!-- Display de Mantenciones-->
+    <mat-tab label="Mantenciones agendadas">
         <mat-card>
             <mat-card-content>
                 <!--<table mat-table [dataSource]="reservasUnidad" class="mat-elevation-z8">
