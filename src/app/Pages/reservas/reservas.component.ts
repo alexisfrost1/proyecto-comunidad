@@ -1,68 +1,41 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Area, Reserva, Reserva_comunidad } from './reservas.model';
+import { ReservasService } from './reservas.service';
+import { Observable } from 'rxjs';
 import { MatCalendar, MatCalendarCellClassFunction, MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { MatTabGroup } from '@angular/material/tabs';
-
-interface area {
-    n_area: number;
-    nombre_area: string;
-}
-
-interface reserva {
-    nombre: string;
-    fecha: string;
-    n_area: number;
-    nombre_area: string;
-}
-
-interface reserva_comunidad {
-    n_area: number;
-    fecha: Date;
-}
 
 @Component({
     selector: 'app-reservas',
     templateUrl: './reservas.component.html',
     styleUrls: ['./reservas.component.css'],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    providers: [
+        ReservasService
+    ]
 })
 
 export class ReservasComponent implements OnInit {
+
+    //o_areaComun: Observable<Area[]>;
+    //o_reservasUnidad: Observable<Reserva_comunidad[]>;
+    //o_reservasComunidad: Observable<Reserva[]>;
 
     minDate: Date;
     maxDate: Date;
     fechaReserva: Date | any;
     nombre: string | any;
     rut: string | any;
+    nReserva: number | undefined;
 
     @ViewChild(MatCalendar) calendar!: MatCalendar<Date>;
     @ViewChild("reservas", { static: false }) reservas!: MatTabGroup;
 
-    areaComun: area[] = [{ n_area: 1, nombre_area: 'Piscina Block n°3' },
-    { n_area: 2, nombre_area: 'Quincho Terraza Block n°2' },
-    { n_area: 3, nombre_area: 'Cancha de futbol Plaza n°2' }];
-    nReserva: number | undefined;
-
-    reservasUnidad: reserva[] =
-        [{ nombre: 'Alexis Canessa', fecha: ((new Date())).toLocaleDateString(), n_area: 1, nombre_area: 'Piscina Block n°3' },
-            { nombre: 'Alexis Canessa', fecha: (new Date((new Date()).setDate((new Date()).getDate() + 2))).toLocaleDateString(), n_area: 3, nombre_area: 'Cancha de futbol Plaza n°2' },
-            { nombre: 'Fabian Contreras', fecha: (new Date((new Date()).setDate((new Date()).getDate() + 20))).toLocaleDateString(), n_area: 2, nombre_area: 'Quincho Terraza Block n°2' }];
-    displayedColumns: string[] = ['nombre', 'fecha', 'n_area', 'nombre_area'];
-
-    reservasComunidad: reserva_comunidad[] =
-        [{ n_area: 1, fecha: new Date() },
-        { n_area: 1, fecha: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 2) },
-        { n_area: 1, fecha: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 5) },
-        { n_area: 1, fecha: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 7) },
-        { n_area: 2, fecha: new Date() },
-        { n_area: 2, fecha: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 4) },
-        { n_area: 2, fecha: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 6) },
-        { n_area: 2, fecha: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 10) },
-        { n_area: 3, fecha: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 6) },
-        { n_area: 3, fecha: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 8) },
-        { n_area: 3, fecha: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 12) },
-        { n_area: 3, fecha: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 17) }];
-
+    areaComun: Area[] = [];
+    reservasUnidad: Reserva[] = [];
+    reservasComunidad: Reserva_comunidad[] = [];
     fechas_nodisponibles: Date[] = [];
+    displayedColumns: string[] = ['nombre', 'fecha', 'n_area', 'nombre_area'];
 
     fechasReserva() {
 
@@ -96,7 +69,7 @@ export class ReservasComponent implements OnInit {
         return '';
     }
 
-    constructor() {
+    constructor(private reservasService: ReservasService) {
 
         this.nReserva = 0;
 
@@ -104,6 +77,13 @@ export class ReservasComponent implements OnInit {
         this.minDate = new Date();
         this.maxDate = new Date((new Date()).setDate((new Date()).getDate() + 90));
 
+        //this.o_areaComun =         reservasService.getAreas();
+        //this.o_reservasUnidad =    reservasService.getReservas();
+        //this.o_reservasComunidad = reservasService.getReservasComunidad();
+
+        this.areaComun = reservasService.getAreas();
+        this.reservasUnidad = reservasService.getReservas();
+        this.reservasComunidad = reservasService.getReservasComunidad(); 
     }
 
     ngOnInit(): void {
@@ -116,6 +96,6 @@ export class ReservasComponent implements OnInit {
         this.nombre = '';
         this.rut = '';
         this.reservas.selectedIndex = 2;
-
     }
+
 }
