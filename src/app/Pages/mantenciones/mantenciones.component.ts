@@ -1,19 +1,9 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Mantencion } from './mantenciones.model';
+import { MantencionesService } from './mantenciones.service';
+import { Observable } from 'rxjs';
 import { MatCalendar, MatCalendarCellClassFunction, MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { MatTabGroup } from '@angular/material/tabs';
-
-interface mantencion{
-	nombre: string;
-	rut: string;
-	cargo: string;
-	motivo: string;
-	fecha: Date;
-	hora: string;
-	estacionamiento: number;
-	unidad: string;
-	n_unidad: number;
-	elemento: string;
-}
 
 @Component({
   selector: 'app-mantenciones',
@@ -38,7 +28,7 @@ export class MantencionesComponent implements OnInit {
 	n_unidad: number | any;
 	elemento: string | any;
 
-	mantenciones: mantencion[] = [];
+	mantenciones: Mantencion[] = [];
 	displayedColumns: string[] = ['nombre', 'rut', 'cargo', 'motivo', 'fecha', 'hora', 'estacionamiento', 'unidad', 'n_unidad', 'elemento'];
 
 	timeChange(data: Date) {
@@ -60,11 +50,10 @@ export class MantencionesComponent implements OnInit {
 		this.minHour = minHour;
 
 		const maxHour = new Date();
-		maxHour.setHours(24);
+		maxHour.setHours(23);
 		maxHour.setMinutes(0);
 		this.maxHour = maxHour;
 	}
-
 
   ngOnInit(): void {
   }
