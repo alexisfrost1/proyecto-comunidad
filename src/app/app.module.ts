@@ -39,6 +39,7 @@ import { MantencionesConserjeComponent } from './conserje/mantenciones-conserje/
 import { EncomiendasConserjeComponent } from './conserje/encomiendas-conserje/encomiendas-conserje.component';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { BitacoraComponent } from './conserje/bitacora/bitacora.component'; 
+import { MatTimepickerModule } from 'mat-timepicker';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,7 @@ import { BitacoraComponent } from './conserje/bitacora/bitacora.component';
     MatIconModule,
     MatListModule,
     HttpClientModule,
-    
+    MatTimepickerModule
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' },],
   bootstrap: [AppComponent],

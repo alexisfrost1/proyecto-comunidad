@@ -7,6 +7,7 @@ interface bitacora {
   fecha: string;
   departamento: number;
   comentario: string;
+  opciones: string;
 }
 interface departamento {
   n_departamento: number;
@@ -43,12 +44,12 @@ export class BitacoraComponent implements OnInit {
 ]
 
   Bitacora: bitacora[] =
-  [{Registro: 45, Tipo:'Otro', ingresado_por: 'Conserje_1', fecha: '02/07/2021', departamento: 2, comentario:''},
-  {Registro: 44, Tipo:'Recaudacion', ingresado_por: 'Conserje_2', fecha: '02/07/2021', departamento: 1, comentario:'Se informa al departamento 1 por cobro de multa por ruidos molestos el 29/06/2021'},
-  {Registro: 43, Tipo:'Cambio de turno', ingresado_por: 'Administrador', fecha: '02/07/2021', departamento: 1,  comentario:'Se realiza ronda para verificar ruidos molestos'},
-  {Registro: 42, Tipo:'Cambio de turno',ingresado_por: 'Administrador', fecha: '02/07/2021', departamento: 3,  comentario:''},
+  [{Registro: 45, Tipo:'Otro', ingresado_por: 'Conserje_1', fecha: '02/07/2021', departamento: 2, comentario:'', opciones:'1'},
+  {Registro: 44, Tipo:'Recaudacion', ingresado_por: 'Conserje_2', fecha: '02/07/2021', departamento: 1, comentario:'Se informa al departamento 1 por cobro de multa por ruidos molestos el 29/06/2021', opciones:'1'},
+  {Registro: 43, Tipo:'Cambio de turno', ingresado_por: 'Administrador', fecha: '02/07/2021', departamento: 1,  comentario:'Se realiza ronda para verificar ruidos molestos', opciones:'1'},
+  {Registro: 42, Tipo:'Cambio de turno',ingresado_por: 'Administrador', fecha: '02/07/2021', departamento: 3,  comentario:'', opciones:'1'},
   ];
-displayedColumns: string[] = ['Registro', 'Tipo', 'ingresado_por', 'fecha', 'departamento', 'comentario'];
+displayedColumns: string[] = ['Registro', 'Tipo', 'ingresado_por', 'fecha', 'departamento', 'comentario' , 'opciones'];
 
 
   constructor() { 
