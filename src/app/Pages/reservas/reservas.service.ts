@@ -1,4 +1,4 @@
-﻿import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, timer, Subscription, Subject } from 'rxjs';
 import { switchMap, tap, share, retry, takeUntil } from 'rxjs/operators';

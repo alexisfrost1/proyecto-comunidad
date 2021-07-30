@@ -1,4 +1,4 @@
-﻿export interface Area {
+export interface Area {
     n_area: number;
     nombre_area: string;
 }

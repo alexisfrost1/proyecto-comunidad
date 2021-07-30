@@ -1,4 +1,4 @@
-﻿export interface Mantencion {
+export interface Mantencion {
 	nombre: string;
 	rut: string;
 	cargo: string;
