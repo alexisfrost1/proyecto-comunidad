@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { TransferHttpCacheModule } from '@nguniversal/common';
 import { MatSliderModule } from '@angular/material/slider';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,7 +37,9 @@ import { InicioConserjeComponent } from './conserje/inicio-conserje/inicio-conse
 import { ReservasConserjeComponent } from './conserje/reservas-conserje/reservas-conserje.component';
 import { MantencionesConserjeComponent } from './conserje/mantenciones-conserje/mantenciones-conserje.component';
 import { EncomiendasConserjeComponent } from './conserje/encomiendas-conserje/encomiendas-conserje.component';
-import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core'; 
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { BitacoraComponent } from './conserje/bitacora/bitacora.component'; 
+import { MatTimepickerModule } from 'mat-timepicker';
 
 @NgModule({
   declarations: [
@@ -56,10 +59,12 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
     InicioConserjeComponent,
     ReservasConserjeComponent,
     MantencionesConserjeComponent,
-    EncomiendasConserjeComponent
+    EncomiendasConserjeComponent,
+    BitacoraComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    TransferHttpCacheModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
@@ -79,7 +84,7 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
     MatIconModule,
     MatListModule,
     HttpClientModule,
-    
+    MatTimepickerModule
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' },],
   bootstrap: [AppComponent],

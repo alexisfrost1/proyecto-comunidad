@@ -1,3 +1,13 @@
-.text{
-    color: black;
-  }
+/* Structure */
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 98%;
+}
+
+.margen{
+  margin-left: 1%;
+}

@@ -1,1 +1,204 @@
-<p>mantenciones works!</p>
+
+<mat-tab-group #mantenciones>
+
+    <!-- Registro de mantención -->
+    <mat-tab label="Registrar Mantención">
+        <mat-card>
+            <form (ngSubmit)="Submit()">
+                <mat-card-content>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>
+                                <mat-icon matSuffix>person_outline</mat-icon>
+                                Nombre de técnico
+                            </mat-label>
+                            <input type="text" matInput placeholder="Nombre" name="nombre" [(ngModel)]="nombre">
+                            <mat-hint>Nombre del encargado de la mantención</mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>
+                                <mat-icon matSuffix>tag</mat-icon>
+                                Rut técnico
+                            </mat-label>
+                            <input type="text" matInput placeholder="Rut" name="rut" [(ngModel)]="rut">
+                            <mat-hint>Rut técnico</mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>
+                                <mat-icon matSuffix>person_outline</mat-icon>
+                                Cargo del técnico
+                            </mat-label>
+                            <input type="text" matInput placeholder="Cargo" name="cargo" [(ngModel)]="cargo">
+                            <mat-hint>Cargo del técnico</mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>
+                                <mat-icon matSuffix>person_outline</mat-icon>
+                                Motivo del mantenimiento
+                            </mat-label>
+                            <input type="text" matInput placeholder="Motivo" name="motivo" [(ngModel)]="motivo">
+                            <mat-hint>Descripción del procedimiento</mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>
+                                <mat-icon matSuffix>tag</mat-icon>
+                                Estacionamiento asignado
+                            </mat-label>
+                            <input type="text" matInput placeholder="N° estacionamiento" name="estacionamiento" [(ngModel)]="estacionamiento">
+                            <mat-hint>N° estacionamiento</mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>
+                                <mat-icon matSuffix>person_outline</mat-icon>
+                                Lugar a visitar
+                            </mat-label>
+                            <input type="text" matInput placeholder="Unidad / área común" name="unidad" [(ngModel)]="unidad">
+                            <mat-hint>Nombre de referencia ej; departamento, casa, block, etc</mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>
+                                <mat-icon matSuffix>tag</mat-icon>
+                                N° dirección del lugar
+                            </mat-label>
+                            <input type="text" matInput placeholder="N° de unidad referencial" name="n_unidad" [(ngModel)]="n_unidad">
+                            <mat-hint>N° dirección</mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>
+                                <mat-icon matSuffix></mat-icon>
+                                Elemento
+                            </mat-label>
+                            <input type="text" matInput placeholder="Objeto de la mantención" name="elemento" [(ngModel)]="elemento">
+                            <mat-hint>Objetivo al cuál realizar la mantención</mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Fecha</mat-label>
+                            <input matInput [matDatepicker]="Fecha" [min]="minDate" name="Fecha" [(ngModel)]="fecha">
+                            <mat-datepicker-toggle matSuffix [for]="Fecha"></mat-datepicker-toggle>
+                            <mat-datepicker #Fecha></mat-datepicker>
+                            <mat-hint></mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <p *ngIf="fecha!=undefined">
+                        <mat-form-field appearance="outline">
+                            <mat-label>
+                                <mat-icon matSuffix></mat-icon>
+                                Hora
+                            </mat-label>
+                            <input matInput matTimepicker #t7="matTimepicker" [minDate]="minHour" [maxDate]="maxHour"
+                                   mode="24h" [ngModel]="hora" (timeChange)="timeChange($event)"
+                                   placeholder="Please select time..." name="hora">
+                            <mat-icon matSuffix (click)="t7.showDialog()">access_time</mat-icon>
+                        </mat-form-field>
+                    </p>
+                    <button class="margen" mat-raised-button type="submit" color="primary">Guardar</button>
+                </mat-card-content>
+            </form>
+        </mat-card>
+    </mat-tab>
+
+    <!-- Display de Mantenciones-->
+    <mat-tab label="Mantenciones agendadas">
+        <mat-card>
+            <mat-card-content>
+                <!--<div *ngIf="! mantenciones.length; else tableMantenciones">
+                    <h1>No hay reservas aun</h1>
+                </div>
+                <ng-template #tableMantenciones>
+                    <table mat-table [dataSource]="mantenciones" class="mat-elevation-z8">
+
+                        <ng-container matColumnDef="nombre">
+                            <tr>
+                                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                                <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                            </tr>
+                        </ng-container>
+
+                        <ng-container matColumnDef="rut">
+                            <tr>
+                                <th mat-header-cell *matHeaderCellDef> Rut </th>
+                                <td mat-cell *matCellDef="let element"> {{element.rut}} </td>
+                            </tr>
+                        </ng-container>
+
+                        <ng-container matColumnDef="cargo">
+                            <tr>
+                                <th mat-header-cell *matHeaderCellDef> Cargo </th>
+                                <td mat-cell *matCellDef="let element"> {{element.cargo}} </td>
+                            </tr>
+                        </ng-container>
+
+                        <ng-container matColumnDef="motivo">
+                            <tr>
+                                <th mat-header-cell *matHeaderCellDef> Motivo </th>
+                                <td mat-cell *matCellDef="let element"> {{element.motivo}} </td>
+                            </tr>
+                        </ng-container>
+
+                        <ng-container matColumnDef="fecha">
+                            <tr>
+                                <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                                <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+                            </tr>
+                        </ng-container>
+
+                        <ng-container matColumnDef="hora">
+                            <tr>
+                                <th mat-header-cell *matHeaderCellDef> Hora </th>
+                                <td mat-cell *matCellDef="let element"> {{element.hora}} </td>
+                            </tr>
+                        </ng-container>
+
+                        <ng-container matColumnDef="estacionamiento">
+                            <tr>
+                                <th mat-header-cell *matHeaderCellDef> Estacionamiento </th>
+                                <td mat-cell *matCellDef="let element"> {{element.estacionamiento}} </td>
+                            </tr>
+                        </ng-container>
+
+                        <ng-container matColumnDef="unidad">
+                            <tr>
+                                <th mat-header-cell *matHeaderCellDef> Unidad </th>
+                                <td mat-cell *matCellDef="let element"> {{element.unidad}} </td>
+                            </tr>
+                        </ng-container>
+
+                        <ng-container matColumnDef="n_unidad">
+                            <tr>
+                                <th mat-header-cell *matHeaderCellDef> N° Unidad </th>
+                                <td mat-cell *matCellDef="let element"> {{element.n_unidad}} </td>
+                            </tr>
+                        </ng-container>
+
+                        <ng-container matColumnDef="elemento">
+                            <tr>
+                                <th mat-header-cell *matHeaderCellDef> Elemento </th>
+                                <td mat-cell *matCellDef="let element"> {{element.elemento}} </td>
+                            </tr>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                </ng-template>-->
+            </mat-card-content>
+        </mat-card>
+    </mat-tab>
+
+</mat-tab-group>
