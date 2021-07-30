@@ -89,7 +89,7 @@
                     <p>
                         <mat-form-field appearance="outline">
                             <mat-label>Fecha</mat-label>
-                            <input matInput [matDatepicker]="Fecha" name="Fecha" [(ngModel)]="fecha">
+                            <input matInput [matDatepicker]="Fecha" [min]="minDate" name="Fecha" [(ngModel)]="fecha">
                             <mat-datepicker-toggle matSuffix [for]="Fecha"></mat-datepicker-toggle>
                             <mat-datepicker #Fecha></mat-datepicker>
                             <mat-hint></mat-hint>
@@ -117,81 +117,86 @@
     <mat-tab label="Mantenciones agendadas">
         <mat-card>
             <mat-card-content>
-                <!--<table mat-table [dataSource]="reservasUnidad" class="mat-elevation-z8">
+                <!--<div *ngIf="! mantenciones.length; else tableMantenciones">
+                    <h1>No hay reservas aun</h1>
+                </div>
+                <ng-template #tableMantenciones>
+                    <table mat-table [dataSource]="mantenciones" class="mat-elevation-z8">
 
-                    <ng-container matColumnDef="nombre">
-                        <tr>
-                            <th mat-header-cell *matHeaderCellDef> Nombre </th>
-                            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-                        </tr>
-                    </ng-container>
+                        <ng-container matColumnDef="nombre">
+                            <tr>
+                                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                                <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                            </tr>
+                        </ng-container>
 
-                    <ng-container matColumnDef="rut">
-                        <tr>
-                            <th mat-header-cell *matHeaderCellDef> Rut </th>
-                            <td mat-cell *matCellDef="let element"> {{element.rut}} </td>
-                        </tr>
-                    </ng-container>
+                        <ng-container matColumnDef="rut">
+                            <tr>
+                                <th mat-header-cell *matHeaderCellDef> Rut </th>
+                                <td mat-cell *matCellDef="let element"> {{element.rut}} </td>
+                            </tr>
+                        </ng-container>
 
-                    <ng-container matColumnDef="cargo">
-                        <tr>
-                            <th mat-header-cell *matHeaderCellDef> Cargo </th>
-                            <td mat-cell *matCellDef="let element"> {{element.cargo}} </td>
-                        </tr>
-                    </ng-container>
+                        <ng-container matColumnDef="cargo">
+                            <tr>
+                                <th mat-header-cell *matHeaderCellDef> Cargo </th>
+                                <td mat-cell *matCellDef="let element"> {{element.cargo}} </td>
+                            </tr>
+                        </ng-container>
 
-                    <ng-container matColumnDef="motivo">
-                        <tr>
-                            <th mat-header-cell *matHeaderCellDef> Motivo </th>
-                            <td mat-cell *matCellDef="let element"> {{element.motivo}} </td>
-                        </tr>
-                    </ng-container>
+                        <ng-container matColumnDef="motivo">
+                            <tr>
+                                <th mat-header-cell *matHeaderCellDef> Motivo </th>
+                                <td mat-cell *matCellDef="let element"> {{element.motivo}} </td>
+                            </tr>
+                        </ng-container>
 
-                    <ng-container matColumnDef="fecha">
-                        <tr>
-                            <th mat-header-cell *matHeaderCellDef> Fecha </th>
-                            <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
-                        </tr>
-                    </ng-container>
+                        <ng-container matColumnDef="fecha">
+                            <tr>
+                                <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                                <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+                            </tr>
+                        </ng-container>
 
-                    <ng-container matColumnDef="hora">
-                        <tr>
-                            <th mat-header-cell *matHeaderCellDef> Hora </th>
-                            <td mat-cell *matCellDef="let element"> {{element.hora}} </td>
-                        </tr>
-                    </ng-container>
+                        <ng-container matColumnDef="hora">
+                            <tr>
+                                <th mat-header-cell *matHeaderCellDef> Hora </th>
+                                <td mat-cell *matCellDef="let element"> {{element.hora}} </td>
+                            </tr>
+                        </ng-container>
 
-                    <ng-container matColumnDef="estacionamiento">
-                        <tr>
-                            <th mat-header-cell *matHeaderCellDef> Estacionamiento </th>
-                            <td mat-cell *matCellDef="let element"> {{element.estacionamiento}} </td>
-                        </tr>
-                    </ng-container>
+                        <ng-container matColumnDef="estacionamiento">
+                            <tr>
+                                <th mat-header-cell *matHeaderCellDef> Estacionamiento </th>
+                                <td mat-cell *matCellDef="let element"> {{element.estacionamiento}} </td>
+                            </tr>
+                        </ng-container>
 
-                    <ng-container matColumnDef="unidad">
-                        <tr>
-                            <th mat-header-cell *matHeaderCellDef> Unidad </th>
-                            <td mat-cell *matCellDef="let element"> {{element.unidad}} </td>
-                        </tr>
-                    </ng-container>
+                        <ng-container matColumnDef="unidad">
+                            <tr>
+                                <th mat-header-cell *matHeaderCellDef> Unidad </th>
+                                <td mat-cell *matCellDef="let element"> {{element.unidad}} </td>
+                            </tr>
+                        </ng-container>
 
-                    <ng-container matColumnDef="n_unidad">
-                        <tr>
-                            <th mat-header-cell *matHeaderCellDef> N° Unidad </th>
-                            <td mat-cell *matCellDef="let element"> {{element.n_unidad}} </td>
-                        </tr>
-                    </ng-container>
+                        <ng-container matColumnDef="n_unidad">
+                            <tr>
+                                <th mat-header-cell *matHeaderCellDef> N° Unidad </th>
+                                <td mat-cell *matCellDef="let element"> {{element.n_unidad}} </td>
+                            </tr>
+                        </ng-container>
 
-                    <ng-container matColumnDef="elemento">
-                        <tr>
-                            <th mat-header-cell *matHeaderCellDef> Elemento </th>
-                            <td mat-cell *matCellDef="let element"> {{element.elemento}} </td>
-                        </tr>
-                    </ng-container>
+                        <ng-container matColumnDef="elemento">
+                            <tr>
+                                <th mat-header-cell *matHeaderCellDef> Elemento </th>
+                                <td mat-cell *matCellDef="let element"> {{element.elemento}} </td>
+                            </tr>
+                        </ng-container>
 
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                </table>-->
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                </ng-template>-->
             </mat-card-content>
         </mat-card>
     </mat-tab>
