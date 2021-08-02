@@ -17,9 +17,9 @@ import { MatTabGroup } from '@angular/material/tabs';
 
 export class ReservasComponent implements OnInit {
 
-    //o_areaComun: Observable<Area[]>;
-    //o_reservasUnidad: Observable<Reserva_comunidad[]>;
-    //o_reservasComunidad: Observable<Reserva[]>;
+    //o_areaComun$: Observable<Area[]>;
+    //o_reservasUnidad$: Observable<Reserva_comunidad[]>;
+    //o_reservasComunidad$: Observable<Reserva[]>;
 
     minDate: Date;
     maxDate: Date;
@@ -77,9 +77,9 @@ export class ReservasComponent implements OnInit {
         this.minDate = new Date();
         this.maxDate = new Date((new Date()).setDate((new Date()).getDate() + 90));
 
-        //this.o_areaComun =         reservasService.getAreas();
-        //this.o_reservasUnidad =    reservasService.getReservas();
-        //this.o_reservasComunidad = reservasService.getReservasComunidad();
+        //this.o_areaComun$ =         reservasService.getAreas();
+        //this.o_reservasUnidad$ =    reservasService.getReservas();
+        //this.o_reservasComunidad$ = reservasService.getReservasComunidad();
 
         this.areaComun = reservasService.getAreas();
         this.reservasUnidad = reservasService.getReservas();

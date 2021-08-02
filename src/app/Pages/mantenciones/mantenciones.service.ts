@@ -27,4 +27,21 @@ export class MantencionesService {
         //    takeUntil(this.stopMantenciones)
         //);
     }
+
+    getMantenciones() {
+        return this.mantenciones;
+    }
+
+    //getMantenciones(): Observable<Mantencion[]>{
+    //    return this.o_mantenciones$;
+    //}
+
+    addMantencion() {
+    }
+
+    updateMantencion() {
+    }
+
+    deleteMantencion() {
+    }
 }

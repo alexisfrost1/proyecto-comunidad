@@ -88,6 +88,18 @@ export class ReservasService implements OnDestroy{
         return this.reservas_comunidad;
     }
 
+    //getAreas(): Observable<Area[]>{
+    //    return this.o_areas$;
+    //}
+
+    //getReservas(): Observable<Reserva[]>{
+    //    return this.o_reservas$;
+    //}
+
+    //getReservasComunidad(): Observable<Reserva_comunidad[]>{
+    //    return this.o_reservas_comunidad$;
+    //}
+
     addNewReserva() {
     }
 
