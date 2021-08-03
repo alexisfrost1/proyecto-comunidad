@@ -31,9 +31,9 @@ export class ReservasComponent implements OnInit {
     @ViewChild(MatCalendar) calendar!: MatCalendar<Date>;
     @ViewChild("reservas", { static: false }) reservas!: MatTabGroup;
 
-    areaComun: Area[] = [];
-    reservasUnidad: Reserva[] = [];
-    reservasComunidad: Reserva_comunidad[] = [];
+    areaComun: Area[] ;
+    reservasUnidad: Reserva[] ;
+    reservasComunidad: Reserva_comunidad[] ;
     fechas_nodisponibles: Date[] = [];
     displayedColumns: string[] = ['nombre', 'fecha', 'n_area', 'nombre_area'];
 
@@ -49,6 +49,7 @@ export class ReservasComponent implements OnInit {
 
         }
         this.fechaReserva = undefined;
+        console.log(this.fechas_nodisponibles.toString);
         this.calendar.updateTodaysDate();
     }
 

@@ -1,13 +1,18 @@
-/* Structure */
 table {
-  width: 100%;
+    width: 100%;
 }
 
 .mat-form-field {
-  font-size: 14px;
-  width: 98%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    font-size: 14px;
+    width: 30%;
 }
 
-.margen{
-  margin-left: 1%;
+.fecha-reservada {
+    background-color: red;
+    border-radius: 100%;
+    pointer-events: none;
 }
