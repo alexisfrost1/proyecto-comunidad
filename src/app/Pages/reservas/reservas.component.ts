@@ -49,7 +49,6 @@ export class ReservasComponent implements OnInit {
 
         }
         this.fechaReserva = undefined;
-        console.log(this.fechas_nodisponibles.toString);
         this.calendar.updateTodaysDate();
     }
 

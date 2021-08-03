@@ -37,7 +37,7 @@
                             <mat-hint>Lugar a reservar</mat-hint>
                         </mat-form-field>
                     </p>
-                    <p *ngIf="!(nReserva == 0)">
+                    <p [hidden]="nReserva == 0">
                         <mat-form-field appearance="outline">
                             <mat-label>Fecha a reservar</mat-label>
                             <input matInput [matDatepicker]="displayFecha" name="displayFecha" [(ngModel)]="fechaReserva" disabled>
