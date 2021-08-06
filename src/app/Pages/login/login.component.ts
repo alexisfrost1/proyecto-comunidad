@@ -1,14 +1,19 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild, AfterViewChecked } from '@angular/core';
+import { RolesService } from 'src/app/services/roles.service';
 import { FormBuilder, FormGroup, Validators,FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatTabGroup } from '@angular/material/tabs';
 //import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [
+      RolesService
+  ]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewChecked{
 //  loginForm: FormGroup | undefined;
  // variableRut= "18.643.523-0";
  fontStyleControl = new FormControl();
@@ -18,17 +23,29 @@ export class LoginComponent implements OnInit {
  emailFormControl = new FormControl('', [
   Validators.required,
   Validators.email,
-]);
+ ]);
+
+    @ViewChild("login", { static: false }) login!: MatTabGroup;
+
+
+
   constructor(
 //    public formBuilder: FormBuilder,
  //   public ngZone: NgZone, // NgZone service to remove outside scope warning
  //   public router: Router, // para enviar al usuario a otra vista
-   // private auth: AuthService
-  ) { }
+   // private auth: AuthService,
+      private roles: RolesService
+  ) {
+
+  }
 
   ngOnInit(): void {
  //   this.loginForm = this.createLoginForm();
-  }
+    }
+
+    ngAfterViewChecked() {
+        this.login.selectedIndex = 1;
+    }
 
  /* private createLoginForm() {
    return this.formBuilder.group({
@@ -83,4 +100,8 @@ export class LoginComponent implements OnInit {
       return this.variableRut
 
   }*/
+
+    Submit() {
+        this.roles.loginRoles(this.login.selectedIndex);
+    }
 }

@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { Area, Reserva, Reserva_comunidad } from './reservas.model';
 import { ReservasService } from './reservas.service';
+import { RolesService } from 'src/app/services/roles.service';
 import { Observable } from 'rxjs';
 import { MatCalendar, MatCalendarCellClassFunction, MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { MatTabGroup } from '@angular/material/tabs';
@@ -11,11 +12,12 @@ import { MatTabGroup } from '@angular/material/tabs';
     styleUrls: ['./reservas.component.css'],
     encapsulation: ViewEncapsulation.None,
     providers: [
-        ReservasService
+        ReservasService,
+        RolesService
     ]
 })
 
-export class ReservasComponent implements OnInit {
+export class ReservasComponent implements OnInit, OnDestroy {
 
     //o_areaComun$: Observable<Area[]>;
     //o_reservasUnidad$: Observable<Reserva_comunidad[]>;
@@ -27,6 +29,7 @@ export class ReservasComponent implements OnInit {
     nombre: string | any;
     rut: string | any;
     nReserva: number | undefined;
+    bBitacora: boolean = false;
 
     @ViewChild(MatCalendar) calendar!: MatCalendar<Date>;
     @ViewChild("reservas", { static: false }) reservas!: MatTabGroup;
@@ -35,7 +38,7 @@ export class ReservasComponent implements OnInit {
     reservasUnidad: Reserva[] ;
     reservasComunidad: Reserva_comunidad[] ;
     fechas_nodisponibles: Date[] = [];
-    displayedColumns: string[] = ['nombre', 'fecha', 'n_area', 'nombre_area'];
+    displayedColumns: string[] = ['nombre', 'fecha', 'n_area', 'nombre_area', 'opciones'];
 
     fechasReserva() {
 
@@ -69,7 +72,11 @@ export class ReservasComponent implements OnInit {
         return '';
     }
 
-    constructor(private reservasService: ReservasService) {
+    constructor(
+        private reservasService: ReservasService,
+        private roles: RolesService
+    ) {
+        this.bBitacora = this.roles.bitacoraState();
 
         this.nReserva = 0;
 
@@ -87,6 +94,10 @@ export class ReservasComponent implements OnInit {
     }
 
     ngOnInit(): void {
+    }
+
+    ngOnDestroy() {
+        this.reservasService.ngOnDestroy();
     }
 
     Submit() {
