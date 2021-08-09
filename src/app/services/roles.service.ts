@@ -22,7 +22,7 @@ export class RolesService {
             comite: false
         }];
 
-        this.bitacora = false;
+        this.bitacora = true;
 
     }
 
