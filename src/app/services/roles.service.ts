@@ -28,17 +28,17 @@ export class RolesService {
 
     loginRoles(tab: number | null) {
 
-        if (tab == 1) {
+        if (tab == 0) {
             this.roles[0].propietario = true;
             this.roles[0].conserje = false;
             this.roles[0].admin = false;
         }
-        if (tab == 2) {
+        if (tab == 1) {
             this.roles[0].propietario = false;
             this.roles[0].conserje = true;
             this.roles[0].admin = false;
         }
-        if (tab == 3) {
+        if (tab == 2) {
             this.roles[0].propietario = false;
             this.roles[0].conserje = false;
             this.roles[0].admin = true;

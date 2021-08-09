@@ -1,8 +1,7 @@
-import { Component, OnInit, NgZone, ViewChild, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { RolesService } from 'src/app/services/roles.service';
 import { FormBuilder, FormGroup, Validators,FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MatTabGroup } from '@angular/material/tabs';
 //import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -13,7 +12,7 @@ import { MatTabGroup } from '@angular/material/tabs';
       RolesService
   ]
 })
-export class LoginComponent implements OnInit, AfterViewChecked{
+export class LoginComponent implements OnInit{
 //  loginForm: FormGroup | undefined;
  // variableRut= "18.643.523-0";
  fontStyleControl = new FormControl();
@@ -25,7 +24,7 @@ export class LoginComponent implements OnInit, AfterViewChecked{
   Validators.email,
  ]);
 
-    @ViewChild("login", { static: false }) login!: MatTabGroup;
+    role: number = 0;
 
 
 
@@ -41,10 +40,6 @@ export class LoginComponent implements OnInit, AfterViewChecked{
 
   ngOnInit(): void {
  //   this.loginForm = this.createLoginForm();
-    }
-
-    ngAfterViewChecked() {
-        this.login.selectedIndex = 1;
     }
 
  /* private createLoginForm() {
@@ -102,6 +97,6 @@ export class LoginComponent implements OnInit, AfterViewChecked{
   }*/
 
     Submit() {
-        this.roles.loginRoles(this.login.selectedIndex);
+        this.roles.loginRoles(this.role);
     }
 }
