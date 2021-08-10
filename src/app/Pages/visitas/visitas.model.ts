@@ -10,3 +10,4 @@ export interface PeriodicElement {
     weight: string;
     symbol: number;
   }
+  
