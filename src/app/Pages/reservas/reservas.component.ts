@@ -32,10 +32,10 @@ export class ReservasComponent implements OnInit, OnDestroy {
     bBitacora: boolean = false;
 
     @ViewChild(MatCalendar) calendar!: MatCalendar<Date>;
-    @ViewChild("reservas", { static: false }) reservas!: MatTabGroup;
+    tabReserva: number = 0;
 
     areaComun: Area[] ;
-    reservasUnidad: Reserva[] ;
+    reservas: Reserva[] ;
     reservasComunidad: Reserva_comunidad[] ;
     fechas_nodisponibles: Date[] = [];
     displayedColumns: string[] = ['nombre', 'fecha', 'n_area', 'nombre_area', 'opciones'];
@@ -89,7 +89,7 @@ export class ReservasComponent implements OnInit, OnDestroy {
         //this.o_reservasComunidad$ = reservasService.getReservasComunidad();
 
         this.areaComun = reservasService.getAreas();
-        this.reservasUnidad = reservasService.getReservas();
+        this.reservas = reservasService.getReservas();
         this.reservasComunidad = reservasService.getReservasComunidad(); 
     }
 
@@ -106,7 +106,7 @@ export class ReservasComponent implements OnInit, OnDestroy {
         this.fechaReserva = undefined;
         this.nombre = '';
         this.rut = '';
-        this.reservas.selectedIndex = 2;
+        this.tabReserva = 1;
     }
 
 }
