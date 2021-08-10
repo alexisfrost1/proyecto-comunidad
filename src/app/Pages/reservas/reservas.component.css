@@ -9,4 +9,10 @@ table {
   padding-bottom: 0px; 
   font-size: 14px; 
   width: 30%; 
-} 
+}
+
+.fecha-reservada {
+    background-color: red;
+    border-radius: 100%;
+    pointer-events: none;
+}

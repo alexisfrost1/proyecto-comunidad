@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MantencionesService } from './mantenciones.service';
+import { BitacoraService } from './bitacora.service';
 
-describe('MantencionesService', () => {
-  let service: MantencionesService;
+describe('BitacoraService', () => {
+  let service: BitacoraService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(MantencionesService);
+    service = TestBed.inject(BitacoraService);
   });
 
   it('should be created', () => {

@@ -12,6 +12,8 @@ import { MatTabGroup } from '@angular/material/tabs';
 })
 export class MantencionesComponent implements OnInit {
 
+	/*o_mantenciones$: Observable<Mantencion[]>;*/
+
 	minDate: Date;
 	maxDate: Date;
 	minHour: Date;
@@ -37,7 +39,7 @@ export class MantencionesComponent implements OnInit {
 		console.log('Hora: ', data);
 	}
 
-	constructor() {
+	constructor(private mantencionesService: MantencionesService) {
 
 		//* Rango de fechas en las que es posible agendar*//
 		this.minDate = new Date();
@@ -53,6 +55,10 @@ export class MantencionesComponent implements OnInit {
 		maxHour.setHours(23);
 		maxHour.setMinutes(0);
 		this.maxHour = maxHour;
+
+		/*this.o_mantenciones$ = this.mantencionesService.getMantenciones();*/
+
+		this.mantenciones = this.mantencionesService.getMantenciones();
 	}
 
   ngOnInit(): void {
