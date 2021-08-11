@@ -1,4 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
+import { RolesService } from 'src/app/services/roles.service';
+import { Roles } from 'src/app/services/roles.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable, timer, Subscription, Subject } from 'rxjs';
 import { switchMap, tap, share, retry, takeUntil } from 'rxjs/operators';
@@ -9,9 +11,12 @@ import { Area, Reserva, Reserva_comunidad} from './reservas.model';
 })
 export class ReservasService implements OnDestroy{
 
-    private areas: Area[];
-    private reservas: Reserva[];
-    private reservas_comunidad: Reserva_comunidad[];
+    private bitacoraAccess: boolean;
+    private roles: Roles[];
+
+    private areas: Area[] = [];
+    private reservas: Reserva[] = [];
+    private reservas_comunidad: Reserva_comunidad[] = [];
 
     //// Emisor reservado para enviar nuevas reservas
     //private reservas$ = new Subject<Reserva[]>();
@@ -23,7 +28,12 @@ export class ReservasService implements OnDestroy{
 
     private stopReservas = new Subject();
 
-    constructor(private http: HttpClient) {
+    constructor(
+        private http: HttpClient,
+        private rolesService: RolesService
+    ) {
+        this.bitacoraAccess = this.rolesService.bitacoraState();
+        this.roles = this.rolesService.Roles();
 
         this.areas =
             [{ n_area: 1, nombre_area: 'Piscina Block n°3' },
@@ -87,6 +97,18 @@ export class ReservasService implements OnDestroy{
     getReservasComunidad() {
         return this.reservas_comunidad;
     }
+
+    //getAreas(): Observable<Area[]>{
+    //    return this.o_areas$;
+    //}
+
+    //getReservas(): Observable<Reserva[]>{
+    //    return this.o_reservas$;
+    //}
+
+    //getReservasComunidad(): Observable<Reserva_comunidad[]>{
+    //    return this.o_reservas_comunidad$;
+    //}
 
     addNewReserva() {
     }

@@ -1,4 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
+import { RolesService } from 'src/app/services/roles.service';
 import { FormBuilder, FormGroup, Validators,FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 //import { AuthService } from 'src/app/services/auth.service';
@@ -6,9 +7,12 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [
+      RolesService
+  ]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit{
 //  loginForm: FormGroup | undefined;
  // variableRut= "18.643.523-0";
  fontStyleControl = new FormControl();
@@ -18,17 +22,25 @@ export class LoginComponent implements OnInit {
  emailFormControl = new FormControl('', [
   Validators.required,
   Validators.email,
-]);
+ ]);
+
+    role: number = 0;
+
+
+
   constructor(
 //    public formBuilder: FormBuilder,
  //   public ngZone: NgZone, // NgZone service to remove outside scope warning
  //   public router: Router, // para enviar al usuario a otra vista
-   // private auth: AuthService
-  ) { }
+   // private auth: AuthService,
+      private roles: RolesService
+  ) {
+
+  }
 
   ngOnInit(): void {
  //   this.loginForm = this.createLoginForm();
-  }
+    }
 
  /* private createLoginForm() {
    return this.formBuilder.group({
@@ -83,4 +95,8 @@ export class LoginComponent implements OnInit {
       return this.variableRut
 
   }*/
+
+    Submit() {
+        this.roles.loginRoles(this.role);
+    }
 }
