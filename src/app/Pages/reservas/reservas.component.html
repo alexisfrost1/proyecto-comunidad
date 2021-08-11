@@ -1,143 +1,143 @@
 <mat-tab-group [(selectedIndex)]="tabReserva">
 
-        <!-- Reserva de areá común-->
-        <mat-tab label="Registrar Reserva">
-            <mat-card>
-                <form (ngSubmit)="Submit()">
-                    <mat-card-content>
-                        <div class="form-container">
-                            <div class="form-block">
-                                <p>
-                                    <mat-form-field appearance="outline">
-                                        <mat-label>
-                                            <mat-icon matSuffix>person_outline</mat-icon>
-                                            Nombre de propietario/copropietario
-                                        </mat-label>
-                                        <input type="text" matInput placeholder="Su Nombre" name="nombre" [(ngModel)]="nombre">
-                                        <mat-hint>Ingrese su nombre</mat-hint>
-                                    </mat-form-field>
-                                </p>
-                                <p>
-                                    <mat-form-field appearance="outline">
-                                        <mat-label>
-                                            <mat-icon matSuffix>tag</mat-icon>
-                                            Ingrese su Rut
-                                        </mat-label>
-                                        <input type="text" matInput placeholder="Rut" name="rut" [(ngModel)]="rut">
-                                        <mat-hint>Rut</mat-hint>
-                                    </mat-form-field>
-                                </p>
-                                <p>
-                                    <mat-form-field appearance="outline">
-                                        <mat-label>
-                                            <mat-icon matSuffix>villa</mat-icon>
-                                            Area Común
-                                        </mat-label>
-                                        <mat-select [(value)]="nReserva" (selectionChange)="fechasReserva()">
-                                            <mat-option *ngFor="let area of areaComun" [value]="area.n_area">{{area.nombre_area}}</mat-option>
-                                        </mat-select>
-                                        <mat-hint>Lugar a reservar</mat-hint>
-                                    </mat-form-field>
-                                </p>
-                            </div>
-                            <div class="form-block">
-                                <p [hidden]="nReserva == 0">
-                                    <mat-form-field appearance="outline">
-                                        <mat-label>Fecha a reservar</mat-label>
-                                        <input matInput [matDatepicker]="displayFecha" name="displayFecha" [(ngModel)]="fechaReserva" disabled>
-                                        <mat-datepicker-toggle matSuffix [for]="displayFecha"></mat-datepicker-toggle>
-                                        <mat-datepicker #displayFecha></mat-datepicker>
-                                        <mat-calendar #calendar [dateClass]="dateClass" [minDate]="minDate" [maxDate]="maxDate" [(selected)]="fechaReserva"></mat-calendar>
-                                        <mat-hint>Fechas disponibles</mat-hint>
-                                    </mat-form-field>
-
-                                </p>
-                                <p>
-                                    <button *ngIf="fechaReserva != undefined && nombre != undefined && this.rut != undefined && nombre != '' && rut!=''" class="margen" mat-raised-button type="submit" color="primary">Guardar</button>
-                                </p>
-
-                            </div>
-                            
-                        </div>                       
-                    </mat-card-content>
-                </form>
-            </mat-card>
-        </mat-tab>
-
-    <!-- Display de reservas-->
-    <mat-tab label="Reservas realizadas">
+    <!-- Reserva de areá común-->
+    <mat-tab label="Registrar Reserva">
         <mat-card>
-            <mat-card-content>
-                <div *ngIf="! reservas.length; else tableReservas">
-                <h1>No hay reservas aun</h1>
-                </div>
-                <ng-template #tableReservas>
-                    <table mat-table [dataSource]="reservas" class="mat-elevation-z8">
+            <form (ngSubmit)="Submit()">
+                <mat-card-content>
+                    <div class="form-container">
+                        <div class="form-block">
+                            <p>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>
+                                        <mat-icon matSuffix>person_outline</mat-icon>
+                                        Nombre de propietario/copropietario
+                                    </mat-label>
+                                    <input type="text" matInput placeholder="Su Nombre" name="nombre" [(ngModel)]="nombre">
+                                    <mat-hint>Ingrese su nombre</mat-hint>
+                                </mat-form-field>
+                            </p>
+                            <p>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>
+                                        <mat-icon matSuffix>tag</mat-icon>
+                                        Ingrese su Rut
+                                    </mat-label>
+                                    <input type="text" matInput placeholder="Rut" name="rut" [(ngModel)]="rut">
+                                    <mat-hint>Rut</mat-hint>
+                                </mat-form-field>
+                            </p>
+                            <p>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>
+                                        <mat-icon matSuffix>villa</mat-icon>
+                                        Area Común
+                                    </mat-label>
+                                    <mat-select [(value)]="nReserva" (selectionChange)="fechasReserva()">
+                                        <mat-option *ngFor="let area of areaComun" [value]="area.n_area">{{area.nombre_area}}</mat-option>
+                                    </mat-select>
+                                    <mat-hint>Lugar a reservar</mat-hint>
+                                </mat-form-field>
+                            </p>
+                        </div>
+                        <div class="form-block">
+                            <p [hidden]="nReserva == 0">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Fecha a reservar</mat-label>
+                                    <input matInput [matDatepicker]="displayFecha" name="displayFecha" [(ngModel)]="fechaReserva" disabled>
+                                    <mat-datepicker-toggle matSuffix [for]="displayFecha"></mat-datepicker-toggle>
+                                    <mat-datepicker #displayFecha></mat-datepicker>
+                                    <mat-calendar #calendar [dateClass]="dateClass" [minDate]="minDate" [maxDate]="maxDate" [(selected)]="fechaReserva"></mat-calendar>
+                                    <mat-hint>Fechas disponibles</mat-hint>
+                                </mat-form-field>
 
-                        <ng-container matColumnDef="nombre">
-                            <tr>
-                                <th mat-header-cell *matHeaderCellDef> Nombre </th>
-                                <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-                            </tr>
-                        </ng-container>
+                            </p>
+                            <p>
+                                <button *ngIf="fechaReserva != undefined && nombre != undefined && this.rut != undefined && nombre != '' && rut!=''" class="margen" mat-raised-button type="submit" color="primary">Guardar</button>
+                            </p>
 
-                        <ng-container matColumnDef="fecha">
-                            <tr>
-                                <th mat-header-cell *matHeaderCellDef> Fecha </th>
-                                <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
-                            </tr>
-                        </ng-container>
-
-                        <ng-container matColumnDef="n_area">
-                            <tr>
-                                <th mat-header-cell *matHeaderCellDef> # </th>
-                                <td mat-cell *matCellDef="let element"> {{element.n_area}} </td>
-                            </tr>
-                        </ng-container>
-
-                        <ng-container matColumnDef="nombre_area">
-                            <tr>
-                                <th mat-header-cell *matHeaderCellDef> Lugar reservado </th>
-                                <td mat-cell *matCellDef="let element"> {{element.nombre_area}} </td>
-                            </tr>
-                        </ng-container>
-
-                        <!-- Opciones Column -->
-                        <ng-container matColumnDef="opciones">
-                            <tr>
-                                <th mat-header-cell *matHeaderCellDef>Opciones</th>
-                                <td mat-cell *matCellDef="let element">
-
-                                    <div *ngIf="!bBitacora">
-                                        <button matTooltip="Reagendar" mat-raised-button>
-                                            <mat-icon>edit</mat-icon>
-                                        </button>
-                                        <button matTooltip="Cancelar" mat-raised-button>
-                                            <mat-icon>cancel</mat-icon>
-                                        </button>
-                                    </div>
-
-                                    <div *ngIf="bBitacora">
-                                        <mat-button-toggle-group #Confirmar="matButtonToggleGroup">
-                                            <mat-button-toggle value="confirmado" matTooltip="Confirmar" mat-raised-button>
-                                                <mat-icon>check_circle</mat-icon>
-                                            </mat-button-toggle>
-                                            <mat-button-toggle value="no confirmado" matTooltip="Deshacer confirmación" mat-raised-button>
-                                                <mat-icon>delete</mat-icon>
-                                            </mat-button-toggle>
-                                        </mat-button-toggle-group>
-                                    </div>
-
-                                </td>
-                            </tr>
-                        </ng-container>
-
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                    </table>
-                </ng-template>
-            </mat-card-content>
+                        </div>
+                        
+                    </div>                       
+                </mat-card-content>
+            </form>
         </mat-card>
     </mat-tab>
+
+<!-- Display de reservas-->
+<mat-tab label="Reservas realizadas">
+    <mat-card>
+        <mat-card-content>
+            <div *ngIf="! reservas.length; else tableReservas">
+            <h1>No hay reservas aun</h1>
+            </div>
+            <ng-template #tableReservas>
+                <table mat-table [dataSource]="reservas" class="mat-elevation-z8">
+
+                    <ng-container matColumnDef="nombre">
+                        <tr>
+                            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                        </tr>
+                    </ng-container>
+
+                    <ng-container matColumnDef="fecha">
+                        <tr>
+                            <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                            <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+                        </tr>
+                    </ng-container>
+
+                    <ng-container matColumnDef="n_area">
+                        <tr>
+                            <th mat-header-cell *matHeaderCellDef> # </th>
+                            <td mat-cell *matCellDef="let element"> {{element.n_area}} </td>
+                        </tr>
+                    </ng-container>
+
+                    <ng-container matColumnDef="nombre_area">
+                        <tr>
+                            <th mat-header-cell *matHeaderCellDef> Lugar reservado </th>
+                            <td mat-cell *matCellDef="let element"> {{element.nombre_area}} </td>
+                        </tr>
+                    </ng-container>
+
+                    <!-- Opciones Column -->
+                    <ng-container matColumnDef="opciones">
+                        <tr>
+                            <th mat-header-cell *matHeaderCellDef>Opciones</th>
+                            <td mat-cell *matCellDef="let element">
+
+                                <div *ngIf="!bBitacora">
+                                    <button matTooltip="Reagendar" mat-raised-button>
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button matTooltip="Cancelar" mat-raised-button>
+                                        <mat-icon>cancel</mat-icon>
+                                    </button>
+                                </div>
+
+                                <div *ngIf="bBitacora">
+                                    <mat-button-toggle-group #Confirmar="matButtonToggleGroup">
+                                        <mat-button-toggle value="confirmado" matTooltip="Confirmar" mat-raised-button>
+                                            <mat-icon>check_circle</mat-icon>
+                                        </mat-button-toggle>
+                                        <mat-button-toggle value="no confirmado" matTooltip="Deshacer confirmación" mat-raised-button>
+                                            <mat-icon>delete</mat-icon>
+                                        </mat-button-toggle>
+                                    </mat-button-toggle-group>
+                                </div>
+
+                            </td>
+                        </tr>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </ng-template>
+        </mat-card-content>
+    </mat-card>
+</mat-tab>
 
 </mat-tab-group>

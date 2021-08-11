@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { RolesService } from 'src/app/services/roles.service';
+//import { RolesService } from 'src/app/services/roles.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   providers: [
-      RolesService
+  //    RolesService
   ]
 })
 export class AppComponent {
