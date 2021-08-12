@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   providers: [
-      RolesService
   ]
 })
 export class LoginComponent implements OnInit{
@@ -35,7 +34,7 @@ export class LoginComponent implements OnInit{
    // private auth: AuthService,
       private roles: RolesService
   ) {
-
+      this.check();
   }
 
   ngOnInit(): void {
@@ -96,7 +95,7 @@ export class LoginComponent implements OnInit{
 
   }*/
 
-    Submit() {
+    check() {
         this.roles.loginRoles(this.role);
     }
 }

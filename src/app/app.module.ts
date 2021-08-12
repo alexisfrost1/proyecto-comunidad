@@ -33,6 +33,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { BitacoraComponent } from './Pages/bitacora/bitacora.component'; 
 import { MatTimepickerModule } from 'mat-timepicker';
+import { RolesService } from './services/roles.service';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,7 @@ import { MatTimepickerModule } from 'mat-timepicker';
     HttpClientModule,
     MatTimepickerModule
   ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' },],
+    providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }, RolesService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

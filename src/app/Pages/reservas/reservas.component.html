@@ -1,11 +1,11 @@
 <mat-tab-group [(selectedIndex)]="tabReserva">
 
     <!-- Reserva de areá común-->
-    <mat-tab label="Registrar Reserva">
+    <mat-tab label="Registrar Reserva" *ngIf="!bBitacora">
         <mat-card>
             <form (ngSubmit)="Submit()">
                 <mat-card-content>
-                    <div class="form-container">
+                    <div class="form-container" >
                         <div class="form-block">
                             <p>
                                 <mat-form-field appearance="outline">

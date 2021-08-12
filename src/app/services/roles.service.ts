@@ -8,8 +8,10 @@ import { Roles } from './roles.model';
 export class RolesService {
 
     private roles: Roles[];
+    private roles$: Subject<Roles[]> = new Subject<Roles[]>();
     /*private o_roles$: Observable<Roles[]>;*/
     private bitacora: boolean;
+    private bitacora$: Subject<boolean> = new Subject();
 
     constructor() {
 
@@ -22,12 +24,11 @@ export class RolesService {
             comite: false
         }];
 
-        this.bitacora = true;
+        this.bitacora = false;
 
     }
 
-    loginRoles(tab: number | null) {
-
+    loginRoles(tab: number) {
         if (tab == 0) {
             this.roles[0].propietario = true;
             this.roles[0].conserje = false;
@@ -43,12 +44,23 @@ export class RolesService {
             this.roles[0].conserje = false;
             this.roles[0].admin = true;
         }
-        if (tab == null) {
-        }
+        this.roles$.next(this.roles);
     }
 
-    Roles() {
+    getRoles$(): Observable<Roles[]>{
+        return this.roles$.asObservable();
+    }
+
+    getRoles() {
         return this.roles;
+    }
+
+    getBitacora$(): Observable<boolean> {
+        return this.bitacora$.asObservable();
+    }
+
+    getBitacora() {
+        return this.bitacora;
     }
 
     bitacoraAccess() {

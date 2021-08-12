@@ -4,6 +4,7 @@ import { MantencionesService } from './mantenciones.service';
 import { Observable } from 'rxjs';
 import { MatCalendar, MatCalendarCellClassFunction, MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { MatTabGroup } from '@angular/material/tabs';
+import { RolesService } from 'src/app/services/roles.service';
 
 @Component({
   selector: 'app-mantenciones',
@@ -18,7 +19,8 @@ export class MantencionesComponent implements OnInit {
 	maxDate: Date;
 	minHour: Date;
 	maxHour: Date;
-
+	bBitacora: boolean;
+    bBitacora$!: Observable<boolean>;
 	nombre: string | any;
 	rut: string | any;
 	cargo: string | any;
@@ -39,7 +41,9 @@ export class MantencionesComponent implements OnInit {
 		console.log('Hora: ', data);
 	}
 
-	constructor(private mantencionesService: MantencionesService) {
+	constructor(private mantencionesService: MantencionesService,
+		private rolesService: RolesService
+		) {
 
 		//* Rango de fechas en las que es posible agendar*//
 		this.minDate = new Date();
@@ -57,11 +61,13 @@ export class MantencionesComponent implements OnInit {
 		this.maxHour = maxHour;
 
 		/*this.o_mantenciones$ = this.mantencionesService.getMantenciones();*/
-
+		this.bBitacora = this.rolesService.bitacoraState();
 		this.mantenciones = this.mantencionesService.getMantenciones();
 	}
 
   ngOnInit(): void {
+	this.bBitacora$ = this.rolesService.getBitacora$();
+	this.bBitacora$.subscribe( bBitacora => this.bBitacora = bBitacora);
   }
 
 	Submit() {

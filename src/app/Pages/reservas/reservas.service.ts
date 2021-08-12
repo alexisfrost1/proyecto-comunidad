@@ -12,7 +12,8 @@ import { Area, Reserva, Reserva_comunidad} from './reservas.model';
 export class ReservasService implements OnDestroy{
 
     private bitacoraAccess: boolean;
-    private roles: Roles[];
+    private roles: Roles[] = [];
+    private roles$: Observable<Roles[]>;
 
     private areas: Area[] = [];
     private reservas: Reserva[] = [];
@@ -33,7 +34,8 @@ export class ReservasService implements OnDestroy{
         private rolesService: RolesService
     ) {
         this.bitacoraAccess = this.rolesService.bitacoraState();
-        this.roles = this.rolesService.Roles();
+        this.roles$ = this.rolesService.getRoles$();
+        this.roles$.subscribe(roles => this.roles = roles);
 
         this.areas =
             [{ n_area: 1, nombre_area: 'Piscina Block n°3' },

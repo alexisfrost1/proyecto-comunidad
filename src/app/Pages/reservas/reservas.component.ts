@@ -12,8 +12,7 @@ import { MatTabGroup } from '@angular/material/tabs';
     styleUrls: ['./reservas.component.css'],
     encapsulation: ViewEncapsulation.None,
     providers: [
-        ReservasService,
-        RolesService
+        ReservasService
     ]
 })
 
@@ -29,7 +28,8 @@ export class ReservasComponent implements OnInit, OnDestroy {
     nombre: string | any;
     rut: string | any;
     nReserva: number | undefined;
-    bBitacora: boolean = false;
+    bBitacora: boolean;
+    bBitacora$!: Observable<boolean>;
 
     @ViewChild(MatCalendar) calendar!: MatCalendar<Date>;
     tabReserva: number = 0;
@@ -74,9 +74,9 @@ export class ReservasComponent implements OnInit, OnDestroy {
 
     constructor(
         private reservasService: ReservasService,
-        private roles: RolesService
+        private rolesService: RolesService
     ) {
-        this.bBitacora = this.roles.bitacoraState();
+        this.bBitacora = this.rolesService.bitacoraState();
 
         this.nReserva = 0;
 
@@ -94,6 +94,8 @@ export class ReservasComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
+        this.bBitacora$ = this.rolesService.getBitacora$();
+        this.bBitacora$.subscribe( bBitacora => this.bBitacora = bBitacora);
     }
 
     ngOnDestroy() {
