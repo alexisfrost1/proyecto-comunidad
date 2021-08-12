@@ -12,7 +12,8 @@ import { Mantencion } from './mantenciones.model';
 export class MantencionesService {
 
     private bitacoraAccess: boolean;
-    private roles: Roles[];
+    private roles: Roles[] = [];
+    private roles$: Observable<Roles[]>;
 
     private mantenciones: Mantencion[];
     //private mantenciones$ = new Subject<Mantencion[]>();
@@ -25,7 +26,8 @@ export class MantencionesService {
         private rolesService: RolesService
     ) {
         this.bitacoraAccess = this.rolesService.bitacoraState();
-        this.roles = this.rolesService.Roles();
+        this.roles$ = this.rolesService.getRoles$();
+        this.roles$.subscribe(roles => this.roles = roles);
 
         this.mantenciones = [];
 

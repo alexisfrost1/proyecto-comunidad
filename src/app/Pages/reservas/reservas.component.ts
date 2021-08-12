@@ -12,8 +12,7 @@ import { MatTabGroup } from '@angular/material/tabs';
     styleUrls: ['./reservas.component.css'],
     encapsulation: ViewEncapsulation.None,
     providers: [
-        ReservasService,
-        RolesService
+        ReservasService
     ]
 })
 
@@ -29,7 +28,7 @@ export class ReservasComponent implements OnInit, OnDestroy {
     nombre: string | any;
     rut: string | any;
     nReserva: number | undefined;
-    bBitacora: boolean = false;
+    bBitacora: boolean;
 
     @ViewChild(MatCalendar) calendar!: MatCalendar<Date>;
     tabReserva: number = 0;

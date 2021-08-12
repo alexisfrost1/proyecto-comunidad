@@ -11,8 +11,7 @@ import {VisitasComponent} from '../visitas/visitas.component'
   templateUrl: './bitacora.component.html',
   styleUrls: ['./bitacora.component.css'],
   providers: [
-    BitacoraService,
-    RolesService,
+    BitacoraService
   ]
 })
 export class BitacoraComponent implements OnInit, OnDestroy {
@@ -29,7 +28,7 @@ export class BitacoraComponent implements OnInit, OnDestroy {
 
   constructor(
     private bitacoraService: BitacoraService,
-    private roles: RolesService,
+    private rolesService: RolesService,
     
   ) {
     const currentDate = new Date();
@@ -38,7 +37,8 @@ export class BitacoraComponent implements OnInit, OnDestroy {
     this.Departamentos = bitacoraService.getDepartamentos();
     this.Registros = bitacoraService.getRegistros();
     this.Bitacora = bitacoraService.getBitacora();
-    this.bBitacora = this.roles.bitacoraState();
+    this.rolesService.bitacoraAccess();
+    this.bBitacora = this.rolesService.bitacoraState();
     
   }
 
@@ -46,6 +46,6 @@ export class BitacoraComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    this.roles.bitacoraNgDestroy();
+    this.rolesService.bitacoraNgDestroy();
   }
 }

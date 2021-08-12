@@ -8,9 +8,7 @@ import { VisitasService } from './visitas.service';
   templateUrl: './visitas.component.html',
   styleUrls: ['./visitas.component.css'],
   providers: [
-    VisitasService,
-    RolesService,
-    
+    VisitasService
 ]
 })
 
@@ -18,12 +16,12 @@ export class VisitasComponent implements OnInit {
   unidad: number;
   minDate: Date; 
   maxDate: Date; 
-  bBitacora: boolean = false;
-  constructor(private visitasService: VisitasService,private roles: RolesService) {
+  bBitacora: boolean;
+  constructor(private visitasService: VisitasService,private rolesService: RolesService) {
     const currentDate = new Date(); 
       this.minDate = new Date(); 
       this.maxDate = new Date(currentDate.setDate(currentDate.getDate() + 30)); 
-      this.bBitacora = this.roles.bitacoraState();
+      this.bBitacora = this.rolesService.bitacoraState();
       this.unidad = 101;
       this.Visitas = visitasService.getVisitas();
       this.VisitasConserje = visitasService.getVisitasConserje();

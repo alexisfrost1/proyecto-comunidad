@@ -7,7 +7,7 @@
 </div>
 <div class="login">
     <mat-card class="card-color">
-        <mat-tab-group animationDuration="10ms" [(selectedIndex)]="role">
+        <mat-tab-group animationDuration="10ms" [(selectedIndex)]="role" (selectedTabChange)="check()">
             <mat-tab label="Propietario">
 
             </mat-tab>
@@ -27,7 +27,7 @@
                 </h1>
             </mat-card-tittle>
         </mat-card-header>
-        <form (ngSubmit)="Submit()">
+        <form>
             <mat-card-content class="border">
                 <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>Email</mat-label>
