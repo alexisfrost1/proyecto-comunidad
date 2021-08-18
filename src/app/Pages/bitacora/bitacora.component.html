@@ -1,82 +1,81 @@
-<div *ngIf="bBitacora">
+
 <mat-tab-group #bitacora>
-<mat-tab label="Bitácora de Novedades">
-    <mat-card>
-      <mat-card-content>
-          <table mat-table [dataSource]="Bitacora" class="mat-elevation-z8">
-      
-            <!--- Note that these columns can be defined in any order.
-                    The actual rendered columns are set as a property on the row definition" -->
-      
-            <!-- Registro Column -->
-            <ng-container matColumnDef="Registro">
-              <th mat-header-cell *matHeaderCellDef> Registro # </th>
-              <td mat-cell *matCellDef="let element"> {{element.Registro}} </td>
-            </ng-container>
-      
-            <!-- Tipo Column -->
-            <ng-container matColumnDef="Tipo">
-              <th mat-header-cell *matHeaderCellDef> Tipo </th>
-              <td mat-cell *matCellDef="let element"> {{element.Tipo}} </td>
-            </ng-container>
-      
-            <!-- ingresado_por Column -->
-            <ng-container matColumnDef="ingresado_por">
-              <th mat-header-cell *matHeaderCellDef> Ingresado por </th>
-              <td mat-cell *matCellDef="let element"> {{element.ingresado_por}} </td>
-            </ng-container>
-      
-            <!-- Fecha Column -->
-            <ng-container matColumnDef="fecha">
-              <th mat-header-cell *matHeaderCellDef> Fecha </th>
-              <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
-            </ng-container>
+<mat-tab label="Bandeja de Entrada">
 
-             <!-- Departamento Column -->
-            <ng-container matColumnDef="departamento">
-                <th mat-header-cell *matHeaderCellDef> Departamento </th>
-                <td mat-cell *matCellDef="let element"> {{element.departamento}} </td>
-            </ng-container>
-
-             <!-- Comentario Column -->
-            <ng-container matColumnDef="comentario">
-                <th mat-header-cell *matHeaderCellDef> Comentario </th>
-                <td mat-cell *matCellDef="let element"> {{element.comentario}} </td>
-            </ng-container>
-
-             <!-- Opciones Column -->
-            <ng-container matColumnDef="opciones">
-              <th mat-header-cell *matHeaderCellDef>Opciones</th>
-              <td mat-cell *matCellDef="let element">
-                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                  <mat-icon>format_list_bulleted</mat-icon>
-                </button>
-                <mat-menu #menu="matMenu">
-                  <button mat-menu-item>
-                    <mat-icon>edit</mat-icon>
-                    <span>Editar</span>
+      <mat-card>
+        <mat-card-content>
+            <table mat-table [dataSource]="Bitacora" class="mat-elevation-z8">
+        
+              <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+        
+              <!-- Registro Column -->
+              <ng-container matColumnDef="Registro">
+                <th mat-header-cell *matHeaderCellDef> Registro # </th>
+                <td mat-cell *matCellDef="let element"> {{element.Registro}} </td>
+              </ng-container>
+        
+              <!-- Tipo Column -->
+              <ng-container matColumnDef="Tipo">
+                <th mat-header-cell *matHeaderCellDef> Tipo </th>
+                <td mat-cell *matCellDef="let element"> {{element.Tipo}} </td>
+              </ng-container>
+        
+              <!-- ingresado_por Column -->
+              <ng-container matColumnDef="ingresado_por">
+                <th mat-header-cell *matHeaderCellDef> Ingresado por </th>
+                <td mat-cell *matCellDef="let element"> {{element.ingresado_por}} </td>
+              </ng-container>
+        
+              <!-- Fecha Column -->
+              <ng-container matColumnDef="fecha">
+                <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+              </ng-container>
+  
+               <!-- Departamento Column -->
+              <ng-container matColumnDef="departamento">
+                  <th mat-header-cell *matHeaderCellDef> Departamento </th>
+                  <td mat-cell *matCellDef="let element"> {{element.departamento}} </td>
+              </ng-container>
+  
+               <!-- Comentario Column -->
+              <ng-container matColumnDef="comentario">
+                  <th mat-header-cell *matHeaderCellDef> Comentario </th>
+                  <td mat-cell *matCellDef="let element"> {{element.comentario}} </td>
+              </ng-container>
+  
+               <!-- Opciones Column -->
+              <ng-container matColumnDef="opciones">
+                <th mat-header-cell *matHeaderCellDef>Opciones</th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>format_list_bulleted</mat-icon>
                   </button>
-                  <button mat-menu-item>
-                    <mat-icon>delete</mat-icon>
-                    <span>borrar</span>
-                  </button>
-                </mat-menu>
-              </td>
-            </ng-container>
-      
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
-        </mat-card-content>
-      </mat-card>
-    </mat-tab>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                      <mat-icon>edit</mat-icon>
+                      <span>Editar</span>
+                    </button>
+                    <button mat-menu-item>
+                      <mat-icon>delete</mat-icon>
+                      <span>borrar</span>
+                    </button>
+                  </mat-menu>
+                </td>
+              </ng-container>
+        
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </mat-card-content>
+        </mat-card>
     
+</mat-tab>
 
-
-    <mat-tab label="Registrar en Bitácora">
+<mat-tab label="Registrar en Bitácora">  
         <mat-card>
-          <mat-card-content>
-                            
+          <mat-card-content>              
                 <mat-form-field appearance="outline">
                     <mat-label>
                         <mat-icon matSuffix>apartment</mat-icon>
@@ -127,5 +126,33 @@
             </mat-card-content>
           </mat-card>
         </mat-tab>
+
+<mat-tab label="Historial">
+<mat-tab-group>
+
+  <mat-tab label ="Visitas" >
+  <app-visitas></app-visitas>
+  </mat-tab>
+
+  <mat-tab label ="Encomiendas">
+    <app-encomiendas></app-encomiendas>
+  </mat-tab>
+  <mat-tab label ="Reservas">
+    <app-reservas></app-reservas>
+  </mat-tab>
+  <mat-tab label ="Mantenciones">
+      <app-mantenciones></app-mantenciones>
+  </mat-tab>
+  <mat-tab label ="Insumo">
+      <!--<app-insumos></app-insumos>-->
+  </mat-tab>
+  <mat-tab label ="Conserjeria">
+      <!--<app-conserjeria></app-conserjeria>-->
+  </mat-tab>
+
 </mat-tab-group>
-</div>
+
+
+          </mat-tab>
+      
+</mat-tab-group>

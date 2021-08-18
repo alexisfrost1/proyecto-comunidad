@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Roles } from 'src/app/services/roles.model';
 import { RolesService } from 'src/app/services/roles.service';
 import { bitacora, departamento, registro } from './bitacora.model'
@@ -8,7 +9,8 @@ import { bitacora, departamento, registro } from './bitacora.model'
 })
 export class BitacoraService {
   private bitacoraAccess: boolean;
-  private roles: Roles[];
+    private roles: Roles[] = [];
+    private roles$: Observable<Roles[]>;
   private Departamentos: departamento[];
   private Registros: registro[];
   private Bitacora: bitacora[]
@@ -18,7 +20,8 @@ export class BitacoraService {
     private rolesService: RolesService
   ) {
     this.bitacoraAccess = this.rolesService.bitacoraState();
-    this.roles = this.rolesService.Roles();
+      this.roles$ = this.rolesService.getRoles$();
+      this.roles$.subscribe(roles => this.roles = roles);
 
     this.Departamentos = [{ n_departamento: 1, departamento: 'Departamento_1' },
     { n_departamento: 2, departamento: 'Departamento_2' },
@@ -39,6 +42,8 @@ export class BitacoraService {
     ];
   }
 
+
+  
   getDepartamentos() {
     return this.Departamentos
   }

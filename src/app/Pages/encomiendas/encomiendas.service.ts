@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Roles } from 'src/app/services/roles.model';
 import { RolesService } from 'src/app/services/roles.service';
 import { departamento, encomienda, encomiendaConserje, tipoEncomienda } from './encomiendas.model'
@@ -9,7 +10,8 @@ import { departamento, encomienda, encomiendaConserje, tipoEncomienda } from './
 })
 export class EncomiendasService {
   private bitacoraAccess: boolean;
-  private roles: Roles[];
+    private roles: Roles[] = [];
+    private roles$: Observable<Roles[]>;
   private Encomiendas: encomienda[];
   private Historial_Encomiendas: encomienda[];
   private Departamentos: departamento[];
@@ -21,7 +23,8 @@ export class EncomiendasService {
       private rolesService: RolesService
     ) { 
     this.bitacoraAccess = this.rolesService.bitacoraState();
-    this.roles = this.rolesService.Roles();
+      this.roles$ = this.rolesService.getRoles$();
+      this.roles$.subscribe(roles => this.roles = roles);
 
     this.Encomiendas = [{Destinatario: 'Fabian Contreras', tipo: 'Encomienda', entregada_por: 'Chilexpress', recibe:'Conserje', fecha:'26/07/2021 10:20', comentario:'Caja grande y pesada'},
     {Destinatario: 'Fabian Contreras', tipo: 'Sobre', entregada_por: 'Correos', recibe:'Conserje', fecha:'28/07/2021 10:20', comentario:''}];

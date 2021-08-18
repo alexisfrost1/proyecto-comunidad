@@ -1,8 +1,8 @@
 <div *ngIf="!bBitacora">
 <mat-tab-group #visitas>
   <!-- Registro de visitas -->
-  <div>
-  <mat-tab label="Ingresar Visita Propietario">
+  <div >
+  <mat-tab label="Ingresar Visita ">
     <mat-card>
       <form>
       <mat-card-content>
@@ -76,7 +76,7 @@
 </div>
   <!-- Listado de Visitas Registradas -->
   <div>
-    <mat-tab label="Listado Visitas Registradas Propietario">
+    <mat-tab label="Listado Visitas Registradas">
     <mat-card>
       <mat-card-content>
 
@@ -124,10 +124,10 @@
  <!-- Vista de Visitas de usuario Conserje -->
 
  <div *ngIf="bBitacora">
-  <mat-tab-group>
+ 
     <!-- Registro de visitas -->
-    <div>
-    <mat-tab label="Ingresar Visita Conserje">
+    <div *ngIf="!bBitacora" >
+    <mat-tab label="Ingresar Visita">
       <mat-card>
         <form>
         <mat-card-content>
@@ -180,8 +180,8 @@
     </mat-tab>
   </div>
     <!-- Listado de Visitas Registradas -->
-    <div>
-      <mat-tab label="Listado Visitas Registradas Conserje">
+    <div *ngIf="bBitacora">
+    
       <mat-card>
         <mat-card-content>
       
@@ -220,7 +220,7 @@
             </table>
           </mat-card-content>
         </mat-card>
-      </mat-tab>
+    
   </div>
-  </mat-tab-group>
+ 
   </div>

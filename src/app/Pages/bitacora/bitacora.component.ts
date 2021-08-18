@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation,OnDestroy } from '@angular/core';
 import { MatTabGroup } from '@angular/material/tabs';
 import { RolesService } from 'src/app/services/roles.service';
 import { bitacora, departamento, registro } from './bitacora.model'
 import { BitacoraService } from './bitacora.service';
+import {VisitasComponent} from '../visitas/visitas.component'
 
 
 @Component({
@@ -10,11 +11,10 @@ import { BitacoraService } from './bitacora.service';
   templateUrl: './bitacora.component.html',
   styleUrls: ['./bitacora.component.css'],
   providers: [
-    BitacoraService,
-    RolesService,
+    BitacoraService
   ]
 })
-export class BitacoraComponent implements OnInit {
+export class BitacoraComponent implements OnInit, OnDestroy {
   minDate: Date;
   maxDate: Date;
 
@@ -28,7 +28,7 @@ export class BitacoraComponent implements OnInit {
 
   constructor(
     private bitacoraService: BitacoraService,
-    private roles: RolesService,
+    private rolesService: RolesService,
     
   ) {
     const currentDate = new Date();
@@ -37,10 +37,15 @@ export class BitacoraComponent implements OnInit {
     this.Departamentos = bitacoraService.getDepartamentos();
     this.Registros = bitacoraService.getRegistros();
     this.Bitacora = bitacoraService.getBitacora();
-    this.bBitacora = this.roles.bitacoraState();
+    this.rolesService.bitacoraAccess();
+    this.bBitacora = this.rolesService.bitacoraState();
+    
   }
 
   ngOnInit(): void {
   }
 
+  ngOnDestroy(){
+    this.rolesService.bitacoraNgDestroy();
+  }
 }

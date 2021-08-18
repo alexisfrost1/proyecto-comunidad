@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation  } from '@angular/core';
 import { MatTabGroup } from '@angular/material/tabs';
+import { Observable } from 'rxjs';
 import { RolesService } from 'src/app/services/roles.service';
 import { departamento, encomienda, encomiendaConserje, tipoEncomienda } from './encomiendas.model'
 import { EncomiendasService } from './encomiendas.service';
@@ -9,8 +10,7 @@ import { EncomiendasService } from './encomiendas.service';
   templateUrl: './encomiendas.component.html',
   styleUrls: ['./encomiendas.component.css'],
   providers: [
-    EncomiendasService,
-    RolesService
+    EncomiendasService
   ]
 })
 export class EncomiendasComponent implements OnInit {
@@ -19,7 +19,8 @@ export class EncomiendasComponent implements OnInit {
 
   Encomiendas: encomienda[] = []
   Historial_Encomiendas: encomienda[] = []
-  bBitacora: boolean = false;
+    bBitacora: boolean;
+    bBitacora$!: Observable<boolean>;
   displayedColumns: string[] = ['Destinatario', 'tipo', 'entregada_por', 'recibe', 'fecha', 'comentario'];
   displayedColumns2: string[] = ['Destinatario', 'tipo', 'entregada_por', 'recibe', 'fecha', 'comentario'];
   
@@ -32,11 +33,12 @@ export class EncomiendasComponent implements OnInit {
   displayedColumns4: string[] = ['Depto', 'Destinatario', 'tipo', 'entregada_por', 'recibe', 'fecha', 'comentario'];
  
   constructor(private encomiendasService: EncomiendasService,
-    private roles: RolesService) { 
+    private rolesService: RolesService) { 
     const currentDate = new Date();
     this.Encomiendas = encomiendasService.getEncomiendas();
     this.Historial_Encomiendas = encomiendasService.getHistorial_Encomiendas();
-    this.bBitacora = this.roles.bitacoraState();
+      this.bBitacora = this.rolesService.bitacoraState();
+
 
     this.minDate = new Date(); 
     this.maxDate = new Date(currentDate.setDate(currentDate.getDate() + 30)); 
@@ -46,7 +48,9 @@ export class EncomiendasComponent implements OnInit {
     this.Historial_EncomiendasConserje = encomiendasService.getHistorialEncomiendas();
   }
 
-  ngOnInit(): void {
+    ngOnInit(): void {
+        this.bBitacora$ = this.rolesService.getBitacora$();
+        this.bBitacora$.subscribe( bBitacora => this.bBitacora = bBitacora);
   }
 
 }

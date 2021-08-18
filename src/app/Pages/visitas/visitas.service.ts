@@ -3,13 +3,15 @@ import { Injectable } from '@angular/core';
 import { Visitas } from './visitas.model'
 import { RolesService } from 'src/app/services/roles.service';
 import { Roles } from 'src/app/services/roles.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VisitasService {
   private bitacoraAccess: boolean;
-  private roles: Roles[];
+    private roles: Roles[] = [];
+    private roles$: Observable<Roles[]>;
   private Visitas: Visitas[]
   private Visitas_Conserje: Visitas[]
 
@@ -18,7 +20,8 @@ export class VisitasService {
       private rolesService: RolesService
     ) {
     this.bitacoraAccess = this.rolesService.bitacoraState();
-    this.roles = this.rolesService.Roles();
+      this.roles$ = this.rolesService.getRoles$();
+      this.roles$.subscribe(roles => this.roles = roles);
 
     this.Visitas =
       [{ n_unidad: 101, Nombre: 'Alexis Canessa, Fabian Contreras', fecha: '02/07/2021', cantidad: 2 },

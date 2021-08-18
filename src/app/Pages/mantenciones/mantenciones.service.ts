@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { RolesService } from 'src/app/services/roles.service';
+import { Roles } from 'src/app/services/roles.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable, timer, Subscription, Subject } from 'rxjs';
 import { switchMap, tap, share, retry, takeUntil } from 'rxjs/operators';
@@ -9,13 +11,23 @@ import { Mantencion } from './mantenciones.model';
 })
 export class MantencionesService {
 
+    private bitacoraAccess: boolean;
+    private roles: Roles[] = [];
+    private roles$: Observable<Roles[]>;
+
     private mantenciones: Mantencion[];
     //private mantenciones$ = new Subject<Mantencion[]>();
     /*private o_mantenciones$: Observable<Mantencion[]>;*/
 
     private stopMantenciones = new Subject();
 
-    constructor(private http: HttpClient) {
+    constructor(
+        private http: HttpClient,
+        private rolesService: RolesService
+    ) {
+        this.bitacoraAccess = this.rolesService.bitacoraState();
+        this.roles$ = this.rolesService.getRoles$();
+        this.roles$.subscribe(roles => this.roles = roles);
 
         this.mantenciones = [];
 
