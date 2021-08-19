@@ -23,7 +23,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { VisitasComponent } from './Pages/visitas/visitas.component';
 import { EncomiendasComponent } from './Pages/encomiendas/encomiendas.component';
-import { editReservas, ReservasComponent } from './Pages/reservas/reservas.component';
 import { GastosComunesComponent } from './Pages/gastos-comunes/gastos-comunes.component';
 import { MantencionesComponent } from './Pages/mantenciones/mantenciones.component';
 import { InicioComponent } from './Pages/inicio/inicio.component';
@@ -35,6 +34,8 @@ import { BitacoraComponent } from './Pages/bitacora/bitacora.component';
 import { MatTimepickerModule } from 'mat-timepicker';
 import { RolesService } from './services/roles.service';
 import { MatDialogModule } from '@angular/material/dialog';
+import { editReservas, ReservasComponent } from './Pages/reservas/reservas.component';
+
 
 @NgModule({
   declarations: [

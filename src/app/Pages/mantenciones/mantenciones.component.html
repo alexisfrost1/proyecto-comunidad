@@ -2,7 +2,7 @@
 <mat-tab-group #mantenciones>
 
     <!-- Registro de mantención -->
-    <mat-tab label="Registrar Mantención">
+    <mat-tab label="Registrar Mantención" *ngIf="!bBitacora">
         <mat-card>
             <form (ngSubmit)="Submit()">
                 <mat-card-content>
@@ -114,7 +114,8 @@
     </mat-tab>
 
     <!-- Display de Mantenciones-->
-    <mat-tab label="Mantenciones agendadas">
+    <mat-tab label="Mantenciones agendadas" >
+        <div *ngIf="bBitacora">
         <mat-card>
             <mat-card-content>
                 <!--<div *ngIf="! mantenciones.length; else tableMantenciones">
@@ -199,6 +200,7 @@
                 </ng-template>-->
             </mat-card-content>
         </mat-card>
+    </div>
     </mat-tab>
 
 </mat-tab-group>

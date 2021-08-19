@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RolesService } from 'src/app/services/roles.service';
 import { Visitas } from './visitas.model'
 import { VisitasService } from './visitas.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-visitas',
@@ -17,6 +18,7 @@ export class VisitasComponent implements OnInit {
   minDate: Date; 
   maxDate: Date; 
   bBitacora: boolean;
+  bBitacora$!: Observable<boolean>;
   constructor(private visitasService: VisitasService,private rolesService: RolesService) {
     const currentDate = new Date(); 
       this.minDate = new Date(); 
@@ -31,6 +33,7 @@ export class VisitasComponent implements OnInit {
    displayedColumns: string[] = ['n_unidad', 'Nombre', 'fecha', 'cantidad'];
    displayedColumnsConserje: string[] = ['n_unidad', 'Nombre', 'fecha', 'cantidad'];
   ngOnInit(): void {
-    
+    this.bBitacora$ = this.rolesService.getBitacora$();
+    this.bBitacora$.subscribe( bBitacora => this.bBitacora = bBitacora);
   }
 }
