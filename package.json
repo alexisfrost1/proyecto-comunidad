@@ -11,7 +11,6 @@
     "serve:ssr": "node dist/proyecto-comunidad/server/main.js",
     "build:ssr": "ng build && ng run proyecto-comunidad:server",
     "prerender": "ng run proyecto-comunidad:prerender"
-    
   },
   "private": true,
   "dependencies": {
@@ -29,12 +28,13 @@
     "@nguniversal/express-engine": "^12.0.2",
     "express": "^4.15.2",
     "git": "^0.1.5",
+    "mat-timepicker": "^5.1.4",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~12.0.4",
+    "@angular-devkit/build-angular": "^12.0.5",
     "@angular/cli": "~12.0.4",
     "@angular/compiler-cli": "~12.0.4",
     "@nguniversal/builders": "^12.0.2",
