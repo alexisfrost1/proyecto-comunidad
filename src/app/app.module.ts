@@ -35,6 +35,7 @@ import { MatTimepickerModule } from 'mat-timepicker';
 import { RolesService } from './services/roles.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { editReservas, ReservasComponent } from './Pages/reservas/reservas.component';
+import { ConserjeriaComponent } from './Pages/conserjeria/conserjeria.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { editReservas, ReservasComponent } from './Pages/reservas/reservas.compo
     MantencionesComponent,
     InicioComponent,
     BitacoraComponent,
-    editReservas
+    editReservas,
+    ConserjeriaComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

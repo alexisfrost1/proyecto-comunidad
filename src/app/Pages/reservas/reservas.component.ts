@@ -38,7 +38,7 @@ export class ReservasComponent implements OnInit, OnDestroy {
     reservas: Reserva[] ;
     reservasComunidad: Reserva_comunidad[] ;
     fechas_nodisponibles: Date[] = [];
-    displayedColumns: string[] = ['nombre', 'fecha', 'n_area', 'nombre_area', 'opciones'];
+    displayedColumns: string[] = ['rut','nombre', 'fecha', 'n_area', 'nombre_area', 'opciones'];
 
     constructor(
         private reservasService: ReservasService,
@@ -48,7 +48,7 @@ export class ReservasComponent implements OnInit, OnDestroy {
         this.bBitacora = this.roles.bitacoraState();
 
         if (this.bBitacora) {
-            this.displayedColumns = ['nombre', 'fecha', 'n_area', 'nombre_area'];
+            this.displayedColumns = ['rut','nombre', 'fecha', 'n_area', 'nombre_area'];
         }
 
         this.nReserva = 0;

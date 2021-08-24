@@ -33,15 +33,16 @@ export class MantencionesComponent implements OnInit {
 	elemento: string | any;
 
 	mantenciones: Mantencion[];
-	displayedColumns: string[] = ['nombre', 'rut', 'cargo', 'motivo', 'fecha', 'hora', 'estacionamiento', 'unidad', 'n_unidad', 'elemento'];
+	displayedColumns: string[] = ['rut', 'nombre', 'cargo', 'motivo', 'fecha', 'hora', 'estacionamiento', 'unidad', 'n_unidad', 'elemento'];
 
 	timeChange(data: Date) {
 
 		this.hora = new Date(data);
-		console.log('Hora: ', data);
+		console.log('Hora: ', data.toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' }));
 	}
 
-	constructor(private mantencionesService: MantencionesService,
+	constructor(
+		private mantencionesService: MantencionesService,
 		private rolesService: RolesService
 		) {
 
@@ -71,6 +72,8 @@ export class MantencionesComponent implements OnInit {
   }
 
 	Submit() {
-		console.log(this.hora);
+		this.fecha.setHours(this.hora.getHours());
+		this.fecha.setMinutes(this.hora.getMinutes());
+		console.log(this.fecha);
 	}
 }
