@@ -13,13 +13,14 @@ import { BitacoraComponent } from './Pages/bitacora/bitacora.component';
 
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent, children:[
+    {
+        path: 'inicio', component: InicioComponent, children:[
     {path: 'nav', component: MainNavComponent},
     {path: 'encomiendas', component: EncomiendasComponent},
     {path: 'mantenciones',component: MantencionesComponent},
     {path: 'reservas',component: ReservasComponent},
     {path: 'visitas', component: VisitasComponent},
-    {path:'inicio', component:InicioComponent},
+            { path: 'home', component:HomeComponent},
     {path: 'gastos-comunes', component: GastosComunesComponent},
     {path: 'bitacora', component: BitacoraComponent}
   ]},
