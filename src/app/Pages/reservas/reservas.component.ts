@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation, OnDestroy, Inject } from '@angular/core';
+﻿import { Component, OnInit, ViewChild, ViewEncapsulation, OnDestroy, Inject } from '@angular/core';
 import { Area, Reserva, Reserva_comunidad } from './reservas.model';
 import { ReservasService } from './reservas.service';
 import { RolesService } from 'src/app/services/roles.service';
@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { MatCalendar, MatCalendarCellClassFunction, MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { MatTabGroup } from '@angular/material/tabs';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 
 @Component({
     selector: 'app-reservas',
@@ -31,11 +32,11 @@ export class ReservasComponent implements OnInit, OnDestroy {
     nReserva: number | undefined;
     bBitacora: boolean;
 
+    reservas = new MatTableDataSource<Reserva>();
     @ViewChild(MatCalendar) calendar!: MatCalendar<Date>;
     tabReserva: number = 0;
 
     areaComun: Area[] ;
-    reservas: Reserva[] ;
     reservasComunidad: Reserva_comunidad[] ;
     fechas_nodisponibles: Date[] = [];
     displayedColumns: string[] = ['rut','nombre', 'fecha', 'n_area', 'nombre_area', 'opciones'];
@@ -62,8 +63,9 @@ export class ReservasComponent implements OnInit, OnDestroy {
         //this.o_reservasComunidad$ = reservasService.getReservasComunidad();
 
         this.areaComun = reservasService.getAreas();
-        this.reservas = reservasService.getReservas();
+        this.reservas.data = reservasService.getReservas();
         this.reservasComunidad = reservasService.getReservasComunidad();
+
     }
 
     fechasReserva() {
@@ -100,32 +102,40 @@ export class ReservasComponent implements OnInit, OnDestroy {
 
     Reagendar(i: number):void {
 
-        console.log(i)
         const editModal = this.dialog.open(editReservas, {
             width: '60%',
             data: {
-                nombre: this.reservas[i].nombre,
-                rut: this.reservas[i].rut,
-                fecha: this.reservas[i].fecha,
-                n_area: this.reservas[i].n_area,
-                nombre_area: this.reservas[i].nombre_area
-            }
+                index:       i,
+                nombre:      this.reservas.data[i].nombre,
+                rut:         this.reservas.data[i].rut,
+                fecha:       this.reservas.data[i].fecha,
+                n_area:      this.reservas.data[i].n_area,
+                nombre_area: this.reservas.data[i].nombre_area
+            },
+            
         });
 
         editModal.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
+            
             if (!(result == undefined)) {
-                this.reservas[i].nombre = result.nombre;
-                this.reservas[i].rut = result.rut;
-                this.reservas[i].fecha = result.fecha;
-                this.reservas[i].n_area = result.n_area;
-                this.reservas[i].nombre_area = result.nombre_area;
-                console.log('subscribed');
+                this.reservas.data[i].nombre      = result.nombre;
+                this.reservas.data[i].rut         = result.rut;
+                this.reservas.data[i].fecha       = result.fecha;
+                this.reservas.data[i].n_area      = result.n_area;
+                this.reservas.data[i].nombre_area = result.nombre_area;
+                console.log('Cambios realizados en la posición',i);
+            } else {
+                console.log('Cambios cancelados');
+                editModal.close();
             }
  
         });
 
+    }
 
+    Cancelar(i: number) {
+        this.reservasService.deleteReserva(i);
+        this.reservas.data = this.reservasService.getReservas();
     }
 
     ngOnInit(): void {
@@ -146,6 +156,7 @@ export class ReservasComponent implements OnInit, OnDestroy {
 
 }
 
+// Modal pop-up Reagendar(i) 
 @Component({
     selector: 'edit-reservas',
     templateUrl: './edit-reservas.html',
@@ -160,6 +171,7 @@ export class editReservas {
 
     minDate: Date;
     maxDate: Date;
+    index: number;
 
     //o_areaComun$: Observable<Area[]>;
     //o_reservasUnidad$: Observable<Reserva_comunidad[]>;
@@ -174,12 +186,13 @@ export class editReservas {
 
     constructor(
         public editModal: MatDialogRef<editReservas>,
-        @Inject(MAT_DIALOG_DATA) public data: Reserva,
+        @Inject(MAT_DIALOG_DATA) public data: any,
         private reservasService: ReservasService,
         private roles: RolesService,
     ) {
         this.minDate = new Date();
         this.maxDate = new Date((new Date()).setDate((new Date()).getDate() + 90));
+        this.index = data.index;
 
         //this.o_areaComun$ =         reservasService.getAreas();
         //this.o_reservasComunidad$ = reservasService.getReservasComunidad();
@@ -189,8 +202,10 @@ export class editReservas {
 
         for (var i = 0; i < this.reservasComunidad.length; i++) {
 
-            if (this.data.n_area == this.reservasComunidad[i].n_area) {
-                this.fechas_nodisponibles.push(new Date(this.reservasComunidad[i].fecha));
+            if (!(this.index == i)) {
+                if (this.data.n_area == this.reservasComunidad[i].n_area) {
+                                this.fechas_nodisponibles.push(new Date(this.reservasComunidad[i].fecha));
+                }
             }
 
         }
@@ -203,8 +218,10 @@ export class editReservas {
 
         for (var i = 0; i < this.reservasComunidad.length; i++) {
 
-            if (this.data.n_area == this.reservasComunidad[i].n_area) {
-                this.fechas_nodisponibles.push(new Date(this.reservasComunidad[i].fecha));
+            if (!(this.index == i)) {
+                if (this.data.n_area == this.reservasComunidad[i].n_area) {
+                    this.fechas_nodisponibles.push(new Date(this.reservasComunidad[i].fecha));
+                }
             }
 
         }
@@ -233,4 +250,3 @@ export class editReservas {
         this.editModal.close();
     }
 }
-
