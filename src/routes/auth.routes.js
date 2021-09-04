@@ -75,25 +75,26 @@ router.get('/', (req, res) => {
  *              type: string
  *              example: Wrong credentials.
  */
-router.post('/login', (req, res) => {
+router.post('/loginAdmin', (req, res) => {
   const {
-    email,
+    Rut,
     password
   } = req.body;
   const login = {
-    email,
+    Rut,
     password
   }
 
-  authModel.getUserByEmail(login.email)
+  authModel.getAdminByRut(login.Rut)
     .then(userFound => {
       if(userFound[0].state == 'active'){
         helpers.matchPassword(login.password, userFound[0].password)
         .then((success) => {
           if(success){
-            delete userFound[0].password;
+              delete userFound[0].password;
+              userFound[0].role = 'admin';
             const token = jwt.sign({ userFound }, process.env.SECRET);
-            userFound[0].token = token;
+              userFound[0].token = token;
             res.status(200).json({
               success: true,
               message: 'Loggin success.',
@@ -126,6 +127,242 @@ router.post('/login', (req, res) => {
         message: 'Email or password wrong.'
       });
     });
+});
+
+/**
+ * @swagger
+ * /auth/login:
+ *  post:
+ *    tags:
+ *    - name: auth
+ *    description: To login users
+ *    parameters:
+ *      - in: body
+ *        description: User credentials
+ *        schema:
+ *          type:
+ *          required:
+ *            - email
+ *            - password
+ *          properties:
+ *            email:
+ *              type: string
+ *              example: j.doe@example.com
+ *            password:
+ *              type: string
+ *              example: $%&SDF$SD_F-Gs+ad*f45
+ *    responses:
+ *      '200':
+ *        description: Returns the user data.
+ *        schema:
+ *          type: object
+ *          properties:
+ *            success:
+ *              type: boolean
+ *              example: true
+ *            message:
+ *              type: string
+ *              example: login successful.
+ *            userData:
+ *              type: object
+ *              properties:
+ *                id:
+ *                  type: integer
+ *                  example: 1
+ *                firstname: 
+ *                  type: string
+ *                  example: John
+ *                lastname: 
+ *                  type: string
+ *                  example: Doe
+ *                email: 
+ *                  type: string
+ *                  example: j.doe@example.com
+ *                wallet: 
+ *                  type: integer
+ *                  example: 15000
+ *      '404':
+ *        description:
+ *        schema:
+ *          type: object
+ *          properties:
+ *            success:
+ *              type: boolean
+ *              example: false
+ *            message:
+ *              type: string
+ *              example: Wrong credentials.
+ */
+router.post('/loginConserje', (req, res) => {
+    const {
+        Rut,
+        password
+    } = req.body;
+    const login = {
+        Rut,
+        password
+    }
+
+    authModel.getConserjeByRut(login.Rut)
+        .then(userFound => {
+            if (userFound[0].state == 'active') {
+                helpers.matchPassword(login.password, userFound[0].password)
+                    .then((success) => {
+                        if (success) {
+                            delete userFound[0].password;
+                            userFound[0].role = 'conserje';
+                            const token = jwt.sign({ userFound }, process.env.SECRET);
+                            userFound[0].token = token;
+                            res.status(200).json({
+                                success: true,
+                                message: 'Loggin success.',
+                                user: userFound[0]
+                            });
+                        } else {
+                            res.status(401).json({
+                                success: false,
+                                message: 'Password wrong.'
+                            });
+                        }
+                    })
+                    .catch(err => {
+                        console.error(err)
+                        res.status(401).json({
+                            success: false,
+                            message: 'Email or password wrong.'
+                        });
+                    });
+            } else {
+                res.status(401).json({
+                    success: false,
+                    message: 'User blocked by the Administrator.'
+                })
+            }
+        })
+        .catch(err => {
+            res.status(401).json({
+                success: false,
+                message: 'Email or password wrong.'
+            });
+        });
+});
+
+/**
+ * @swagger
+ * /auth/login:
+ *  post:
+ *    tags:
+ *    - name: auth
+ *    description: To login users
+ *    parameters:
+ *      - in: body
+ *        description: User credentials
+ *        schema:
+ *          type:
+ *          required:
+ *            - email
+ *            - password
+ *          properties:
+ *            email:
+ *              type: string
+ *              example: j.doe@example.com
+ *            password:
+ *              type: string
+ *              example: $%&SDF$SD_F-Gs+ad*f45
+ *    responses:
+ *      '200':
+ *        description: Returns the user data.
+ *        schema:
+ *          type: object
+ *          properties:
+ *            success:
+ *              type: boolean
+ *              example: true
+ *            message:
+ *              type: string
+ *              example: login successful.
+ *            userData:
+ *              type: object
+ *              properties:
+ *                id:
+ *                  type: integer
+ *                  example: 1
+ *                firstname: 
+ *                  type: string
+ *                  example: John
+ *                lastname: 
+ *                  type: string
+ *                  example: Doe
+ *                email: 
+ *                  type: string
+ *                  example: j.doe@example.com
+ *                wallet: 
+ *                  type: integer
+ *                  example: 15000
+ *      '404':
+ *        description:
+ *        schema:
+ *          type: object
+ *          properties:
+ *            success:
+ *              type: boolean
+ *              example: false
+ *            message:
+ *              type: string
+ *              example: Wrong credentials.
+ */
+router.post('/loginPropietario', (req, res) => {
+    const {
+        Rut,
+        password
+    } = req.body;
+    const login = {
+        Rut,
+        password
+    }
+
+    authModel.getPropietarioByRut(login.Rut)
+        .then(userFound => {
+            if (userFound[0].state == 'active') {
+                helpers.matchPassword(login.password, userFound[0].password)
+                    .then((success) => {
+                        if (success) {
+                            delete userFound[0].password;
+                            userFound[0].role = 'propietario';
+                            const token = jwt.sign({ userFound }, process.env.SECRET);
+                            userFound[0].token = token;
+                            res.status(200).json({
+                                success: true,
+                                message: 'Loggin success.',
+                                user: userFound[0]
+                            });
+                        } else {
+                            res.status(401).json({
+                                success: false,
+                                message: 'Password wrong.'
+                            });
+                        }
+                    })
+                    .catch(err => {
+                        console.error(err)
+                        res.status(401).json({
+                            success: false,
+                            message: 'Email or password wrong.'
+                        });
+                    });
+            } else {
+                res.status(401).json({
+                    success: false,
+                    message: 'User blocked by the Administrator.'
+                })
+            }
+        })
+        .catch(err => {
+            res.status(401).json({
+                success: false,
+                message: 'Email or password wrong.'
+            });
+        });
 });
 
 module.exports = router;
