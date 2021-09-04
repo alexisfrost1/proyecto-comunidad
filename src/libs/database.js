@@ -1,38 +1,35 @@
-const mysql = require('mysql');
-const { promisify } = require('util');
+const sql = require('mssql');
+const env = require('./config.js');
 
-const pool = mysql.createPool({
-  host: process.env.HOST,
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE,
-  port: process.env.DB_PORT
-});
-
-pool.getConnection((err, connection) => {
-  if (err) {
-    if (err.code === 'PROTOCOL_CONNECTION_LOST') {
-      console.error('DATABASE CONNECTION WAS CLOSED');
-    } else if (err.code === 'ER_CON_COUNT_ERROR') {
-      console.error('DATABASE HAS TO MANY CONNECTIONS');
-    } else if (err.code === 'ECONNREFUSED') {
-      console.error('DATABASE CONNECTION WAS REFUSED');
-    } else if (err.code === 'PROTOCOL_SEQUENCE_TIMEOUT') {
-      console.error('DATABASE CONNECTION TIMEOUT');
-    } else {
-      console.log(err);
+const config = {
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    server: process.env.HOST,
+    database: process.env.DATABASE,
+    options: {
+        trustedconnection: true,
+        enableArithAbort: true,
+        instancename: process.env.INSTANCENAME  // SQL Server instance name
+    },
+    port: process.env.PORT,
+    pool: {
+        max: 8,
+        min: 0,
+        evictionRunIntervalMillis: 10000,
+        softIdleTimeoutMillis: 30000,
+        idleTimeoutMillis: 30000,
+        testOnBorrow: true,
+        acquireTimeoutMillis: 20000
     }
-  }
+};
 
-  if (connection) {
-    connection.release();
-    console.log('DATABASE CONNECTION SUCCEED');
-  }
-  return;
-});
+const pool = new sql.ConnectionPool(config);
 
-// Promisify Pool Querys
-pool.query = promisify(pool.query);
-pool.getConnection = promisify(pool.getConnection);
+pool.connect()
+    .then(pool => {
+        console.log('Connected to MSSQL...')
+        return pool
+    })
+    .catch(err => console.log('Database Connection Failed!: ', err));
 
 module.exports = pool;
