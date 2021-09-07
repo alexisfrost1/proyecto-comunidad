@@ -1,4 +1,5 @@
 export interface Mantencion {
+	id: number;
 	nombre: string;
 	rut: string;
 	cargo: string;

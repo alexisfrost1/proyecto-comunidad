@@ -19,8 +19,10 @@ export class MantencionesComponent implements OnInit {
 	maxDate: Date;
 	minHour: Date;
 	maxHour: Date;
+
 	bBitacora: boolean;
-    bBitacora$!: Observable<boolean>;
+	bBitacora$!: Observable<boolean>;
+
 	nombre: string | any;
 	rut: string | any;
 	cargo: string | any;
@@ -31,6 +33,8 @@ export class MantencionesComponent implements OnInit {
 	unidad: string | any;
 	n_unidad: number | any;
 	elemento: string | any;
+
+	tabMantenciones: number = 0;
 
 	mantenciones: Mantencion[];
 	displayedColumns: string[] = ['rut', 'nombre', 'cargo', 'motivo', 'fecha', 'hora', 'estacionamiento', 'unidad', 'n_unidad', 'elemento'];
@@ -64,6 +68,10 @@ export class MantencionesComponent implements OnInit {
 		/*this.o_mantenciones$ = this.mantencionesService.getMantenciones();*/
 		this.bBitacora = this.rolesService.bitacoraState();
 		this.mantenciones = this.mantencionesService.getMantenciones();
+
+		if (this.bBitacora) {
+			this.displayedColumns =['id', 'rut', 'nombre', 'cargo', 'motivo', 'fecha', 'hora', 'estacionamiento', 'unidad', 'n_unidad', 'elemento'];
+		}
 	}
 
   ngOnInit(): void {
