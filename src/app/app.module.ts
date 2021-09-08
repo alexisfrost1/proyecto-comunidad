@@ -25,7 +25,6 @@ import { VisitasComponent } from './Pages/visitas/visitas.component';
 import { EncomiendasComponent } from './Pages/encomiendas/encomiendas.component';
 import { GastosComunesComponent } from './Pages/gastos-comunes/gastos-comunes.component';
 import { MantencionesComponent } from './Pages/mantenciones/mantenciones.component';
-import { InicioComponent } from './Pages/inicio/inicio.component';
 import { MatTableModule } from '@angular/material/table';
 import { AngularMaterialModule } from './angular-material.module';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -36,6 +35,9 @@ import { RolesService } from './services/roles.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { editReservas, ReservasComponent } from './Pages/reservas/reservas.component';
 import { ConserjeriaComponent } from './Pages/conserjeria/conserjeria.component';
+import { AdminComponent } from './Route/admin/admin.component';
+import { ConserjeComponent } from './Route/conserje/conserje.component';
+import { PropietarioComponent } from './Route/propietario/propietario.component';
 
 
 @NgModule({
@@ -49,10 +51,12 @@ import { ConserjeriaComponent } from './Pages/conserjeria/conserjeria.component'
     ReservasComponent,
     GastosComunesComponent,
     MantencionesComponent,
-    InicioComponent,
     BitacoraComponent,
     editReservas,
-    ConserjeriaComponent
+    ConserjeriaComponent,
+    AdminComponent,
+    ConserjeComponent,
+    PropietarioComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

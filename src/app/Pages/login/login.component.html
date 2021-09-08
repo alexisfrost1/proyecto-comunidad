@@ -7,6 +7,16 @@
 </div>
 <div class="login">
     <mat-card class="card-color">
+
+        <mat-card-header>
+            <mat-card-tittle class="text-tittle">
+                <br>
+                <h1>
+                    Inicio sesión
+                </h1>
+            </mat-card-tittle>
+        </mat-card-header>
+
         <mat-tab-group animationDuration="10ms" [(selectedIndex)]="role" (selectedTabChange)="check()">
             <mat-tab label="Propietario">
 
@@ -19,14 +29,6 @@
             </mat-tab>
         </mat-tab-group>
 
-        <mat-card-header>
-            <mat-card-tittle class="text-tittle">
-                <br>
-                <h1>
-                    Inicio sesión 
-                </h1>
-            </mat-card-tittle>
-        </mat-card-header>
         <form>
             <mat-card-content class="border">
                 <mat-form-field class="example-full-width" appearance="fill">
@@ -50,7 +52,9 @@
                     </mat-error>
                 </mat-form-field>
             </mat-card-content>
-            <button mat-stroked-button color="primary" routerLink='/inicio/home' type="submit" class="border">Log in</button>
+            <button *ngIf="role==2" mat-stroked-button color="primary" routerLink='/admin/home' type="submit" class="border">Log in</button>
+            <button *ngIf="role==1" mat-stroked-button color="primary" routerLink='/conserje/home' type="submit" class="border">Log in</button>
+            <button *ngIf="role==0" mat-stroked-button color="primary" routerLink='/propietario/home' type="submit" class="border">Log in</button>
         </form>
     </mat-card>
 </div>
