@@ -51,7 +51,7 @@ children:
 },
 
 {path: 'login', component: LoginComponent},
-{path: '' , component:LoginComponent}
+{path: '' , redirectTo: '/login', pathMatch: 'full'}
 ];
 
 @NgModule({

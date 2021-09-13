@@ -54,10 +54,13 @@ export class newConserjeria implements OnInit{
     nMotivo: number | any;
     nLugar: number | any;
     nUnidad: number | any;
+    
+    show: boolean = false;
+
 
     motivo: string[];
     lugar: Lugar[];
-    unidad: Unidad[];
+    unidad: Unidad[][];
 
     constructor(
         private conserjeriaService: ConserjeriaService,
@@ -66,6 +69,44 @@ export class newConserjeria implements OnInit{
         this.motivo = this.conserjeriaService.getMotivo();
         this.lugar = this.conserjeriaService.getLugar();
         this.unidad = this.conserjeriaService.getUnidad();
+    }
+
+    check() {
+
+        if (this.nMotivo == undefined) {
+            return;
+        }
+
+        if (this.nMotivo < 2) {
+
+            if (this.rut !== undefined || this.rut !== '') {
+
+                if (this.nombre !== undefined || this.nombre !== '') {
+
+                }
+            }
+        }
+
+    }
+
+    Motivo() {
+
+    }
+
+    Rut() {
+
+    }
+
+    Nombre() {
+
+    }
+
+    Lugar() {
+        this.nUnidad = undefined;
+        this.check();
+    }
+
+    Submit() {
     }
 
     ngOnInit(): void {

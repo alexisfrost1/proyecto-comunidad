@@ -1,11 +1,83 @@
-﻿<!DOCTYPE html>
+﻿
+<mat-card>
+    <form (ngSubmit)="Submit()">
+        <mat-card-content>
+            <div class="form-container">
+                <div class="form-block">
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>
+                                <mat-icon matSuffix></mat-icon>
+                                Motivo
+                            </mat-label>
+                            <mat-select [(value)]="nMotivo" (selectionChange)="Motivo()">
+                                <mat-option *ngFor="let val of motivo; let i = index" [value]="i">{{val}}</mat-option>
+                            </mat-select>
+                            <mat-hint></mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>
+                                <mat-icon matSuffix>tag</mat-icon>
+                                Rut
+                            </mat-label>
+                            <input type="text" matInput placeholder="Rut" name="rut" [(ngModel)]="rut" (focusout)="Rut()">
+                            <mat-hint>Rut responsable</mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>
+                                <mat-icon matSuffix>person_outline</mat-icon>
+                                Nombre
+                            </mat-label>
+                            <input type="text" matInput placeholder="Su Nombre" name="nombre" [(ngModel)]="nombre" (focusout)="Nombre()">
+                            <mat-hint>Nombre responsable</mat-hint>
+                        </mat-form-field>
+                    </p>
+                </div>
+                <div class="form-block">
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>
+                                <mat-icon matSuffix>villa</mat-icon>
+                                Área
+                            </mat-label>
+                            <mat-select [(value)]="nLugar" (selectionChange)="Lugar()">
+                                <mat-option *ngFor="let area of lugar" [value]="area.id">{{area.nombre}} N°{{area.nro}}</mat-option>
+                            </mat-select>
+                            <mat-hint>Área referencia</mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>
+                                <mat-icon matSuffix>villa</mat-icon>
+                                Unidad
+                            </mat-label>
+                            <mat-select [(value)]="nUnidad" (selectionChange)="check()">
+                                <mat-option *ngFor="let area of unidad[nLugar-1]" [value]="area.id">{{area.tipo}} N°{{area.nro}}</mat-option>
+                            </mat-select>
+                            <mat-hint>Unidad referencia</mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>
+                                <mat-icon matSuffix></mat-icon>
+                                Descripción
+                            </mat-label>
+                            <textarea type="text" matInput placeholder="" name="descripcion" [(ngModel)]="descripcion" (focusout)="check()"></textarea>
+                            <mat-hint>Detalle o información complementaria</mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <p *ngIf="show">
+                        <button class="margen" mat-raised-button type="submit" color="primary">Guardar</button>
+                    </p>
+                </div>
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>
+            </div>
+        </mat-card-content>
+    </form>
+</mat-card>

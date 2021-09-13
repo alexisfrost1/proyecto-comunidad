@@ -34,7 +34,7 @@ import { MatTimepickerModule } from 'mat-timepicker';
 import { RolesService } from './services/roles.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { editReservas, ReservasComponent } from './Pages/reservas/reservas.component';
-import { ConserjeriaComponent } from './Pages/conserjeria/conserjeria.component';
+import { ConserjeriaComponent, newConserjeria } from './Pages/conserjeria/conserjeria.component';
 import { AdminComponent } from './Route/admin/admin.component';
 import { ConserjeComponent } from './Route/conserje/conserje.component';
 import { PropietarioComponent } from './Route/propietario/propietario.component';
@@ -56,6 +56,7 @@ import { PropietarioComponent } from './Route/propietario/propietario.component'
     ConserjeriaComponent,
     AdminComponent,
     ConserjeComponent,
+    newConserjeria,
     PropietarioComponent
   ],
   imports: [
