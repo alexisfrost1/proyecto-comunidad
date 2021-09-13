@@ -75,6 +75,16 @@ export class newConserjeria implements OnInit{
 
     check() {
 
+        if (this.nUnidad == 0) {
+            this.nUnidad = null;
+        }
+
+        if (this.nLugar == 0) {
+            this.nLugar = null;
+        }
+
+        console.log(this.nUnidad);
+
         if (this.nMotivo == undefined) {
             return;
         }
@@ -103,12 +113,12 @@ export class newConserjeria implements OnInit{
 
             this.lugar_unidad = true;
             
-            if (this.descripcion !== undefined || this.descripcion !== '') {
-
-                this.more_info = true;
-            } else {
+            if (this.descripcion == undefined || this.descripcion == '') {
 
                 this.more_info = false;
+            } else {
+
+                this.more_info = true;
             }
 
         }
@@ -135,7 +145,7 @@ export class newConserjeria implements OnInit{
                 this.rut_nombre = false;
             }
 
-            if (this.lugar !== undefined && this.unidad !== undefined) {
+            if (this.nLugar !== undefined && this.nUnidad !== undefined && this.nLugar !== null && this.nUnidad !== null) {
 
                 this.lugar_unidad = true;
             } else {
@@ -143,12 +153,12 @@ export class newConserjeria implements OnInit{
                 this.lugar_unidad = false;
             }
 
-            if (this.descripcion !== undefined || this.descripcion !== '') {
-
-                this.more_info = true;
-            } else {
+            if (this.descripcion == undefined || this.descripcion == '') {
 
                 this.more_info = false;
+            } else {
+
+                this.more_info = true;
             }
 
         }
