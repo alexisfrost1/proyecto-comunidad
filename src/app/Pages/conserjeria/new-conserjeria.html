@@ -10,7 +10,7 @@
                                 <mat-icon matSuffix></mat-icon>
                                 Motivo
                             </mat-label>
-                            <mat-select [(value)]="nMotivo" (selectionChange)="Motivo()">
+                            <mat-select [(value)]="nMotivo" (selectionChange)="check()">
                                 <mat-option *ngFor="let val of motivo; let i = index" [value]="i">{{val}}</mat-option>
                             </mat-select>
                             <mat-hint></mat-hint>
@@ -22,7 +22,7 @@
                                 <mat-icon matSuffix>tag</mat-icon>
                                 Rut
                             </mat-label>
-                            <input type="text" matInput placeholder="Rut" name="rut" [(ngModel)]="rut" (focusout)="Rut()">
+                            <input type="text" matInput placeholder="Rut" name="rut" [(ngModel)]="rut" (focusout)="check()">
                             <mat-hint>Rut responsable</mat-hint>
                         </mat-form-field>
                     </p>
@@ -32,7 +32,7 @@
                                 <mat-icon matSuffix>person_outline</mat-icon>
                                 Nombre
                             </mat-label>
-                            <input type="text" matInput placeholder="Su Nombre" name="nombre" [(ngModel)]="nombre" (focusout)="Nombre()">
+                            <input type="text" matInput placeholder="Su Nombre" name="nombre" [(ngModel)]="nombre" (focusout)="check()">
                             <mat-hint>Nombre responsable</mat-hint>
                         </mat-form-field>
                     </p>

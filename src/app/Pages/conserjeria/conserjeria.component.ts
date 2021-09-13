@@ -56,7 +56,9 @@ export class newConserjeria implements OnInit{
     nUnidad: number | any;
     
     show: boolean = false;
-
+    rut_nombre: boolean = false;
+    lugar_unidad: boolean = false;
+    more_info: boolean = false;
 
     motivo: string[];
     lugar: Lugar[];
@@ -77,27 +79,113 @@ export class newConserjeria implements OnInit{
             return;
         }
 
-        if (this.nMotivo < 2) {
+        if (this.nMotivo > 2) {
 
-            if (this.rut !== undefined || this.rut !== '') {
+            if ((this.rut !== undefined || this.rut !== '') && (this.nombre !== undefined && this.nombre !== '')) {
 
-                if (this.nombre !== undefined || this.nombre !== '') {
-
-                }
+                this.rut_nombre = true;
             }
+
+            if ((this.rut == undefined || this.rut == '') && (this.nombre == undefined && this.nombre == '')) {
+
+                this.rut_nombre = true;
+            }
+
+            if ((this.rut !== undefined || this.rut !== '') && (this.nombre == undefined && this.nombre == '')) {
+
+                this.rut_nombre = false;
+            }
+
+            if ((this.rut == undefined || this.rut == '') && (this.nombre !== undefined && this.nombre !== '')) {
+
+                this.rut_nombre = false;
+            }
+
+            this.lugar_unidad = true;
+            
+            if (this.descripcion !== undefined || this.descripcion !== '') {
+
+                this.more_info = true;
+            } else {
+
+                this.more_info = false;
+            }
+
         }
 
-    }
+        if (this.nMotivo == 2) {
 
-    Motivo() {
+            if ((this.rut !== undefined || this.rut !== '') && (this.nombre !== undefined && this.nombre !== '')) {
 
-    }
+                this.rut_nombre = true;
+            }
 
-    Rut() {
+            if ((this.rut == undefined || this.rut == '') && (this.nombre == undefined && this.nombre == '')) {
 
-    }
+                this.rut_nombre = false;
+            }
 
-    Nombre() {
+            if ((this.rut !== undefined || this.rut !== '') && (this.nombre == undefined && this.nombre == '')) {
+
+                this.rut_nombre = false;
+            }
+
+            if ((this.rut == undefined || this.rut == '') && (this.nombre !== undefined && this.nombre !== '')) {
+
+                this.rut_nombre = false;
+            }
+
+            if (this.lugar !== undefined && this.unidad !== undefined) {
+
+                this.lugar_unidad = true;
+            } else {
+
+                this.lugar_unidad = false;
+            }
+
+            if (this.descripcion !== undefined || this.descripcion !== '') {
+
+                this.more_info = true;
+            } else {
+
+                this.more_info = false;
+            }
+
+        }
+
+        if (this.nMotivo < 2) {
+
+            if ((this.rut !== undefined || this.rut !== '') && (this.nombre !== undefined && this.nombre !== '')) {
+
+                this.rut_nombre = true;
+            }
+
+            if ((this.rut == undefined || this.rut == '') && (this.nombre == undefined && this.nombre == '')) {
+
+                this.rut_nombre = false;
+            }
+
+            if ((this.rut !== undefined || this.rut !== '') && (this.nombre == undefined && this.nombre == '')) {
+
+                this.rut_nombre = false;
+            }
+
+            if ((this.rut == undefined || this.rut == '') && (this.nombre !== undefined && this.nombre !== '')) {
+
+                this.rut_nombre = false;
+            }
+
+            this.lugar_unidad = true;
+            this.more_info = true;
+        }
+
+        if (this.rut_nombre && this.lugar_unidad && this.more_info) {
+
+            this.show = true;
+        } else {
+
+            this.show = false;
+        }
 
     }
 
@@ -107,6 +195,7 @@ export class newConserjeria implements OnInit{
     }
 
     Submit() {
+        console.log('Realizado');
     }
 
     ngOnInit(): void {

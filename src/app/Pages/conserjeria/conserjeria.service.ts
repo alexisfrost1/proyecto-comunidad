@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+﻿import { Injectable, OnDestroy } from '@angular/core';
 import { RolesService } from 'src/app/services/roles.service';
 import { Roles } from 'src/app/services/roles.model';
 import { HttpClient } from '@angular/common/http';
@@ -35,7 +35,7 @@ export class ConserjeriaService implements OnDestroy{
 
         this.conserjeria = [];
 
-        this.motivo = ['Queja', 'Accion', 'Recaudacion', 'Entrega de llaves', 'Devolucion de llaves'];
+        this.motivo = ['Entrega de llaves', 'Devolución de llaves', 'Recaudación', 'Queja', 'Acción', 'Otro'];
 
         this.lugar = [
             { id: 1, nombre: 'Block',       nro: 1 },
