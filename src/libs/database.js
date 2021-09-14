@@ -4,23 +4,21 @@ const env = require('./config.js');
 const config = {
     user: process.env.USER,
     password: process.env.PASSWORD,
-    server: process.env.HOST,
+    server: process.env.SERVER,
     database: process.env.DATABASE,
     options: {
         trustedconnection: true,
         enableArithAbort: true,
         instancename: process.env.INSTANCENAME  // SQL Server instance name
     },
-    port: process.env.PORT,
+    port: process.env.DB_PORT,
     pool: {
         max: 8,
         min: 0,
-        evictionRunIntervalMillis: 10000,
-        softIdleTimeoutMillis: 30000,
         idleTimeoutMillis: 30000,
-        testOnBorrow: true,
         acquireTimeoutMillis: 20000
     }
+
 };
 
 const pool = new sql.ConnectionPool(config);
