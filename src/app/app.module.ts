@@ -38,7 +38,13 @@ import { ConserjeriaComponent, newConserjeria } from './Pages/conserjeria/conser
 import { AdminComponent } from './Route/admin/admin.component';
 import { ConserjeComponent } from './Route/conserje/conserje.component';
 import { PropietarioComponent } from './Route/propietario/propietario.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
 
+export function tokenGetter() {
+    return sessionStorage.getItem('access_token');
+}
 
 @NgModule({
   declarations: [
@@ -82,9 +88,27 @@ import { PropietarioComponent } from './Route/propietario/propietario.component'
     MatListModule,
     HttpClientModule,
     MatTimepickerModule,
-    MatDialogModule
+    MatDialogModule,
+      JwtModule.forRoot({
+          config: {
+              tokenGetter: tokenGetter,
+              allowedDomains: [
+                  'http://vm-06.epm.cl/'
+              ],
+              disallowedRoutes: [
+                  'http://vm-06.epm.cl/api/auth/loginAdmin',
+                  'http://vm-06.epm.cl/api/auth/loginConserje',
+                  'http://vm-06.epm.cl/api/auth/loginPropietario'
+              ]
+          }
+      })
   ],
-    providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }, RolesService],
+    providers: [
+        { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+        RolesService,
+        AuthService,
+        AuthGuard
+    ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

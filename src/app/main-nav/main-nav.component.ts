@@ -33,7 +33,7 @@ export class MainNavComponent implements OnInit{
       console.log(this.roles[0].propietario, this.roles[0].conserje, this.roles[0].admin)
 
       const route = (this.router.url).split('/',3);
-      this.route = '/'+route[1];
+      this.route = '/'+route[1]+'/'+route[2];
 
     }
 

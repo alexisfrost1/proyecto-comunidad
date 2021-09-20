@@ -12,42 +12,55 @@ import { BitacoraComponent } from './Pages/bitacora/bitacora.component';
 import { AdminComponent } from './Route/admin/admin.component';
 import { ConserjeComponent } from './Route/conserje/conserje.component';
 import { PropietarioComponent } from './Route/propietario/propietario.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-{path: 'admin', component: AdminComponent,
-children:
-   [{path: 'nav', component: MainNavComponent},
-   {path: 'encomiendas', component: EncomiendasComponent},
-   {path: 'mantenciones',component: MantencionesComponent},
-   {path: 'reservas',component: ReservasComponent},
-   {path: 'visitas', component: VisitasComponent},
-   {path: 'home', component:HomeComponent},
-   {path: 'gastos-comunes', component: GastosComunesComponent},
-   {path: 'bitacora', component: BitacoraComponent}]
+
+{ path: 'admin', component: AdminComponent,
+    children:[
+    {
+        path: ':comunidad',
+        children: [
+            { path: 'encomiendas', component: EncomiendasComponent },
+            { path: 'mantenciones', component: MantencionesComponent },
+            { path: 'reservas', component: ReservasComponent },
+            { path: 'visitas', component: VisitasComponent },
+            { path: 'home', component: HomeComponent },
+            { path: 'gastos-comunes', component: GastosComunesComponent },
+            { path: 'bitacora', component: BitacoraComponent }
+        ]
+    }]
 },
 
-{path: 'conserje', component: ConserjeComponent,
-children:
-    [{ path: 'nav', component: MainNavComponent },
-    { path: 'encomiendas', component: EncomiendasComponent },
-    { path: 'mantenciones', component: MantencionesComponent },
-    { path: 'reservas', component: ReservasComponent },
-    { path: 'visitas', component: VisitasComponent },
-    { path: 'home', component: HomeComponent },
-    { path: 'gastos-comunes', component: GastosComunesComponent },
-    { path: 'bitacora', component: BitacoraComponent }]
+{
+    path: 'conserje', component: ConserjeComponent,
+    children:[
+    {
+        path: ':comunidad',
+        children: [
+            { path: 'encomiendas', component: EncomiendasComponent },
+            { path: 'mantenciones', component: MantencionesComponent },
+            { path: 'reservas', component: ReservasComponent },
+            { path: 'visitas', component: VisitasComponent },
+            { path: 'home', component: HomeComponent },
+            { path: 'bitacora', component: BitacoraComponent }
+        ]
+    }]
 },
 
-{path: 'propietario', component: PropietarioComponent,
-children:
-    [{ path: 'nav', component: MainNavComponent },
-    { path: 'encomiendas', component: EncomiendasComponent },
-    { path: 'mantenciones', component: MantencionesComponent },
-    { path: 'reservas', component: ReservasComponent },
-    { path: 'visitas', component: VisitasComponent },
-    { path: 'home', component: HomeComponent },
-    { path: 'gastos-comunes', component: GastosComunesComponent },
-    { path: 'bitacora', component: BitacoraComponent }]
+{
+    path: 'propietario', component: PropietarioComponent,
+    children:[
+    {
+        path: ':comunidad',
+        children: [
+            { path: 'encomiendas', component: EncomiendasComponent },
+            { path: 'mantenciones', component: MantencionesComponent },
+            { path: 'reservas', component: ReservasComponent },
+            { path: 'visitas', component: VisitasComponent },
+            { path: 'home', component: HomeComponent },
+        ]
+    }]
 },
 
 {path: 'login', component: LoginComponent},
