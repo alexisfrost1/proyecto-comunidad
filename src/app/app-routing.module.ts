@@ -10,6 +10,7 @@ import { ReservasComponent } from './Pages/reservas/reservas.component';
 import { VisitasComponent } from './Pages/visitas/visitas.component';
 import { InicioComponent } from './Pages/inicio/inicio.component';
 import { BitacoraComponent } from './Pages/bitacora/bitacora.component';
+import { InsumosComponent } from './Pages/insumos/insumos.component';
 
 
 const routes: Routes = [
@@ -19,9 +20,10 @@ const routes: Routes = [
     {path: 'mantenciones',component: MantencionesComponent},
     {path: 'reservas',component: ReservasComponent},
     {path: 'visitas', component: VisitasComponent},
-    {path:'inicio', component:InicioComponent},
+    {path: 'inicio', component:InicioComponent},
     {path: 'gastos-comunes', component: GastosComunesComponent},
-    {path: 'bitacora', component: BitacoraComponent}
+    {path: 'bitacora', component: BitacoraComponent},
+    {path: 'insumos', component: InsumosComponent}
   ]},
   
   {path: 'login', component: LoginComponent},

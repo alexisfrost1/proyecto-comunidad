@@ -1,5 +1,5 @@
 export interface Insumos {
-    n_unidad: number;
+    n_insumo: number;
     insumo: string;
     opciones: string;
 }

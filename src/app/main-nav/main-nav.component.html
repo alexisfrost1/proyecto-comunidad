@@ -44,6 +44,13 @@
               <mat-icon aria-hidden="false">build</mat-icon>
               Mantenciones
           </a>
+          <div *ngIf="this.roles[0].conserje">
+          <hr color="gray">
+            <a mat-list-item routerLink='/home/insumos' class="text">
+              <mat-icon aria-hidden="false">inventory_2</mat-icon>
+              Insumos
+          </a>
+          </div>
           <hr color="gray">
       </mat-nav-list>
   </mat-sidenav>

@@ -23,12 +23,12 @@ export class InsumosService{
         this.roles$ = this.rolesService.getRoles$();
         this.roles$.subscribe(roles => this.roles = roles);
         
-            this.Historial_Insumos =   [{n_unidad: 3, insumo: 'Cilindro de Gas 45 Kg', opciones:''},
-            {n_unidad: 5, insumo: 'Paquete de 3 rollos de Toalla de papel',opciones:''},
-            {n_unidad: 4, insumo: 'Botella de cloro de 4 lts',opciones:''},
-            {n_unidad: 2, insumo: 'Caja de guantes de latex de 100 unidades',opciones:''}];
+            this.Historial_Insumos =   [{n_insumo: 3, insumo: 'Cilindro de Gas 45 Kg', opciones:''},
+            {n_insumo: 5, insumo: 'Paquete de 3 rollos de Toalla de papel',opciones:''},
+            {n_insumo: 4, insumo: 'Botella de cloro de 4 lts',opciones:''},
+            {n_insumo: 2, insumo: 'Caja de guantes de latex de 100 unidades',opciones:''}];
             this.Insumos =
-            [{ n_unidad: 101, insumo: 'Alexis Canessa, Fabian Contreras', opciones: '02/07/2021',  },
+            [{ n_insumo: 101, insumo: 'Alexis Canessa, Fabian Contreras', opciones: '02/07/2021',  },
           
             ];
     }
