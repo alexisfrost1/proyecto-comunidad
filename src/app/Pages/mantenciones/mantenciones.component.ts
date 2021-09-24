@@ -19,8 +19,10 @@ export class MantencionesComponent implements OnInit {
 	maxDate: Date;
 	minHour: Date;
 	maxHour: Date;
+
 	bBitacora: boolean;
-    bBitacora$!: Observable<boolean>;
+	bBitacora$!: Observable<boolean>;
+
 	nombre: string | any;
 	rut: string | any;
 	cargo: string | any;
@@ -32,16 +34,19 @@ export class MantencionesComponent implements OnInit {
 	n_unidad: number | any;
 	elemento: string | any;
 
+	tabMantenciones: number = 0;
+
 	mantenciones: Mantencion[];
-	displayedColumns: string[] = ['nombre', 'rut', 'cargo', 'motivo', 'fecha', 'hora', 'estacionamiento', 'unidad', 'n_unidad', 'elemento'];
+	displayedColumns: string[] = ['rut', 'nombre', 'cargo', 'motivo', 'fecha', 'hora', 'estacionamiento', 'unidad', 'n_unidad', 'elemento'];
 
 	timeChange(data: Date) {
 
 		this.hora = new Date(data);
-		console.log('Hora: ', data);
+		console.log('Hora: ', data.toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' }));
 	}
 
-	constructor(private mantencionesService: MantencionesService,
+	constructor(
+		private mantencionesService: MantencionesService,
 		private rolesService: RolesService
 		) {
 
@@ -63,6 +68,10 @@ export class MantencionesComponent implements OnInit {
 		/*this.o_mantenciones$ = this.mantencionesService.getMantenciones();*/
 		this.bBitacora = this.rolesService.bitacoraState();
 		this.mantenciones = this.mantencionesService.getMantenciones();
+
+		if (this.bBitacora) {
+			this.displayedColumns =['id', 'rut', 'nombre', 'cargo', 'motivo', 'fecha', 'hora', 'estacionamiento', 'unidad', 'n_unidad', 'elemento'];
+		}
 	}
 
   ngOnInit(): void {
@@ -71,6 +80,8 @@ export class MantencionesComponent implements OnInit {
   }
 
 	Submit() {
-		console.log(this.hora);
+		this.fecha.setHours(this.hora.getHours());
+		this.fecha.setMinutes(this.hora.getMinutes());
+		console.log(this.fecha);
 	}
 }

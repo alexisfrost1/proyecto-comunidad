@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit{
   constructor(
 //    public formBuilder: FormBuilder,
  //   public ngZone: NgZone, // NgZone service to remove outside scope warning
- //   public router: Router, // para enviar al usuario a otra vista
+      public router: Router, // para enviar al usuario a otra vista
    // private auth: AuthService,
       private roles: RolesService
   ) {

@@ -74,58 +74,8 @@
 </mat-tab>
 
 <mat-tab label="Registrar en Bitácora">  
-        <mat-card>
-          <mat-card-content>              
-                <mat-form-field appearance="outline">
-                    <mat-label>
-                        <mat-icon matSuffix>apartment</mat-icon>
-                        Departamento
-                      </mat-label>
-                    <mat-select>
-                        <mat-option *ngFor="let Departamento of Departamentos" [value]="Departamento.n_departamento">
-                            {{Departamento.departamento}}
-                        </mat-option>
-                    </mat-select>
-                    <mat-hint>Seleccione el número de departamento</mat-hint>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline">
-                    <mat-label>
-                        <mat-icon matSuffix>event_note</mat-icon>
-                        Tipo de Registro
-                      </mat-label>
-                    <mat-select>
-                        <mat-option *ngFor="let Registro of Registros" [value]="Registro.n_novedad">
-                            {{Registro.novedad}}
-                        </mat-option>
-                    </mat-select>
-                    <mat-hint>Seleccione el tipo de Registro</mat-hint>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline"> 
-                    <mat-label>
-                      <mat-icon matSuffix>event</mat-icon>
-                      Fecha
-                    </mat-label> 
-                    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="fechaReserva" enable> 
-                    <mat-datepicker-toggle matSuffix [for]="fechaReserva"></mat-datepicker-toggle> 
-                    <mat-datepicker #fechaReserva disabled="false"></mat-datepicker> 
-                    <mat-hint>Fecha de Registro</mat-hint>
-                </mat-form-field> 
-           
-                <mat-form-field appearance="outline">
-                  <mat-label>
-                    <mat-icon matSuffix>tag</mat-icon>
-                    Comentario
-                  </mat-label>
-                  <input type="text" matInput placeholder="Comentario" >
-                  <mat-hint>Ingrese Comentario</mat-hint>
-                </mat-form-field>
-              
-            <button class="margen" mat-raised-button color="primary">Guardar</button>
-            </mat-card-content>
-          </mat-card>
-        </mat-tab>
+    <new-conserjeria></new-conserjeria>
+</mat-tab>
 
 <mat-tab label="Historial">
 <mat-tab-group>
@@ -147,7 +97,7 @@
       <app-insumos></app-insumos>
   </mat-tab>
   <mat-tab label ="Conserjeria">
-      <!--<app-conserjeria></app-conserjeria>-->
+      <app-conserjeria></app-conserjeria>
   </mat-tab>
 
 </mat-tab-group>

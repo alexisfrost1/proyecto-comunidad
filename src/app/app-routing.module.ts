@@ -8,26 +8,65 @@ import { GastosComunesComponent } from './Pages/gastos-comunes/gastos-comunes.co
 import { MantencionesComponent } from './Pages/mantenciones/mantenciones.component';
 import { ReservasComponent } from './Pages/reservas/reservas.component';
 import { VisitasComponent } from './Pages/visitas/visitas.component';
-import { InicioComponent } from './Pages/inicio/inicio.component';
 import { BitacoraComponent } from './Pages/bitacora/bitacora.component';
+import { AdminComponent } from './Route/admin/admin.component';
+import { ConserjeComponent } from './Route/conserje/conserje.component';
+import { PropietarioComponent } from './Route/propietario/propietario.component';
+import { AuthGuard } from './auth.guard';
 import { InsumosComponent } from './Pages/insumos/insumos.component';
 
-
 const routes: Routes = [
-  {path: 'home', component: HomeComponent, children:[
-    {path: 'nav', component: MainNavComponent},
-    {path: 'encomiendas', component: EncomiendasComponent},
-    {path: 'mantenciones',component: MantencionesComponent},
-    {path: 'reservas',component: ReservasComponent},
-    {path: 'visitas', component: VisitasComponent},
-    {path: 'inicio', component:InicioComponent},
-    {path: 'gastos-comunes', component: GastosComunesComponent},
-    {path: 'bitacora', component: BitacoraComponent},
-    {path: 'insumos', component: InsumosComponent}
-  ]},
-  
-  {path: 'login', component: LoginComponent},
-  {path: '' , component:LoginComponent}
+
+{ path: 'admin', component: AdminComponent,
+    children:[
+    {
+        path: ':comunidad',
+        children: [
+            { path: 'encomiendas', component: EncomiendasComponent },
+            { path: 'mantenciones', component: MantencionesComponent },
+            { path: 'reservas', component: ReservasComponent },
+            { path: 'visitas', component: VisitasComponent },
+            { path: 'home', component: HomeComponent },
+            { path: 'gastos-comunes', component: GastosComunesComponent },
+            { path: 'bitacora', component: BitacoraComponent }
+        ]
+    }]
+},
+
+{
+    path: 'conserje', component: ConserjeComponent,
+    children:[
+    {
+        path: ':comunidad',
+        children: [
+            { path: 'encomiendas', component: EncomiendasComponent },
+            { path: 'mantenciones', component: MantencionesComponent },
+            { path: 'reservas', component: ReservasComponent },
+            { path: 'visitas', component: VisitasComponent },
+            { path: 'home', component: HomeComponent },
+            { path: 'bitacora', component: BitacoraComponent },
+            {path: 'insumos', component: InsumosComponent }
+        ]
+    }]
+},
+
+{
+    path: 'propietario', component: PropietarioComponent,
+    children:[
+    {
+        path: ':comunidad',
+        children: [
+            { path: 'encomiendas', component: EncomiendasComponent },
+            { path: 'mantenciones', component: MantencionesComponent },
+            { path: 'reservas', component: ReservasComponent },
+            { path: 'visitas', component: VisitasComponent },
+            { path: 'home', component: HomeComponent },
+        ]
+    }]
+},
+
+{path: 'login', component: LoginComponent},
+{path: '' , redirectTo: '/login', pathMatch: 'full'}
 ];
 
 @NgModule({

@@ -118,7 +118,16 @@ export class ReservasService implements OnDestroy{
     updateReserva() {
     }
 
-    deleteReserva() {
+    deleteReserva(i: number) {
+
+        this.reservas_comunidad.forEach((value, index) => {
+            if ( (value.n_area == this.reservas[i].n_area) && (value.fecha == this.reservas[i].fecha) ) this.reservas_comunidad.splice(index, 1);
+        });
+
+        this.reservas.forEach((value,index) => {
+            if (index == i) this.reservas.splice(index,1);
+        });
+
     }
 
     ngOnDestroy() {

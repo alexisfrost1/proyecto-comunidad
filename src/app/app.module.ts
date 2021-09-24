@@ -25,7 +25,6 @@ import { VisitasComponent } from './Pages/visitas/visitas.component';
 import { EncomiendasComponent } from './Pages/encomiendas/encomiendas.component';
 import { GastosComunesComponent } from './Pages/gastos-comunes/gastos-comunes.component';
 import { MantencionesComponent } from './Pages/mantenciones/mantenciones.component';
-import { InicioComponent } from './Pages/inicio/inicio.component';
 import { MatTableModule } from '@angular/material/table';
 import { AngularMaterialModule } from './angular-material.module';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -35,8 +34,18 @@ import { MatTimepickerModule } from 'mat-timepicker';
 import { RolesService } from './services/roles.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { editReservas, ReservasComponent } from './Pages/reservas/reservas.component';
+import { ConserjeriaComponent, newConserjeria } from './Pages/conserjeria/conserjeria.component';
+import { AdminComponent } from './Route/admin/admin.component';
+import { ConserjeComponent } from './Route/conserje/conserje.component';
+import { PropietarioComponent } from './Route/propietario/propietario.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
 import { InsumosComponent } from './Pages/insumos/insumos.component';
 
+export function tokenGetter() {
+    return sessionStorage.getItem('access_token');
+}
 
 @NgModule({
   declarations: [
@@ -49,9 +58,13 @@ import { InsumosComponent } from './Pages/insumos/insumos.component';
     ReservasComponent,
     GastosComunesComponent,
     MantencionesComponent,
-    InicioComponent,
     BitacoraComponent,
     editReservas,
+    ConserjeriaComponent,
+    AdminComponent,
+    ConserjeComponent,
+    newConserjeria,
+    PropietarioComponent,
     InsumosComponent
   ],
   imports: [
@@ -77,9 +90,27 @@ import { InsumosComponent } from './Pages/insumos/insumos.component';
     MatListModule,
     HttpClientModule,
     MatTimepickerModule,
-    MatDialogModule
+    MatDialogModule,
+      JwtModule.forRoot({
+          config: {
+              tokenGetter: tokenGetter,
+              allowedDomains: [
+                  'http://vm-06.epm.cl/'
+              ],
+              disallowedRoutes: [
+                  'http://vm-06.epm.cl/api/auth/loginAdmin',
+                  'http://vm-06.epm.cl/api/auth/loginConserje',
+                  'http://vm-06.epm.cl/api/auth/loginPropietario'
+              ]
+          }
+      })
   ],
-    providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }, RolesService],
+    providers: [
+        { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+        RolesService,
+        AuthService,
+        AuthGuard
+    ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
