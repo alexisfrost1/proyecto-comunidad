@@ -1,0 +1,226 @@
+<div *ngIf="!bBitacora">
+<mat-tab-group #visitas>
+  <!-- Registro de visitas -->
+  <div >
+  <mat-tab label="Ingresar Visita ">
+    <mat-card>
+      <form>
+      <mat-card-content>
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>
+                <mat-icon matSuffix>person_outline</mat-icon>
+                Nombre de propietario/copropietario
+              </mat-label>
+              <input type="text" matInput placeholder="Su Nombre">
+              <mat-hint>Ingrese su nombre</mat-hint>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>
+                <mat-icon matSuffix>tag</mat-icon>
+                Ingrese su Rut
+              </mat-label>
+              <input type="text" matInput placeholder="Rut">
+              <mat-hint>Rut de la persona a cargo de las visitas</mat-hint>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>
+                <mat-icon matSuffix>tag</mat-icon>
+                Número de su unidad
+              </mat-label>
+              <input type="number" matInput placeholder="N° casa/dpto" value="{{unidad}}">
+              <mat-hint>Numero de la unidad donde llegarán las visitas</mat-hint>
+            </mat-form-field>
+          </p>
+          <p> 
+            <mat-form-field appearance="outline"> 
+                <mat-label>
+                  <mat-icon matSuffix>event</mat-icon>
+                  Fecha de visita (Mes/Dia/Año)
+                </mat-label> 
+                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="fechaReserva" enable> 
+                <mat-datepicker-toggle matSuffix [for]="fechaReserva"></mat-datepicker-toggle> 
+                <mat-datepicker #fechaReserva disabled="false"></mat-datepicker> 
+                <mat-hint>Fecha de llegada de visitas (Mes/Dia/Año)</mat-hint>
+            </mat-form-field> 
+        </p> 
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>
+                <mat-icon matSuffix>person_outline</mat-icon>
+                Nombre de visia
+              </mat-label>
+              <input type="text" matInput placeholder="Nombre visitas">
+              <mat-hint>Ingrese el nombre de las visita</mat-hint>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>
+                <mat-icon matSuffix>tag</mat-icon>
+                Cantidad de visitantes
+              </mat-label>
+              <input type="number" matInput placeholder="N° Visitas">
+              <mat-hint>Cantidad de personas que se espera que llegue</mat-hint>
+            </mat-form-field>
+          </p>
+          <button class="margen" mat-raised-button color="primary">Guardar</button>
+        </mat-card-content>
+      </form>
+    </mat-card>
+  </mat-tab>
+</div>
+  <!-- Listado de Visitas Registradas -->
+  <div>
+    <mat-tab label="Listado Visitas Registradas">
+    <mat-card>
+      <mat-card-content>
+
+          <table mat-table [dataSource]="Visitas" class="mat-elevation-z8">
+      
+            <!--- Note that these columns can be defined in any order.
+                    The actual rendered columns are set as a property on the row definition" -->
+      
+            <!-- Position Column -->
+            <ng-container matColumnDef="n_unidad">
+              <th mat-header-cell *matHeaderCellDef> N° Unidad </th>
+              <td mat-cell *matCellDef="let element"> {{element.n_unidad}} </td>
+            </ng-container>
+      
+            <!-- Name Column -->
+            <ng-container matColumnDef="Nombre">
+              <th mat-header-cell *matHeaderCellDef> Nombre Visita </th>
+              <td mat-cell *matCellDef="let element"> {{element.Nombre}} </td>
+            </ng-container>
+      
+            <!-- Weight Column -->
+            <ng-container matColumnDef="fecha">
+              <th mat-header-cell *matHeaderCellDef> Fecha Visita </th>
+              <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+            </ng-container>
+      
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="cantidad">
+              <th mat-header-cell *matHeaderCellDef> Cantidad Visitas </th>
+              <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
+            </ng-container>
+      
+      
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </mat-tab>
+</div>
+</mat-tab-group>
+</div>
+
+
+ <!-- Vista de Visitas de usuario Conserje -->
+
+ <div *ngIf="bBitacora">
+ 
+    <!-- Registro de visitas -->
+    <div *ngIf="!bBitacora" >
+    <mat-tab label="Ingresar Visita">
+      <mat-card>
+        <form>
+        <mat-card-content>
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>
+                  <mat-icon matSuffix>person_outline</mat-icon>
+                  Nombre de Visita
+                </mat-label>
+                <input type="text" matInput placeholder="Su Nombre">
+                <mat-hint>Ingrese nombre de la visita</mat-hint>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>
+                  <mat-icon matSuffix>tag</mat-icon>
+                  Ingrese Rut Visita
+                </mat-label>
+                <input type="text" matInput placeholder="Rut">
+                <mat-hint>Rut de la visita</mat-hint>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>
+                  <mat-icon matSuffix>tag</mat-icon>
+                  Número de su unidad
+                </mat-label>
+                <input type="number" matInput placeholder="N° casa/dpto" >
+                <mat-hint>Numero de la unidad donde llegarán las visitas</mat-hint>
+              </mat-form-field>
+            </p>
+            <p> 
+              <mat-form-field appearance="outline"> 
+                  <mat-label>
+                    <mat-icon matSuffix>event</mat-icon>
+                    Fecha de visita (Mes/Dia/Año)
+                  </mat-label> 
+                  <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="fechaReserva" enable> 
+                  <mat-datepicker-toggle matSuffix [for]="fechaReserva"></mat-datepicker-toggle> 
+                  <mat-datepicker #fechaReserva disabled="false"></mat-datepicker> 
+                  <mat-hint>Fecha de llegada de visitas (Mes/Dia/Año)</mat-hint>
+              </mat-form-field> 
+          </p> 
+          <button class="margen" mat-raised-button color="primary">Guardar</button>
+          </mat-card-content>
+        </form>
+      </mat-card>
+    </mat-tab>
+  </div>
+    <!-- Listado de Visitas Registradas -->
+    <div *ngIf="bBitacora">
+    
+      <mat-card>
+        <mat-card-content>
+      
+            <table mat-table [dataSource]="VisitasConserje" class="mat-elevation-z8">
+        
+              <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+        
+              <!-- Position Column -->
+              <ng-container matColumnDef="n_unidad">
+                <th mat-header-cell *matHeaderCellDef> N° Unidad </th>
+                <td mat-cell *matCellDef="let element"> {{element.n_unidad}} </td>
+              </ng-container>
+        
+              <!-- Name Column -->
+              <ng-container matColumnDef="Nombre">
+                <th mat-header-cell *matHeaderCellDef> Nombre Visita </th>
+                <td mat-cell *matCellDef="let element"> {{element.Nombre}} </td>
+              </ng-container>
+        
+              <!-- Weight Column -->
+              <ng-container matColumnDef="fecha">
+                <th mat-header-cell *matHeaderCellDef> Fecha Visita </th>
+                <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+              </ng-container>
+        
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="cantidad">
+                <th mat-header-cell *matHeaderCellDef> Cantidad Visitas </th>
+                <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
+              </ng-container>
+        
+        
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsConserje"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsConserje;"></tr>
+            </table>
+          </mat-card-content>
+        </mat-card>
+    
+  </div>
+ 
+  </div>
