@@ -13,6 +13,7 @@ import { AdminComponent } from './Route/admin/admin.component';
 import { ConserjeComponent } from './Route/conserje/conserje.component';
 import { PropietarioComponent } from './Route/propietario/propietario.component';
 import { AuthGuard } from './auth.guard';
+import { InsumosComponent } from './Pages/insumos/insumos.component';
 
 const routes: Routes = [
 
@@ -43,7 +44,8 @@ const routes: Routes = [
             { path: 'reservas', component: ReservasComponent },
             { path: 'visitas', component: VisitasComponent },
             { path: 'home', component: HomeComponent },
-            { path: 'bitacora', component: BitacoraComponent }
+            { path: 'bitacora', component: BitacoraComponent },
+            {path: 'insumos', component: InsumosComponent }
         ]
     }]
 },

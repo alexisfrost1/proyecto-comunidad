@@ -41,6 +41,7 @@ import { PropietarioComponent } from './Route/propietario/propietario.component'
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
+import { InsumosComponent } from './Pages/insumos/insumos.component';
 
 export function tokenGetter() {
     return sessionStorage.getItem('access_token');
@@ -63,7 +64,8 @@ export function tokenGetter() {
     AdminComponent,
     ConserjeComponent,
     newConserjeria,
-    PropietarioComponent
+    PropietarioComponent,
+    InsumosComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
