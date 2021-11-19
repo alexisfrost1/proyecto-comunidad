@@ -1,5 +1,5 @@
 export interface Area {
-    n_area: number;
+    n_area: number;         // id_unidad del área común
     nombre_area: string;
 }
 

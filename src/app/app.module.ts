@@ -41,6 +41,17 @@ import { PropietarioComponent } from './Route/propietario/propietario.component'
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
+import { PropiedadesComponent } from './Pages/propiedades/propiedades.component';
+import { PanelComponent } from './Pages/panel/panel.component';
+import { FondosComponent } from './Pages/fondos/fondos.component';
+import { IngresosComponent } from './Pages/ingresos/ingresos.component';
+import { EgresosComponent } from './Pages/egresos/egresos.component';
+import { TotalesMensualesComponent } from './Pages/totales-mensuales/totales-mensuales.component';
+import { CobrosIndividualesComponent } from './Pages/cobros-individuales/cobros-individuales.component';
+import { ColillasComponent } from './Pages/colillas/colillas.component';
+import { DeudasComponent } from './Pages/deudas/deudas.component';
+import { RecaudacionComponent } from './Pages/recaudacion/recaudacion.component';
+import { RemuneracionesComponent } from './Pages/remuneraciones/remuneraciones.component';
 
 export function tokenGetter() {
     return sessionStorage.getItem('access_token');
@@ -63,7 +74,18 @@ export function tokenGetter() {
     AdminComponent,
     ConserjeComponent,
     newConserjeria,
-    PropietarioComponent
+    PropietarioComponent,
+    PropiedadesComponent,
+    PanelComponent,
+    FondosComponent,
+    IngresosComponent,
+    EgresosComponent,
+    TotalesMensualesComponent,
+    CobrosIndividualesComponent,
+    ColillasComponent,
+    DeudasComponent,
+    RecaudacionComponent,
+    RemuneracionesComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
