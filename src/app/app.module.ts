@@ -41,6 +41,7 @@ import { PropietarioComponent } from './Route/propietario/propietario.component'
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
+import { InsumosComponent } from './Pages/insumos/insumos.component';
 import { PropiedadesComponent } from './Pages/propiedades/propiedades.component';
 import { PanelComponent } from './Pages/panel/panel.component';
 import { FondosComponent } from './Pages/fondos/fondos.component';
@@ -75,6 +76,7 @@ export function tokenGetter() {
     ConserjeComponent,
     newConserjeria,
     PropietarioComponent,
+    InsumosComponent,
     PropiedadesComponent,
     PanelComponent,
     FondosComponent,

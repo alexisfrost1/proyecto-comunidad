@@ -66,7 +66,7 @@ const routes: Routes = [
             { path: 'visitas', component: VisitasComponent },
             { path: 'home', component: HomeComponent },
             { path: 'bitacora', component: BitacoraComponent },
-            {path: 'insumos', component: InsumosComponent }
+            { path: 'insumos', component: InsumosComponent }
         ]
     }]
 },
