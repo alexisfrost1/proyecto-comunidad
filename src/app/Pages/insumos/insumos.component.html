@@ -1,0 +1,110 @@
+<div *ngIf="!bBitacora">
+    <mat-tab-group #insumos>
+        <mat-tab label="Listado Insumos">
+            <mat-card>
+                <mat-card-content>
+
+                    <table mat-table [dataSource]="HistorialInsumos" class="mat-elevation-z8">
+
+                        <ng-container matColumnDef="n_insumo">
+                            <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+                            <td mat-cell *matCellDef="let element"> {{element.n_insumo}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="insumo">
+                            <th mat-header-cell *matHeaderCellDef> Insumo </th>
+                            <td mat-cell *matCellDef="let element"> {{element.insumo}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="opciones">
+                            <th mat-header-cell *matHeaderCellDef>Opciones </th>
+                            <td mat-cell *matCellDef="let element">
+                                <button mat-icon-button [matMenuTriggerFor]="menu"
+                                    aria-label="Example icon-button with a menu">
+                                    <mat-icon>format_list_bulleted</mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item>
+                                        <!--    <button mat-menu-item (click)="EditarInsumo()"> -->
+
+                                        <mat-icon>edit</mat-icon>
+                                        <span>Editar</span>
+                                    </button>
+                                    <button mat-menu-item>
+                                        <mat-icon>delete</mat-icon>
+                                        <span>borrar</span>
+                                    </button>
+                                </mat-menu>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumnsHistorial"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumnsHistorial;"></tr>
+                    </table>
+                    <br><br>
+                </mat-card-content>
+            </mat-card>
+        </mat-tab>
+
+        <mat-tab label="Registrar nuevo Insumos ">
+            <mat-card>
+                <form>
+                    <mat-card-content>
+                        <p>
+                            <mat-form-field appearance="outline">
+                                <mat-label>
+                                    <mat-icon matSuffix>person_outline</mat-icon>
+                                    Nombre Insumo
+                                </mat-label>
+                                <input type="text" matInput placeholder="Nombre Insumo">
+                                <mat-hint>Ingrese nombre del insumo a registrar</mat-hint>
+                            </mat-form-field>
+                        </p>
+
+                        <p>
+                            <mat-form-field appearance="outline">
+                                <mat-label>
+                                    <mat-icon matSuffix>tag</mat-icon>
+                                    Cantidad del Insumo
+                                </mat-label>
+                                <input type="number" matInput placeholder="N° insumo">
+                                <mat-hint>Cantidad del insumo a registrar</mat-hint>
+                            </mat-form-field>
+                        </p>
+
+                        <button class="margen" mat-raised-button color="primary">Guardar</button>
+                    </mat-card-content>
+                </form>
+            </mat-card>
+        </mat-tab>
+
+
+    </mat-tab-group>
+</div>
+
+<div *ngIf="bBitacora">
+    <div *ngIf="bBitacora">
+        <mat-card>
+            <mat-card-content>
+                <table mat-table [dataSource]="HistorialInsumos" class="mat-elevation-z8">
+
+                    <ng-container matColumnDef="n_insumo">
+                        <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+                        <td mat-cell *matCellDef="let element"> {{element.n_insumo}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="insumo">
+                        <th mat-header-cell *matHeaderCellDef> Insumo </th>
+                        <td mat-cell *matCellDef="let element"> {{element.insumo}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+</div>
+
+

@@ -24,6 +24,7 @@ import { RecaudacionComponent } from './Pages/recaudacion/recaudacion.component'
 import { RemuneracionesComponent } from './Pages/remuneraciones/remuneraciones.component';
 import { TotalesMensualesComponent } from './Pages/totales-mensuales/totales-mensuales.component';
 import { AuthGuard } from './auth.guard';
+import { InsumosComponent } from './Pages/insumos/insumos.component';
 
 const routes: Routes = [
 
@@ -64,7 +65,8 @@ const routes: Routes = [
             { path: 'reservas', component: ReservasComponent },
             { path: 'visitas', component: VisitasComponent },
             { path: 'home', component: HomeComponent },
-            { path: 'bitacora', component: BitacoraComponent }
+            { path: 'bitacora', component: BitacoraComponent },
+            {path: 'insumos', component: InsumosComponent }
         ]
     }]
 },
