@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { Roles } from './roles.model';
 
@@ -13,8 +14,9 @@ export class RolesService {
     private bitacora: boolean;
     private bitacora$: Subject<boolean> = new Subject();
 
-    constructor() {
-
+    constructor(
+        private router: Router
+    ) {
         this.roles = [{
             admin: false,
             directorio: false,
@@ -23,6 +25,25 @@ export class RolesService {
             copropietario: false,
             comite: false
         }];
+
+        const route = (this.router.url).split('/', 3);
+
+        if (route[1] == 'propietario') {
+            this.roles[0].propietario = true;
+            this.roles[0].conserje = false;
+            this.roles[0].admin = false;
+        }
+        if (route[1] == 'conserje') {
+            this.roles[0].propietario = false;
+            this.roles[0].conserje = true;
+            this.roles[0].admin = false;
+        }
+        if (route[1] == 'admin') {
+            this.roles[0].propietario = false;
+            this.roles[0].conserje = false;
+            this.roles[0].admin = true;
+        }
+        this.roles$.next(this.roles);
 
         this.bitacora = false;
 
