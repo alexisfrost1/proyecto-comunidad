@@ -1,5 +1,7 @@
 const sql = require('mssql');
-const env = require('./config.js');
+//const env = require('./config.js');
+
+console.log(process.env.DB_PORT);
 
 const config = {
     user: process.env.USER,
@@ -9,9 +11,10 @@ const config = {
     options: {
         trustedconnection: true,
         enableArithAbort: true,
+        trustServerCertificate: true,
         instancename: process.env.INSTANCENAME  // SQL Server instance name
     },
-    port: process.env.DB_PORT,
+    port: parseInt(process.env.DB_PORT),
     pool: {
         max: 8,
         min: 0,
