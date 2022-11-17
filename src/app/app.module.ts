@@ -30,7 +30,7 @@ import { AngularMaterialModule } from './angular-material.module';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { BitacoraComponent } from './Pages/bitacora/bitacora.component'; 
-import { MatTimepickerModule } from 'mat-timepicker';
+
 import { RolesService } from './services/roles.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { editReservas, ReservasComponent } from './Pages/reservas/reservas.component';
@@ -111,7 +111,7 @@ export function tokenGetter() {
     MatIconModule,
     MatListModule,
     HttpClientModule,
-    MatTimepickerModule,
+
     MatDialogModule,
       JwtModule.forRoot({
           config: {
