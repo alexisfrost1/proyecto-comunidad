@@ -79,9 +79,11 @@ export class MantencionesComponent implements OnInit {
 	this.bBitacora$.subscribe( bBitacora => this.bBitacora = bBitacora);
   }
 
-	Submit() {
+  Submit() {
+    /*
 		this.fecha.setHours(this.hora.getHours());
 		this.fecha.setMinutes(this.hora.getMinutes());
+    */
 		console.log(this.fecha);
 	}
 }

@@ -101,10 +101,12 @@
                                 <mat-icon matSuffix></mat-icon>
                                 Hora
                             </mat-label>
-                            <input matInput matTimepicker #t7="matTimepicker" [minDate]="minHour" [maxDate]="maxHour"
-                                   mode="24h" [ngModel]="hora" (timeChange)="timeChange($event)"
-                                   placeholder="Please select time..." name="hora">
-                            <mat-icon matSuffix (click)="t7.showDialog()">access_time</mat-icon>
+                            <!--
+                                <input matInput matTimepicker #t7="matTimepicker" [minDate]="minHour" [maxDate]="maxHour"
+                                       mode="24h" [ngModel]="hora" (timeChange)="timeChange($event)"
+                                       placeholder="Please select time..." name="hora">
+                                <mat-icon matSuffix (click)="t7.showDialog()">access_time</mat-icon>
+                            -->
                         </mat-form-field>
                     </p>
                     <button class="margen" mat-raised-button type="submit" color="primary">Guardar</button>

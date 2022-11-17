@@ -1,4 +1,4 @@
-﻿import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { RolesService } from 'src/app/services/roles.service';
 import { Roles } from 'src/app/services/roles.model';
 import { HttpClient } from '@angular/common/http';
@@ -126,6 +126,6 @@ export class ConserjeriaService implements OnDestroy{
     }
 
     ngOnDestroy() {
-        this.stopConserjeria.next();
+        this.stopConserjeria.next(true);
     }
 }

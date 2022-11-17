@@ -42,7 +42,7 @@
                         <p [hidden]="data.n_area == 0">
                             <mat-form-field appearance="outline">
                                 <mat-label>Fecha a reservar</mat-label>
-                                <input matInput [matDatepicker]="displayFecha" name="displayFecha" [(ngModel)]="data.fecha" disabled>
+                                <input matInput [matDatepicker]="displayFecha" name="displayFecha" [(ngModel)]="data.fecha" readonly>
                                 <mat-datepicker-toggle matSuffix [for]="displayFecha"></mat-datepicker-toggle>
                                 <mat-datepicker #displayFecha></mat-datepicker>
                                 <mat-calendar #calendar [dateClass]="dateClass" [minDate]="minDate" [maxDate]="maxDate" [(selected)]="data.fecha"></mat-calendar>

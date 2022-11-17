@@ -131,7 +131,7 @@ export class ReservasService implements OnDestroy{
     }
 
     ngOnDestroy() {
-        this.stopReservas.next();
+        this.stopReservas.next(true);
     }
 
 }
