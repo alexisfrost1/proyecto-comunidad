@@ -1,64 +1,53 @@
 <h1 mat-dialog-title>Reagendar</h1>
-<div mat-dialog-content>
+<mat-dialog-content>
     <mat-card>
         <form>
             <mat-card-content>
-                <div class="form-container">
-                    <div class="form-block">
-                        <p>
-                            <mat-form-field appearance="outline">
-                                <mat-label>
-                                    <mat-icon matSuffix>person_outline</mat-icon>
-                                    Nombre de propietario/copropietario
-                                </mat-label>
-                                <input type="text" matInput placeholder="Su Nombre" name="nombre" [(ngModel)]="data.nombre">
-                                <mat-hint>Ingrese su nombre</mat-hint>
-                            </mat-form-field>
-                        </p>
-                        <p>
-                            <mat-form-field appearance="outline">
-                                <mat-label>
-                                    <mat-icon matSuffix>tag</mat-icon>
-                                    Ingrese su Rut
-                                </mat-label>
-                                <input type="text" matInput placeholder="Rut" name="rut" [(ngModel)]="data.rut">
-                                <mat-hint>Rut</mat-hint>
-                            </mat-form-field>
-                        </p>
-                        <p>
-                            <mat-form-field appearance="outline">
-                                <mat-label>
-                                    <mat-icon matSuffix>villa</mat-icon>
-                                    Area Común
-                                </mat-label>
-                                <mat-select [(value)]="data.n_area" (selectionChange)="fechasReserva()">
-                                    <mat-option *ngFor="let area of areaComun" [value]="area.n_area">{{area.nombre_area}}</mat-option>
-                                </mat-select>
-                                <mat-hint>Lugar a reservar</mat-hint>
-                            </mat-form-field>
-                        </p>
-                    </div>
-                    <div class="form-block">
-                        <p [hidden]="data.n_area == 0">
-                            <mat-form-field appearance="outline">
-                                <mat-label>Fecha a reservar</mat-label>
-                                <input matInput [matDatepicker]="displayFecha" name="displayFecha" [(ngModel)]="data.fecha" readonly>
-                                <mat-datepicker-toggle matSuffix [for]="displayFecha"></mat-datepicker-toggle>
-                                <mat-datepicker #displayFecha></mat-datepicker>
-                                <mat-calendar #calendar [dateClass]="dateClass" [minDate]="minDate" [maxDate]="maxDate" [(selected)]="data.fecha"></mat-calendar>
-                                <mat-hint>Fechas disponibles</mat-hint>
-                            </mat-form-field>
 
-                        </p>
-                    </div>
+                <mat-form-field appearance="outline">
+                    <mat-label>
+                        <mat-icon matSuffix>person_outline</mat-icon>
+                        Nombre de propietario/copropietario
+                    </mat-label>
+                    <input type="text" matInput placeholder="Su Nombre" name="nombre" [(ngModel)]="reserva.nombre">
+                    <mat-hint>Ingrese su nombre</mat-hint>
+                </mat-form-field>
 
-                </div>
+                <mat-form-field appearance="outline">
+                    <mat-label>
+                        <mat-icon matSuffix>tag</mat-icon>
+                        Ingrese su Rut
+                    </mat-label>
+                    <input type="text" matInput placeholder="Rut" name="rut" [(ngModel)]="reserva.rut">
+                    <mat-hint>Rut</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>
+                        <mat-icon matSuffix>villa</mat-icon>
+                        Area Común
+                    </mat-label>
+                    <mat-select [(value)]="reserva.n_area" (selectionChange)="fechasReserva()">
+                        <mat-option *ngFor="let area of areaComun" [value]="area.n_area">{{area.nombre_area}}</mat-option>
+                    </mat-select>
+                    <mat-hint>Lugar a reservar</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field [hidden]="reserva.n_area == 0" appearance="outline">
+                    <mat-label>Fecha a reservar</mat-label>
+                    <input matInput [matDatepicker]="displayFecha" name="displayFecha" [(ngModel)]="reserva.fecha" readonly>
+                    <mat-datepicker-toggle matSuffix [for]="displayFecha"></mat-datepicker-toggle>
+                    <mat-datepicker #displayFecha></mat-datepicker>
+                    <mat-calendar #calendar [dateClass]="dateClass" [minDate]="minDate" [maxDate]="maxDate" [(selected)]="reserva.fecha"></mat-calendar>
+                    <mat-hint>Fechas disponibles</mat-hint>
+                </mat-form-field>
+
             </mat-card-content>
         </form>
     </mat-card>
-</div>
-<div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Cancelar</button>
-    <button *ngIf="data.fecha != undefined && data.nombre != undefined && data.rut != undefined && data.nombre != '' && data.rut!=''"
-       mat-button [mat-dialog-close]="this.data" cdkFocusInitial>Aceptar</button>
-</div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button type="button" mat-button (click)="onNoClick()">Cancelar</button>
+    <button type="button" *ngIf="reserva.fecha != undefined && reserva.nombre != undefined && reserva.rut != undefined && reserva.nombre != '' && reserva.rut!=''"
+       mat-button (click)="onConfirm()" cdkFocusInitial>Aceptar</button>
+</mat-dialog-actions>

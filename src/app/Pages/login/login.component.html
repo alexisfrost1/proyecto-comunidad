@@ -1,37 +1,26 @@
-<div class="back">
-<div>
-    <mat-card class="line">
-        <h1 class="text-top">Bienvenido</h1>
-    </mat-card>
-    
-</div>
-<div class="login">
-    <mat-card class="card-color">
 
+<mat-toolbar class=" bg-violet-600 w-full">
+    <h1 class="text-white p-[1%]">Bienvenido</h1>
+</mat-toolbar>
+
+<div class=" bg-gray-400 pt-[10%]">
+    <mat-card class="w-[35%] m-auto p-[1%]">
         <mat-card-header>
-            <mat-card-tittle class="text-tittle">
-                <br>
-                <h1>
-                    Inicio sesión
-                </h1>
+            <mat-card-tittle class=" text-violet-600">
+                <h1>Inicio sesión</h1>
             </mat-card-tittle>
         </mat-card-header>
-
-        <mat-tab-group animationDuration="10ms" [(selectedIndex)]="role" (selectedTabChange)="check()">
+        <mat-tab-group class=" m-auto" animationDuration="10ms" mat-stretch-tabs="false" mat-align-tabs="start" [(selectedIndex)]="role" (selectedTabChange)="check()">
             <mat-tab label="Propietario">
-
             </mat-tab>
             <mat-tab label="Conserje">
-
             </mat-tab>
             <mat-tab label="Administrador">
-
             </mat-tab>
         </mat-tab-group>
-
         <form>
-            <mat-card-content class="border">
-                <mat-form-field class="example-full-width" appearance="fill">
+            <mat-card-content>
+                <mat-form-field appearance="fill">
                     <mat-label>Email</mat-label>
                     <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
                     <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
@@ -41,9 +30,9 @@
                         Email is <strong>required</strong>
                     </mat-error>
                 </mat-form-field>
-                <mat-form-field class="example-full-width" appearance="fill">
+                <mat-form-field appearance="fill">
                     <mat-label>Password</mat-label>
-                    <input type="password" matInput [formControl]="emailFormControl" placeholder="asdf1234">
+                    <input type="password" matInput [formControl]="emailFormControl" placeholder="password">
                     <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
                         Please enter a valid Password
                     </mat-error>
@@ -52,10 +41,15 @@
                     </mat-error>
                 </mat-form-field>
             </mat-card-content>
-            <button *ngIf="role==2" mat-stroked-button color="primary" routerLink='/admin/comunidad/home' type="submit" class="border">Log in</button>
-            <button *ngIf="role==1" mat-stroked-button color="primary" routerLink='/conserje/comunidad/home' type="submit" class="border">Log in</button>
-            <button *ngIf="role==0" mat-stroked-button color="primary" routerLink='/propietario/comunidad/home' type="submit" class="border">Log in</button>
+            <mat-card-actions>
+                <button *ngIf="role==2" mat-stroked-button color="primary" routerLink='/admin/comunidad/home' type="submit">Log in</button>
+                <button *ngIf="role==1" mat-stroked-button color="primary" routerLink='/conserje/comunidad/home' type="submit">Log in</button>
+                <button *ngIf="role==0" mat-stroked-button color="primary" routerLink='/propietario/comunidad/home' type="submit">Log in</button>
+            </mat-card-actions>
         </form>
     </mat-card>
 </div>
-</div>
+        
+
+    
+

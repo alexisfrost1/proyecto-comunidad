@@ -16,7 +16,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 })
 export class MainNavComponent implements OnInit{
 
-    roles: Roles[];
+    roles: Roles[] = [];
     roles$!: Observable<Roles[]>;
 
     route: string | any;
@@ -48,6 +48,8 @@ export class MainNavComponent implements OnInit{
     private rolesService: RolesService,
     private router: Router
   ) {
+      this.roles$ = this.rolesService.getRoles$();
+      this.roles$.subscribe(roles => this.roles = roles);
       this.roles = this.rolesService.getRoles();
       console.log(this.roles[0].propietario, this.roles[0].conserje, this.roles[0].admin)
 

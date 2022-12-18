@@ -2,11 +2,10 @@
 import { Area, Reserva, Reserva_comunidad } from './reservas.model';
 import { ReservasService } from './reservas.service';
 import { RolesService } from 'src/app/services/roles.service';
-import { Observable } from 'rxjs';
-import { MatCalendar, MatCalendarCellClassFunction, MatCalendarCellCssClasses } from '@angular/material/datepicker';
-import { MatTabGroup } from '@angular/material/tabs';
+import { Subject, takeUntil } from 'rxjs';
+import { MatCalendar, MatCalendarCellClassFunction } from '@angular/material/datepicker';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
     selector: 'app-reservas',
@@ -20,26 +19,25 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 
 export class ReservasComponent implements OnInit, OnDestroy {
 
-    //o_areaComun$: Observable<Area[]>;
-    //o_reservasUnidad$: Observable<Reserva_comunidad[]>;
-    //o_reservasComunidad$: Observable<Reserva[]>;
-
     minDate: Date;
     maxDate: Date;
-    fechaReserva: Date | any;
-    nombre: string | any;
-    rut: string | any;
-    nReserva: number | undefined;
+    
+    reserva: Reserva;
+
     bBitacora: boolean;
 
+    // Table
     reservas = new MatTableDataSource<Reserva>();
+    displayedColumns: string[] = ['rut','nombre', 'fecha', 'nombre_area', 'opciones'];
+    // Data
+    areaComun: Area[] = [];
+    reservasComunidad: Reserva_comunidad[] = [];
+    fechas_nodisponibles: Date[] = [];
+
+    unsubscribe = new Subject();
+
     @ViewChild(MatCalendar) calendar!: MatCalendar<Date>;
     tabReserva: number = 0;
-
-    areaComun: Area[] ;
-    reservasComunidad: Reserva_comunidad[] ;
-    fechas_nodisponibles: Date[] = [];
-    displayedColumns: string[] = ['rut','nombre', 'fecha', 'n_area', 'nombre_area', 'opciones'];
 
     constructor(
         private reservasService: ReservasService,
@@ -49,23 +47,31 @@ export class ReservasComponent implements OnInit, OnDestroy {
         this.bBitacora = this.roles.bitacoraState();
 
         if (this.bBitacora) {
-            this.displayedColumns = ['rut','nombre', 'fecha', 'n_area', 'nombre_area'];
+            this.displayedColumns = ['rut','nombre', 'fecha', 'nombre_area'];
         }
 
-        this.nReserva = 0;
+        this.reserva = this.defaultReserva();
 
         //* Rango de fechas en las que es posible reservar*//
         this.minDate = new Date();
         this.maxDate = new Date((new Date()).setDate((new Date()).getDate() + 90));
 
-        //this.o_areaComun$ =         reservasService.getAreas();
-        //this.o_reservasUnidad$ =    reservasService.getReservas();
-        //this.o_reservasComunidad$ = reservasService.getReservasComunidad();
+    }
 
-        this.areaComun = reservasService.getAreas();
-        this.reservas.data = reservasService.getReservas();
-        this.reservasComunidad = reservasService.getReservasComunidad();
+    defaultReserva(){
+        return {
+            nombre: "",
+            rut: "",
+            fecha: undefined,
+            n_area: 0
+        };
+    }
 
+    dateString(d: any){
+        if(d!= undefined){
+            d = d.toLocaleDateString();
+        }
+        return d;
     }
 
     fechasReserva() {
@@ -74,12 +80,12 @@ export class ReservasComponent implements OnInit, OnDestroy {
 
         for (var i = 0; i < this.reservasComunidad.length; i++) {
 
-            if (this.nReserva == this.reservasComunidad[i].n_area) {
+            if (this.reserva.n_area == this.reservasComunidad[i].n_area) {
                 this.fechas_nodisponibles.push(new Date(this.reservasComunidad[i].fecha));
             }
 
         }
-        this.fechaReserva = undefined;
+        this.reserva.fecha = undefined;
         this.calendar.updateTodaysDate();
     }
 
@@ -103,55 +109,74 @@ export class ReservasComponent implements OnInit, OnDestroy {
     Reagendar(i: number):void {
 
         const editModal = this.dialog.open(editReservas, {
-            width: '60%',
             data: {
-                index:       i,
-                nombre:      this.reservas.data[i].nombre,
-                rut:         this.reservas.data[i].rut,
-                fecha:       this.reservas.data[i].fecha,
-                n_area:      this.reservas.data[i].n_area,
-                nombre_area: this.reservas.data[i].nombre_area
-            },
-            
+                index:   i,
+                areaComun: this.areaComun,
+                reservasComunidad: this.reservasComunidad
+            },      
         });
 
         editModal.afterClosed().subscribe(result => {
-            
-            if (!(result == undefined)) {
-                this.reservas.data[i].nombre      = result.nombre;
-                this.reservas.data[i].rut         = result.rut;
-                this.reservas.data[i].fecha       = result.fecha;
-                this.reservas.data[i].n_area      = result.n_area;
-                this.reservas.data[i].nombre_area = result.nombre_area;
+
+            if (result != undefined) {
+                this.reservasService.updateReserva(result,i);
                 console.log('Cambios realizados en la posición',i);
             } else {
                 console.log('Cambios cancelados');
                 editModal.close();
             }
- 
         });
 
     }
 
     Cancelar(i: number) {
         this.reservasService.deleteReserva(i);
-        this.reservas.data = this.reservasService.getReservas();
-    }
-
-    ngOnInit(): void {
-    }
-
-    ngOnDestroy() {
-        this.reservasService.ngOnDestroy();
     }
 
     Submit() {
 
-        this.nReserva = 0;
-        this.fechaReserva = undefined;
-        this.nombre = '';
-        this.rut = '';
+        this.reservasService.addReserva(this.reserva);
+        this.reserva = this.defaultReserva();
         this.tabReserva = 1;
+    }
+
+    ngOnInit(): void {
+
+        this.reservasService.getAreas$().pipe(takeUntil(this.unsubscribe)).subscribe({
+            next: (data) => {
+                this.areaComun = data;
+            },
+            error: (error) => {
+                console.log(error)
+            },
+            complete: () => {}
+        });
+
+        this.reservasService.getReservas$().pipe(takeUntil(this.unsubscribe)).subscribe({
+            next: (data) => {
+                this.reservas.data = data;
+            },
+            error: (error) => {
+                console.log(error)
+            },
+            complete: () => {}
+        });
+
+        this.reservasService.getReservasComunidad$().pipe(takeUntil(this.unsubscribe)).subscribe({
+            next: (data) => {
+                this.reservasComunidad = data;
+            },
+            error: (error) => {
+                console.log(error)
+            },
+            complete: () => {}
+        });
+
+    }
+
+    ngOnDestroy() {
+        this.unsubscribe.next(true);
+        this.unsubscribe.complete();
     }
 
 }
@@ -173,37 +198,31 @@ export class editReservas {
     maxDate: Date;
     index: number;
 
-    //o_areaComun$: Observable<Area[]>;
-    //o_reservasUnidad$: Observable<Reserva_comunidad[]>;
-    //o_reservasComunidad$: Observable<Reserva[]>;
-
-    areaComun: Area[];
-    reservasComunidad: Reserva_comunidad[];
+    reserva: Reserva;
+    areaComun: Area[] = [];
+    reservasComunidad: Reserva_comunidad[] = [];
 
     fechas_nodisponibles: Date[] = [];
 
     @ViewChild(MatCalendar) calendar!: MatCalendar<Date>;
 
     constructor(
-        public editModal: MatDialogRef<editReservas>,
+        private editModal: MatDialogRef<editReservas>,
         @Inject(MAT_DIALOG_DATA) public data: any,
-        private reservasService: ReservasService,
-        private roles: RolesService,
+        private reservasService: ReservasService
     ) {
         this.minDate = new Date();
         this.maxDate = new Date((new Date()).setDate((new Date()).getDate() + 90));
         this.index = data.index;
 
-        //this.o_areaComun$ =         reservasService.getAreas();
-        //this.o_reservasComunidad$ = reservasService.getReservasComunidad();
-
-        this.areaComun = reservasService.getAreas();
-        this.reservasComunidad = reservasService.getReservasComunidad();
+        this.areaComun = data.areaComun;
+        this.reserva = this.reservasService.getReserva(this.index);
+        this.reservasComunidad = data.reservasComunidad;
 
         for (var i = 0; i < this.reservasComunidad.length; i++) {
 
-            if (!(this.index == i)) {
-                if (this.data.n_area == this.reservasComunidad[i].n_area) {
+            if (this.index != i) {
+                if (this.reserva.n_area == this.reservasComunidad[i].n_area) {
                                 this.fechas_nodisponibles.push(new Date(this.reservasComunidad[i].fecha));
                 }
             }
@@ -215,17 +234,13 @@ export class editReservas {
     fechasReserva() {
 
         this.fechas_nodisponibles = [];
-
         for (var i = 0; i < this.reservasComunidad.length; i++) {
 
-            if (!(this.index == i)) {
-                if (this.data.n_area == this.reservasComunidad[i].n_area) {
-                    this.fechas_nodisponibles.push(new Date(this.reservasComunidad[i].fecha));
-                }
+            if (this.reserva.n_area == this.reservasComunidad[i].n_area) {
+                this.fechas_nodisponibles.push(new Date(this.reservasComunidad[i].fecha));
             }
-
         }
-        this.data.fecha = undefined;
+        this.reserva.fecha = undefined;
         this.calendar.updateTodaysDate();
     }
 
@@ -244,6 +259,10 @@ export class editReservas {
         }
 
         return '';
+    }
+
+    onConfirm(): void {
+        this.editModal.close(this.reserva);
     }
 
     onNoClick(): void {

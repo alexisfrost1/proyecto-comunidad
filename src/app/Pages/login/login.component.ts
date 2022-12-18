@@ -25,8 +25,6 @@ export class LoginComponent implements OnInit{
 
     role: number = 0;
 
-
-
   constructor(
 //    public formBuilder: FormBuilder,
  //   public ngZone: NgZone, // NgZone service to remove outside scope warning

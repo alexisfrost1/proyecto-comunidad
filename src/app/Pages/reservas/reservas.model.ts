@@ -1,5 +1,5 @@
 export interface Area {
-    n_area: number;         // id_unidad del área común
+    n_area: number;         // id_unidad del ï¿½rea comï¿½n
     nombre_area: string;
 }
 
@@ -7,11 +7,10 @@ export interface Reserva {
     nombre: string;
     rut: string | any;
     fecha: Date | any;
-    n_area: number;         // id_unidad del área común
-    nombre_area: string;
+    n_area: number | any;         // id_unidad del ï¿½rea comï¿½n
 }
 
 export interface Reserva_comunidad {
-    n_area: number;         // id_unidad del área común
+    n_area: number;         // id_unidad del ï¿½rea comï¿½n
     fecha: Date;
 }
