@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation,OnDestroy } from '@angular/core';
 import { MatTabGroup } from '@angular/material/tabs';
-import { RolesService } from 'src/app/services/roles.service';
+import { RolesService } from 'src/app/Services/roles.service';
 import { bitacora, departamento, registro } from './bitacora.model'
 import { BitacoraService } from './bitacora.service';
 import {VisitasComponent} from '../visitas/visitas.component'

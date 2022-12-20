@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation,Inject  } from '@angular/core';
 import { MatTabGroup } from '@angular/material/tabs';
 import { Observable } from 'rxjs';
-import { RolesService } from 'src/app/services/roles.service';
+import { RolesService } from 'src/app/Services/roles.service';
 import { Insumos } from './insumos.model';
 import { InsumosService } from './insumos.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';

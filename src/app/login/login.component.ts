@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { RolesService } from 'src/app/services/roles.service';
+import { RolesService } from '../Services/roles.service';
 import { FormBuilder, FormGroup, Validators,FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 //import { AuthService } from 'src/app/services/auth.service';
@@ -37,7 +37,8 @@ export class LoginComponent implements OnInit{
 
   ngOnInit(): void {
  //   this.loginForm = this.createLoginForm();
-    }
+ 
+  }
 
  /* private createLoginForm() {
    return this.formBuilder.group({
@@ -93,7 +94,9 @@ export class LoginComponent implements OnInit{
 
   }*/
 
-    check() {
-        this.roles.loginRoles(this.role);
-    }
+check() {
+  console.log(this.role)
+  this.roles.loginRoles(this.role);
+}
+
 }

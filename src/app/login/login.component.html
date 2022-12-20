@@ -1,0 +1,54 @@
+
+<div class=" bg-gray-400 h-full">
+    <mat-toolbar class=" bg-violet-600 w-full">
+        <h1 class="text-white p-[1%]">Bienvenido</h1>
+    </mat-toolbar>
+    <mat-divider class=" bg-violet-300 h-[0.2%]"></mat-divider>
+    <mat-card class=" w-[30%] m-auto p-[0.5%] bg-yellow-50 absolute top-[10%]">
+        <form class="bg-yellow-100">
+            <mat-card-header>
+                <mat-card-tittle class=" text-violet-600">
+                    <h1>Inicio sesión</h1>
+                </mat-card-tittle>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-form-field appearance="fill" class=" w-full">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
+                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                        Please enter a valid email address
+                    </mat-error>
+                    <mat-error *ngIf="emailFormControl.hasError('required')">
+                        Email is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class=" w-full">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput [formControl]="emailFormControl" placeholder="password">
+                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                        Please enter a valid Password
+                    </mat-error>
+                    <mat-error *ngIf="emailFormControl.hasError('required')">
+                        Password is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-button-field appearance="fill" class=" w-full">
+                    <mat-radio-group name="role" [(ngModel)]="role" (change)="check()">
+                        <mat-radio-button [value]="0">Propietario</mat-radio-button>
+                        <mat-radio-button [value]="1">Conserje</mat-radio-button>
+                        <mat-radio-button [value]="2">Administrador</mat-radio-button>
+                    </mat-radio-group>
+                </mat-button-field>
+            </mat-card-content>
+            <mat-card-actions>
+                <button class=" absolute left-[70%]" *ngIf="role==2" mat-raised-button color="primary" routerLink='/admin/comunidad/home' type="submit">Log in</button>
+                <button class=" absolute left-[70%]" *ngIf="role==1" mat-raised-button color="primary" routerLink='/conserje/comunidad/home' type="submit">Log in</button>
+                <button class=" absolute left-[70%]" *ngIf="role==0" mat-raised-button color="primary" routerLink='/propietario/comunidad/home' type="submit">Log in</button>
+            </mat-card-actions>
+        </form>
+    </mat-card>
+</div>
+        
+
+    
+

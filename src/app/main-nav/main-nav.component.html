@@ -1,34 +1,34 @@
 
-<mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer class="sidenav" fixedInViewport
+<mat-sidenav-container class=" h-full">
+    <mat-sidenav #drawer class=" w-[20%] h-full bg-orange-600" fixedInViewport
                  [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
                  [mode]="(isHandset$ | async) ? 'over' : 'side'"
                  [opened]="(isHandset$ | async) === false">
 
-        <mat-nav-list class="side-list">
-            <mat-toolbar>Menu</mat-toolbar>
-            <hr color="gray">
+        <mat-nav-list>
+            <mat-toolbar class=" bg-inherit min-h-[15%]">Menu</mat-toolbar>
+            <mat-divider></mat-divider>
 
             <div *ngIf="this.roles[0].admin">
                 <a mat-list-item routerLink='{{route}}/home' class="text">
                     <mat-icon aria-hidden="false">home</mat-icon>
                     Home
                 </a>
-                <hr color="gray">
+                <mat-divider></mat-divider>
 
                 <a mat-list-item class="text" (click)="Comunidad()">
+                    <mat-icon class="menu-button" [ngClass]="{'rotated' : comunidad}">expand_more</mat-icon>
                     <mat-icon aria-hidden="false"></mat-icon>
                     <span class="expand">Comunidad</span>
-                    <mat-icon class="menu-button" [ngClass]="{'rotated' : comunidad}">expand_more</mat-icon>
                 </a>
                 <mat-expansion-panel class="expandable-item" [expanded]="comunidad" hideToggle>
-                    <hr color="gray">
+                    <mat-divider></mat-divider>
 
                     <a mat-list-item routerLink='{{route}}/panel' class="text">
                         <mat-icon aria-hidden="false"></mat-icon>
                         Panel
                     </a>
-                    <hr color="gray">
+                    <mat-divider></mat-divider>
 
                     <a mat-list-item routerLink='{{route}}/propiedades' class="text">
                         <mat-icon aria-hidden="false"></mat-icon>
@@ -36,27 +36,27 @@
                     </a>
 
                 </mat-expansion-panel>
-                <hr color="gray">
+                <mat-divider></mat-divider>
 
                 <a mat-list-item class="text" (click)="Contabilidad()">
+                    <mat-icon class="menu-button" [ngClass]="{'rotated' : contabilidad}">expand_more</mat-icon>
                     <mat-icon aria-hidden="false"></mat-icon>
                     <span class="expand">Contabilidad</span>
-                    <mat-icon class="menu-button" [ngClass]="{'rotated' : contabilidad}">expand_more</mat-icon>
                 </a>
                 <mat-expansion-panel class="expandable-item" [expanded]="contabilidad" hideToggle>
-                    <hr color="gray">
+                    <mat-divider></mat-divider>
 
                     <a mat-list-item routerLink='{{route}}/fondos' class="text">
                         <mat-icon aria-hidden="false"></mat-icon>
                         Fondos
                     </a>
-                    <hr color="gray">
+                    <mat-divider></mat-divider>
 
                     <a mat-list-item routerLink='{{route}}/ingresos' class="text">
                         <mat-icon aria-hidden="false"></mat-icon>
                         Ingresos
                     </a>
-                    <hr color="gray">
+                    <mat-divider></mat-divider>
 
                     <a mat-list-item routerLink='{{route}}/egresos' class="text">
                         <mat-icon aria-hidden="false"></mat-icon>
@@ -64,33 +64,33 @@
                     </a>
 
                 </mat-expansion-panel>
-                <hr color="gray">
+                <mat-divider></mat-divider>
 
                 <a mat-list-item class="text" (click)="Gasto_comun()">
+                    <mat-icon class="menu-button" [ngClass]="{'rotated' : gasto_comun}">expand_more</mat-icon>
                     <mat-icon aria-hidden="false"></mat-icon>
                     <span class="expand">Gastos comunes</span>
-                    <mat-icon class="menu-button" [ngClass]="{'rotated' : gasto_comun}">expand_more</mat-icon>
                 </a>
                 <mat-expansion-panel class="expandable-item" [expanded]="gasto_comun" hideToggle>
-                    <hr color="gray">
+                    <mat-divider></mat-divider>
 
                     <a mat-list-item routerLink='{{route}}/totales-mensuales' class="text">
                         <mat-icon aria-hidden="false"></mat-icon>
                         Totales mensuales
                     </a>
-                    <hr color="gray">
+                    <mat-divider></mat-divider>
 
                     <a mat-list-item routerLink='{{route}}/cobros-individuales' class="text">
                         <mat-icon aria-hidden="false"></mat-icon>
                         Cobros individuales
                     </a>
-                    <hr color="gray">
+                    <mat-divider></mat-divider>
 
                     <a mat-list-item routerLink='{{route}}/colillas' class="text">
                         <mat-icon aria-hidden="false"></mat-icon>
                         Colillas
                     </a>
-                    <hr color="gray">
+                    <mat-divider></mat-divider>
 
                     <a mat-list-item routerLink='{{route}}/deudas' class="text">
                         <mat-icon aria-hidden="false"></mat-icon>
@@ -98,33 +98,33 @@
                     </a>
 
                 </mat-expansion-panel>
-                <hr color="gray">
+                <mat-divider></mat-divider>
 
                 <a mat-list-item routerLink='{{route}}/bitacora' class="text">
                     <mat-icon aria-hidden="false">hail</mat-icon>
                     Bitácora
                 </a>
-                <hr color="gray">
+                <mat-divider></mat-divider>
                 <a mat-list-item routerLink='{{route}}/visitas' class="text">
                     <mat-icon aria-hidden="false">hail</mat-icon>
                     Visitas
                 </a>
-                <hr color="gray">
+                <mat-divider></mat-divider>
                 <a mat-list-item routerLink='{{route}}/encomiendas' class="text">
                     <mat-icon aria-hidden="false">shopping_bag</mat-icon>
                     Encomiendas
                 </a>
-                <hr color="gray">
+                <mat-divider></mat-divider>
                 <a mat-list-item routerLink='{{route}}/reservas' class="text">
                     <mat-icon aria-hidden="false">event</mat-icon>
-                    Reservas Área Común
+                    Reservas
                 </a>
-                <hr color="gray">
+                <mat-divider></mat-divider>
                 <a mat-list-item routerLink='{{route}}/mantenciones' class="text">
                     <mat-icon aria-hidden="false">build</mat-icon>
                     Mantenciones
                 </a>
-                <hr color="gray">
+                <mat-divider></mat-divider>
             </div>
 
             <div *ngIf="this.roles[0].conserje">
@@ -132,32 +132,32 @@
                     <mat-icon aria-hidden="false">home</mat-icon>
                     Home
                 </a>
-                <hr color="gray">
+                <mat-divider></mat-divider>
                 <a mat-list-item routerLink='{{route}}/bitacora' class="text">
                     <mat-icon aria-hidden="false">hail</mat-icon>
                     Bitácora
                 </a>
-                <hr color="gray">
+                <mat-divider></mat-divider>
                 <a mat-list-item routerLink='{{route}}/visitas' class="text">
                     <mat-icon aria-hidden="false">hail</mat-icon>
                     Visitas
                 </a>
-                <hr color="gray">
+                <mat-divider></mat-divider>
                 <a mat-list-item routerLink='{{route}}/encomiendas' class="text">
                     <mat-icon aria-hidden="false">shopping_bag</mat-icon>
                     Encomiendas
                 </a>
-                <hr color="gray">
+                <mat-divider></mat-divider>
                 <a mat-list-item routerLink='{{route}}/reservas' class="text">
                     <mat-icon aria-hidden="false">event</mat-icon>
-                    Reservas Área Común
+                    Reservas
                 </a>
-                <hr color="gray">
+                <mat-divider></mat-divider>
                 <a mat-list-item routerLink='{{route}}/mantenciones' class="text">
                     <mat-icon aria-hidden="false">build</mat-icon>
                     Mantenciones
                 </a>
-                <hr color="gray">
+                <mat-divider></mat-divider>
             </div>
 
             <div *ngIf="this.roles[0].propietario">
@@ -165,34 +165,34 @@
                     <mat-icon aria-hidden="false">home</mat-icon>
                     Home
                 </a>
-                <hr color="gray">
+                <mat-divider></mat-divider>
                 <a mat-list-item routerLink='{{route}}/visitas' class="text">
                     <mat-icon aria-hidden="false">hail</mat-icon>
                     Visitas
                 </a>
-                <hr color="gray">
+                <mat-divider></mat-divider>
                 <a mat-list-item routerLink='{{route}}/encomiendas' class="text">
                     <mat-icon aria-hidden="false">shopping_bag</mat-icon>
                     Encomiendas
                 </a>
-                <hr color="gray">
+                <mat-divider></mat-divider>
                 <a mat-list-item routerLink='{{route}}/reservas' class="text">
                     <mat-icon aria-hidden="false">event</mat-icon>
-                    Reservas Área Común
+                    Reservas
                 </a>
-                <hr color="gray">
+                <mat-divider></mat-divider>
                 <a mat-list-item routerLink='{{route}}/mantenciones' class="text">
                     <mat-icon aria-hidden="false">build</mat-icon>
                     Mantenciones
                 </a>
-                <hr color="gray">
+                <mat-divider></mat-divider>
             </div>
 
         </mat-nav-list>
     </mat-sidenav>
 
     <mat-sidenav-content>
-        <mat-toolbar color="primary" class="toolbar">
+        <mat-toolbar color="primary" class=" h-[12%]">
             <button type="button"
                     aria-label="Toggle sidenav"
                     mat-icon-button
@@ -201,8 +201,8 @@
                 <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
             <span>proyecto-comunidad</span>
-            <div class="right">
-                <button mat-fab color="warn" routerLink='/login' aria-label="Example icon button with a home icon">
+            <div class=" absolute right-[5%]">
+                <button type="button" mat-fab color="warn" routerLink='/login' aria-label="Example icon button with a home icon">
                     <mat-icon>logout</mat-icon>
                 </button>
             </div>

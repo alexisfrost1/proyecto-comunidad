@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit, ViewChild, ViewEncapsulation, OnDestroy, Inject } from '@angular/core';
 import { Area, Reserva, Reserva_comunidad } from './reservas.model';
 import { ReservasService } from './reservas.service';
-import { RolesService } from 'src/app/services/roles.service';
+import { RolesService } from 'src/app/Services/roles.service';
 import { Subject, takeUntil } from 'rxjs';
 import { MatCalendar, MatCalendarCellClassFunction } from '@angular/material/datepicker';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';

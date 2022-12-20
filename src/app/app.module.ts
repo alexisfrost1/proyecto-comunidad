@@ -4,7 +4,7 @@ import { TransferHttpCacheModule } from '@nguniversal/common';
 import { MatSliderModule } from '@angular/material/slider';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './Pages/login/login.component';
+import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './Pages/home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -31,7 +31,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { BitacoraComponent } from './Pages/bitacora/bitacora.component'; 
 
-import { RolesService } from './services/roles.service';
+import { RolesService } from './Services/roles.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { editReservas, ReservasComponent } from './Pages/reservas/reservas.component';
 import { ConserjeriaComponent, newConserjeria } from './Pages/conserjeria/conserjeria.component';
