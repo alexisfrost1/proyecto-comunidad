@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation, OnDestroy, Inject } from '@angular/core';
 import { Ubicacion, Unidad } from './propiedades.model';
 import { PropiedadesService } from './propiedades.service';
-import { RolesService } from 'src/app/Services/roles.service';
+import { RolesService } from 'src/app/services/roles.service';
 import { Observable } from 'rxjs';
 import { MatCalendar, MatCalendarCellClassFunction, MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { MatTabGroup } from '@angular/material/tabs';

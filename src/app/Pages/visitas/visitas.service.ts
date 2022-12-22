@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Visitas } from './visitas.model'
-import { RolesService } from 'src/app/Services/roles.service';
-import { Roles } from 'src/app/Services/roles.model';
+import { RolesService } from 'src/app/services/roles.service';
+import { Roles } from 'src/app/services/roles.model';
 import { Observable } from 'rxjs';
 
 @Injectable({

@@ -192,7 +192,7 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-        <mat-toolbar color="primary" class=" h-[12%]">
+        <mat-toolbar color="primary" class=" min-h-[15%]">
             <button type="button"
                     aria-label="Toggle sidenav"
                     mat-icon-button
@@ -207,7 +207,10 @@
                 </button>
             </div>
         </mat-toolbar>
-        <router-outlet></router-outlet>
+        <div class=" p-[2%] bg-gray-300 h-full">
+            <router-outlet></router-outlet>
+        </div>
+        
     </mat-sidenav-content>
 
 </mat-sidenav-container>

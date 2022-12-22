@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit, ViewChild, ViewEncapsulation, OnDestroy, Inject } from '@angular/core';
 import { Area, Reserva, Reserva_comunidad } from './reservas.model';
 import { ReservasService } from './reservas.service';
-import { RolesService } from 'src/app/Services/roles.service';
+import { RolesService } from 'src/app/services/roles.service';
 import { Subject, takeUntil } from 'rxjs';
 import { MatCalendar, MatCalendarCellClassFunction } from '@angular/material/datepicker';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -22,7 +22,7 @@ export class ReservasComponent implements OnInit, OnDestroy {
     minDate: Date;
     maxDate: Date;
     
-    reserva: Reserva;
+    reserva: Reserva = this.defaultReserva();
 
     bBitacora: boolean;
 
@@ -50,12 +50,12 @@ export class ReservasComponent implements OnInit, OnDestroy {
             this.displayedColumns = ['rut','nombre', 'fecha', 'nombre_area'];
         }
 
-        this.reserva = this.defaultReserva();
-
         //* Rango de fechas en las que es posible reservar*//
+        const today = new Date();
         this.minDate = new Date();
-        this.maxDate = new Date((new Date()).setDate((new Date()).getDate() + 90));
+        this.maxDate = new Date(today.setDate(today.getDate() + 90));
 
+        console.log(this.reserva.n_area);
     }
 
     defaultReserva(){
@@ -108,11 +108,14 @@ export class ReservasComponent implements OnInit, OnDestroy {
 
     Reagendar(i: number):void {
 
+        const reserva = this.reservasService.getReserva(i);
+
         const editModal = this.dialog.open(editReservas, {
             data: {
                 index:   i,
                 areaComun: this.areaComun,
-                reservasComunidad: this.reservasComunidad
+                reservasComunidad: this.reservasComunidad,
+                reserva: reserva
             },      
         });
 
@@ -211,12 +214,15 @@ export class editReservas {
         @Inject(MAT_DIALOG_DATA) public data: any,
         private reservasService: ReservasService
     ) {
+        const today = new Date();
         this.minDate = new Date();
-        this.maxDate = new Date((new Date()).setDate((new Date()).getDate() + 90));
+        this.maxDate = new Date(today.setDate(today.getDate() + 90));
+
         this.index = data.index;
 
         this.areaComun = data.areaComun;
-        this.reserva = this.reservasService.getReserva(this.index);
+        this.reserva = data.reserva;
+        console.log(this.reserva);
         this.reservasComunidad = data.reservasComunidad;
 
         for (var i = 0; i < this.reservasComunidad.length; i++) {

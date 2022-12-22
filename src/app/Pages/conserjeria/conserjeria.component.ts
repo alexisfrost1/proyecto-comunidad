@@ -2,7 +2,7 @@
 import { Conserjeria, Lugar, Unidad } from './conserjeria.model';
 import { ConserjeriaService } from './conserjeria.service';
 import { Observable } from 'rxjs';
-import { RolesService } from 'src/app/Services/roles.service';
+import { RolesService } from 'src/app/services/roles.service';
 
 @Component({
   selector: 'app-conserjeria',

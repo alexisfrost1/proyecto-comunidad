@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation,OnDestroy } from '@angular/core';
 import { MatTabGroup } from '@angular/material/tabs';
-import { RolesService } from 'src/app/Services/roles.service';
+import { RolesService } from 'src/app/services/roles.service';
 import { bitacora, departamento, registro } from './bitacora.model'
 import { BitacoraService } from './bitacora.service';
 import {VisitasComponent} from '../visitas/visitas.component'
@@ -31,9 +31,10 @@ export class BitacoraComponent implements OnInit, OnDestroy {
     private rolesService: RolesService,
     
   ) {
-    const currentDate = new Date();
+    const today = new Date();
     this.minDate = new Date();
-    this.maxDate = new Date(currentDate.setDate(currentDate.getDate() + 30));
+    this.maxDate = new Date(today.setDate(today.getDate() + 30));
+
     this.Departamentos = bitacoraService.getDepartamentos();
     this.Registros = bitacoraService.getRegistros();
     this.Bitacora = bitacoraService.getBitacora();

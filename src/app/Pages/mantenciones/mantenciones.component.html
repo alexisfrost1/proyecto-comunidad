@@ -12,8 +12,7 @@
                                 <mat-icon matSuffix>person_outline</mat-icon>
                                 Nombre de técnico
                             </mat-label>
-                            <input type="text" matInput placeholder="Nombre" name="nombre" [(ngModel)]="nombre">
-                            <mat-hint>Nombre del encargado de la mantención</mat-hint>
+                            <input type="text" matInput placeholder="Nombre" name="nombre" [(ngModel)]="mantencion.nombre">
                         </mat-form-field>
                     </p>
                     <p>
@@ -22,8 +21,7 @@
                                 <mat-icon matSuffix>tag</mat-icon>
                                 Rut técnico
                             </mat-label>
-                            <input type="text" matInput placeholder="Rut" name="rut" [(ngModel)]="rut">
-                            <mat-hint>Rut técnico</mat-hint>
+                            <input type="text" matInput placeholder="Rut" name="rut" [(ngModel)]="mantencion.rut">
                         </mat-form-field>
                     </p>
                     <p>
@@ -32,8 +30,7 @@
                                 <mat-icon matSuffix>person_outline</mat-icon>
                                 Cargo del técnico
                             </mat-label>
-                            <input type="text" matInput placeholder="Cargo" name="cargo" [(ngModel)]="cargo">
-                            <mat-hint>Cargo del técnico</mat-hint>
+                            <input type="text" matInput placeholder="Cargo" name="cargo" [(ngModel)]="mantencion.cargo">
                         </mat-form-field>
                     </p>
                     <p>
@@ -42,8 +39,7 @@
                                 <mat-icon matSuffix>person_outline</mat-icon>
                                 Motivo del mantenimiento
                             </mat-label>
-                            <input type="text" matInput placeholder="Motivo" name="motivo" [(ngModel)]="motivo">
-                            <mat-hint>Descripción del procedimiento</mat-hint>
+                            <input type="text" matInput placeholder="Motivo" name="motivo" [(ngModel)]="mantencion.motivo">
                         </mat-form-field>
                     </p>
                     <p>
@@ -52,8 +48,7 @@
                                 <mat-icon matSuffix>tag</mat-icon>
                                 Estacionamiento asignado
                             </mat-label>
-                            <input type="text" matInput placeholder="N° estacionamiento" name="estacionamiento" [(ngModel)]="estacionamiento">
-                            <mat-hint>N° estacionamiento</mat-hint>
+                            <input type="text" matInput placeholder="N° estacionamiento" name="estacionamiento" [(ngModel)]="mantencion.estacionamiento">
                         </mat-form-field>
                     </p>
                     <p>
@@ -62,8 +57,7 @@
                                 <mat-icon matSuffix>person_outline</mat-icon>
                                 Lugar a visitar
                             </mat-label>
-                            <input type="text" matInput placeholder="Unidad / área común" name="unidad" [(ngModel)]="unidad">
-                            <mat-hint>Nombre de referencia ej; departamento, casa, block, etc</mat-hint>
+                            <input type="text" matInput placeholder="Unidad / área común" name="unidad" [(ngModel)]="mantencion.unidad">
                         </mat-form-field>
                     </p>
                     <p>
@@ -72,42 +66,43 @@
                                 <mat-icon matSuffix>tag</mat-icon>
                                 N° dirección del lugar
                             </mat-label>
-                            <input type="text" matInput placeholder="N° de unidad referencial" name="n_unidad" [(ngModel)]="n_unidad">
-                            <mat-hint>N° dirección</mat-hint>
+                            <input type="text" matInput placeholder="N° de unidad referencial" name="n_unidad" [(ngModel)]="mantencion.n_unidad">
                         </mat-form-field>
                     </p>
                     <p>
                         <mat-form-field appearance="outline">
                             <mat-label>
                                 <mat-icon matSuffix></mat-icon>
-                                Elemento
+                                Mantención
                             </mat-label>
-                            <input type="text" matInput placeholder="Objeto de la mantención" name="elemento" [(ngModel)]="elemento">
-                            <mat-hint>Objetivo al cuál realizar la mantención</mat-hint>
+                            <input type="text" matInput placeholder="Objeto de la mantención" name="elemento" [(ngModel)]="mantencion.elemento">
                         </mat-form-field>
                     </p>
                     <p>
                         <mat-form-field appearance="outline">
                             <mat-label>Fecha</mat-label>
-                            <input matInput [matDatepicker]="Fecha" [min]="minDate" name="Fecha" [(ngModel)]="fecha">
+                            <input matInput [matDatepicker]="Fecha" [min]="minDate" name="Fecha" [(ngModel)]="mantencion.fecha">
                             <mat-datepicker-toggle matSuffix [for]="Fecha"></mat-datepicker-toggle>
                             <mat-datepicker #Fecha></mat-datepicker>
                             <mat-hint></mat-hint>
                         </mat-form-field>
                     </p>
-                    <p *ngIf="fecha!=undefined">
+                    <p [hidden]="mantencion.fecha==undefined">
                         <mat-form-field appearance="outline">
                             <mat-label>
                                 <mat-icon matSuffix></mat-icon>
                                 Hora
                             </mat-label>
-                            <!--
-                                <input matInput matTimepicker #t7="matTimepicker" [minDate]="minHour" [maxDate]="maxHour"
-                                       mode="24h" [ngModel]="hora" (timeChange)="timeChange($event)"
-                                       placeholder="Please select time..." name="hora">
-                                <mat-icon matSuffix (click)="t7.showDialog()">access_time</mat-icon>
-                            -->
+                            <input matInput
+		                        name="hora"
+		                        [format]="24"
+		                        [max]="maxHour"
+		                        [min]="minHour"
+		                        [(ngModel)]="hora"
+		                        [ngxMatTimepicker]="picker"/>
+	                        <ngx-mat-timepicker-toggle matSuffix></ngx-mat-timepicker-toggle>
                         </mat-form-field>
+                        <ngx-mat-timepicker color="accent" #picker></ngx-mat-timepicker>
                     </p>
                     <button class="margen" mat-raised-button type="submit" color="primary">Guardar</button>
                 </mat-card-content>

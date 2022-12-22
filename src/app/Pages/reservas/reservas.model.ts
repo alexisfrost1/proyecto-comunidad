@@ -5,7 +5,7 @@ export interface Area {
 
 export interface Reserva {
     nombre: string;
-    rut: string | any;
+    rut: string;
     fecha: Date | any;
     n_area: number | any;         // id_unidad del �rea com�n
 }
